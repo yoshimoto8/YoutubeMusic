@@ -1,0 +1,26 @@
+{
+  "name": "pomodoro",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "pretty-quick": "^1.4.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "precommit": "pretty-quick --staged"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.5",
+    "prettier": "^1.12.1"
+  }
+}
