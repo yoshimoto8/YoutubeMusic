@@ -1,20 +1,41 @@
 import React from "react";
 import TimeManagement from "../components/Molecules/TimeManagement";
-import ShowTime from "../components/Atoms/ShowTime";
+import Display from "../components/Molecules/Display";
+import SelectModes from "../components/Molecules/SelectModes";
 
 class Pomodoro extends React.Component {
   static defaultProps = {
     time: 1500,
-    play: false
+    play: false,
+    modeType: 0
   };
 
   constructor() {
     super();
     this.state = {
       time: 1500,
+      modeType: "Code",
       play: false
     };
   }
+
+  // formatType() {
+  //   return [
+  //     { type: "Code", time: 1500 },
+  //     { type: "Social", time: 900 },
+  //     { type: "Coffee", time: 300 }
+  //   ];
+  // }
+
+  setTimeForCode = () => {
+    this.setState({ modeType: "Code", time: 1500 });
+  };
+  setTimeForSocial = () => {
+    this.setState({ modeType: "Social", time: 900 });
+  };
+  setTimeForCoffee = () => {
+    this.setState({ modeType: "Coffee", time: 300 });
+  };
 
   elapse = () => {
     const newState = this.state.time - 1;
@@ -41,7 +62,12 @@ class Pomodoro extends React.Component {
     const { time } = this.state;
     return (
       <div>
-        <ShowTime showTime={this.format(time)} />
+        <Display showTime={this.format(time)} modeType={this.state.modeType} />
+        <SelectModes
+          setTimeForCode={() => this.setTimeForCode()}
+          setTimeForSocial={() => this.setTimeForSocial()}
+          setTimeForCoffee={() => this.setTimeForCoffee()}
+        />
         <TimeManagement play={() => this.play()} />
       </div>
     );
