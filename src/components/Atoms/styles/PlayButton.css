@@ -1,0 +1,29 @@
+.start {
+  background-image: url("../../../images/play.svg");
+}
+
+.stop {
+  background-image: url("../../../images/stop.svg");
+}
+
+.btnIcon {
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 60px;
+  height: 60px;
+  background-size: 50px;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.btnIcon:hover {
+  opacity: 0.8;
+}
+
+.btnIcon:active,
+.btnIcon:focus {
+  outline: 0;
+  opacity: 0.5;
+}

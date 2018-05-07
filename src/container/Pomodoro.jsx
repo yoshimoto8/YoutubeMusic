@@ -49,26 +49,32 @@ class Pomodoro extends React.Component {
     return timeFormated;
   };
 
+  start = () => {
+    this.Interval = setInterval(() => this.elapse(), 1000);
+  };
+
   play = () => {
-    setInterval(() => this.elapse(), 1000);
+    this.start();
     this.setState({ play: true });
   };
 
   stop = () => {
+    clearInterval(this.Interval);
     this.setState({ play: false });
   };
 
   render() {
     const { time } = this.state;
     return (
-      <div>
+      <div className="main">
         <Display showTime={this.format(time)} modeType={this.state.modeType} />
         <SelectModes
           setTimeForCode={() => this.setTimeForCode()}
           setTimeForSocial={() => this.setTimeForSocial()}
           setTimeForCoffee={() => this.setTimeForCoffee()}
         />
-        <TimeManagement play={() => this.play()} />
+
+        <TimeManagement play={() => this.play()} stop={() => this.stop()} />
       </div>
     );
   }

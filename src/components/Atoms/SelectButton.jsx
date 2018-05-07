@@ -1,11 +1,12 @@
 import React from "react";
+import "./styles/SelectButton.css";
 
 const SelectButton = props => {
   const { text, setTime } = props;
   return (
-    <div>
-      <button onClick={() => setTime()}>{text}</button>
-    </div>
+    <button className="selectButton" onClick={() => setTime()}>
+      {text}
+    </button>
   );
 };
 

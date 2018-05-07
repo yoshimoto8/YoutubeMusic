@@ -1,13 +1,13 @@
 import React from "react";
 import PlayButton from "../Atoms/PlayButton";
-import StopButton from "../Atoms/StopButton";
+import "./styles/TimeManagement.css";
 
 const TimeManagement = props => {
-  const { play } = props;
+  const { play, stop } = props;
   return (
-    <div>
-      <PlayButton play={play} />
-      <StopButton />
+    <div className="timeManagement">
+      <PlayButton play={play} text={"start"} />
+      <PlayButton play={stop} text={"stop"} />
     </div>
   );
 };

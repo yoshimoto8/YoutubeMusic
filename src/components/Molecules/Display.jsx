@@ -5,7 +5,7 @@ import ShowTime from "../Atoms/ShowTime";
 const Display = props => {
   const { showTime, modeType } = props;
   return (
-    <div>
+    <div className="">
       <ShowTime showTime={showTime} />
       <ShowMode modeType={modeType} />
     </div>

@@ -1,11 +1,9 @@
 import React from "react";
+import "./styles/PlayButton.css";
 
 const PlayButton = props => {
-  return (
-    <div>
-      <button onClick={() => props.play()}>スタート</button>
-    </div>
-  );
+  const { text, play } = props;
+  return <button className={`${text} btnIcon`} onClick={() => play()} />;
 };
 
 export default PlayButton;
