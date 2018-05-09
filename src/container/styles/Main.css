@@ -21,7 +21,7 @@
 .sidebar a {
   text-decoration: none;
   padding: 10px;
-  color: #c0c0c0;
+  color: hsla(0, 0%, 100%, 0.6);
   list-style: none;
 }
 

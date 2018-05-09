@@ -3,7 +3,6 @@ import update from "immutability-helper";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Pomodoro from "./Pomodoro";
 import Music from "./Music";
-import MusicOperation from "./MusicOperation";
 import "./styles/Main.css";
 
 class Main extends React.Component {
@@ -115,10 +114,6 @@ class Main extends React.Component {
               component={route.main}
             />
           ))}
-          <MusicOperation
-            playPause={() => playPause()}
-            defaultMusicList={defaultMusicList}
-          />
         </div>
       </Router>
     );

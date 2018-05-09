@@ -1,0 +1,7 @@
+.mainPomodoro {
+  display: flex;
+  justify-content: space-around;
+}
+.musicPlay {
+  display: flex;
+}
