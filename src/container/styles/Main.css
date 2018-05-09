@@ -2,6 +2,29 @@
   display: flex;
 }
 
-.sidebar {
+.main {
   height: 100%;
+  width: 90%;
+}
+.sidebar {
+  margin: 0;
+  height: 800px;
+  width: 220px;
+  background-color: black;
+}
+
+.sidebar li {
+  padding-left: 0;
+  padding-top: 30px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  padding: 10px;
+  color: #c0c0c0;
+  list-style: none;
+}
+
+.sidebar a:hover {
+  color: white;
 }
