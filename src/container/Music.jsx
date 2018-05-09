@@ -7,18 +7,7 @@ class Music extends React.Component {
     super();
     this.state = {
       startList: 0,
-      endList: 5,
-      defaultMusicList: [
-        "NKN6yZz0qls",
-        "Ofj-6yHonLU",
-        "EO3t0nYiK_M",
-        "xk9dX8e3pMo",
-        "7pr6IQmGutU",
-        "oCNzN3HNV38",
-        "LfAVetXcj-c",
-        "QG-Bm1Pz96g",
-        "uOQIh5qMezQ"
-      ]
+      endList: 5
     };
   }
 
@@ -31,7 +20,8 @@ class Music extends React.Component {
   };
 
   render() {
-    const { startList, endList, defaultMusicList } = this.state;
+    const { startList, endList } = this.state;
+    const { defaultMusicList, onPlay, onPause } = this.props;
 
     return (
       <div className="main">
@@ -42,6 +32,8 @@ class Music extends React.Component {
           startList={startList}
           endList={endList}
           defaultMusicList={defaultMusicList}
+          onPlay={onPlay}
+          onPause={onPause}
         />
       </div>
     );

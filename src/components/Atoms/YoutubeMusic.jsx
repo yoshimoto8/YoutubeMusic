@@ -1,28 +1,23 @@
 import React from "react";
-import YouTube from "react-youtube";
+import ReactPlayer from "react-player";
 import "./styles/YoutubeMusic.css";
 
 class YouTubeMusic extends React.Component {
   render() {
-    const opts = {
-      height: "200",
-      width: "200"
-    };
-    const { videoId, className } = this.props;
-
+    const { data, className, onPlay, onPause } = this.props;
+    const { id, videoId, playing } = data;
+    console.log(videoId);
     return (
-      <YouTube
+      <ReactPlayer
         className={className}
-        videoId={videoId}
-        opts={opts}
-        onReady={this._onReady}
+        width="200px"
+        height="200px"
+        url={videoId}
+        playing={playing}
+        onPlay={() => onPlay(id)}
+        onPause={() => onPause(id)}
       />
     );
-  }
-
-  _onReady(event) {
-    // access to player in all event handlers via event.target
-    event.target.pauseVideo();
   }
 }
 

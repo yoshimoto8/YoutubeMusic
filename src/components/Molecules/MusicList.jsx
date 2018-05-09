@@ -8,7 +8,9 @@ const MusicList = props => {
     startList,
     endList,
     nextDefaultPlayList,
-    backDefaultPlayList
+    backDefaultPlayList,
+    onPlay,
+    onPause
   } = props;
   const newDefaultMusicList = defaultMusicList.slice(startList, endList);
 
@@ -26,15 +28,19 @@ const MusicList = props => {
         </div>
       </div>
       <hr />
-      {newDefaultMusicList.map((videoId, index) => {
-        return (
-          <YoutubeMusic
-            key={index}
-            videoId={videoId}
-            className={`playContent id-${index}`}
-          />
-        );
-      })}
+      <div>
+        {newDefaultMusicList.map((data, index) => {
+          return (
+            <YoutubeMusic
+              key={index}
+              data={data}
+              onPlay={onPlay}
+              onPause={onPause}
+              className={`playContent id-${index}`}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
