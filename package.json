@@ -1,6 +1,7 @@
 {
   "name": "pomodoro",
   "version": "0.1.0",
+  "homepage": "https://yoshimoto8.github.io/Pomodoro",
   "private": true,
   "dependencies": {
     "@u-wave/react-youtube": "^0.4.2",
@@ -56,7 +57,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "precommit": "pretty-quick --staged"
+    "precommit": "pretty-quick --staged",
+    "deploy": "npm run build && gh-pages -d build"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
