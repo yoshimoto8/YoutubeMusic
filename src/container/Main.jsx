@@ -7,7 +7,7 @@ class Main extends React.Component {
   render() {
     const routes = [
       {
-        path: "/pomodoro",
+        path: "/",
         sidebar: () => <h2>prodomo</h2>,
         main: () => <Pomodoro />
       }
@@ -20,16 +20,11 @@ class Main extends React.Component {
           <div className="contents">
             <ul className="sidebar">
               <li>
-                <Link to="/pomodoro">Pomodoro</Link>
+                <Link to="/">Pomodoro</Link>
               </li>
             </ul>
             {routes.map((route, index) => (
-              <Route
-                key={index}
-                exact={true}
-                path={route.path}
-                component={route.main}
-              />
+              <Route key={index} path={route.path} component={route.main} />
             ))}
           </div>
         </Router>
