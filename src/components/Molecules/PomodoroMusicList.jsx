@@ -13,7 +13,7 @@ const PomodoroMusicList = props => {
           <div
             className="musicRow"
             key={index}
-            onClick={() => setUrl(data.src, data.name)}
+            onClick={() => setUrl(data.src, data.name, data.artists, data.id)}
           >
             <MusicListIcon playNow={playNow} />
             <MusicTitle

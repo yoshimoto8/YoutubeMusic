@@ -1,5 +1,4 @@
 import React from "react";
-import update from "immutability-helper";
 import TimeManagement from "../components/Molecules/TimeManagement";
 import Display from "../components/Molecules/Display";
 import SelectModes from "../components/Molecules/SelectModes";
@@ -9,12 +8,6 @@ import MusicOperation from "../components/Molecules/MusicOperation";
 import "./styles/Pomodoro.css";
 
 class Pomodoro extends React.Component {
-  static defaultProps = {
-    time: 1500,
-    play: false,
-    modeType: 0
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -23,41 +16,54 @@ class Pomodoro extends React.Component {
       play: false,
       musicList: [
         {
-          name: "Capsule Non-stop Remix",
-          artists: "nothing",
-          time: 322,
-          src: "https://www.youtube.com/watch?v=pqUy6Q8pllA"
+          id: 1,
+          name: "After Dark",
+          artists: "Aimer",
+          time: 278,
+          src: "https://www.youtube.com/watch?v=hIQeXJxWMi4"
         },
         {
-          name: "Perfume & capsule Progressive House MIX",
-          artists: "Perfume",
-          time: 424,
-          src: "https://www.youtube.com/watch?v=X3rOqETfHdk"
+          id: 2,
+          name: "Aimer Premier Live 2012.06.08 DIGEST",
+          artists: "Aimer",
+          time: 478,
+          src: "https://www.youtube.com/watch?v=zxvLA7xepGA"
         },
         {
-          name: "Perfume Mix [Perfume All Time Best Mix ～Cool Side～]",
-          artists: "Perfume",
-          time: 333,
-          src: "https://www.youtube.com/watch?v=kbQb0E8e-ug&t=2145s"
+          id: 3,
+          name: "Re:pray",
+          artists: "Aimer",
+          time: 317,
+          src: "https://www.youtube.com/watch?v=cPB-ijSzEMk"
         },
         {
-          name: "The Chainsmokers - Don't Let Me Down ",
-          artists: "The Chainsmokers",
-          time: 534,
-          src: "https://www.youtube.com/watch?v=s8XIgR5OGJc"
+          id: 4,
+          name: "六等星の夜",
+          artists: "Aimer",
+          time: 341,
+          src: "https://www.youtube.com/watch?v=jgSyul7n-8M"
         },
         {
-          name: "Twenty One Pilots - Stressed Out",
-          artists: "トゥエンティ・ワン・パイロッツ",
+          id: 5,
+          name: "Kataomoi",
+          artists: "Aimer",
           time: 600,
-          src: "https://www.youtube.com/watch?v=0t2tjNqGyJI"
+          src: "https://www.youtube.com/watch?v=2H36K1Hi72s"
+        },
+        {
+          id: 6,
+          name: "ONE",
+          artists: "Aimer",
+          time: 341,
+          src: "https://www.youtube.com/watch?v=GOurhX0YAPQ"
         }
       ],
-
+      playingId: null,
       musicName: "",
+      artist: "",
       url: null,
       playing: true,
-      volume: 0.8,
+      volume: 0.5,
       muted: false,
       played: 0,
       loaded: 0,
@@ -66,13 +72,30 @@ class Pomodoro extends React.Component {
       loop: false
     };
   }
-  setUrl = (src, musicName) => {
-    this.setState({ url: src, musicName: musicName });
+
+  setFirstMusic = (src, musicName, artist, id) => {
+    console.log(id);
+    const playingId = id - 1;
+    this.setState({
+      url: src,
+      musicName: musicName,
+      artist: artist,
+      playing: false,
+      playingId: playingId
+    });
+  };
+
+  setUrl = (src, musicName, artist) => {
+    this.setState({ url: src, musicName: musicName, artist: artist });
   };
 
   playPause = () => {
     const conditions = this.state.playing ? false : true;
     this.setState({ playing: conditions });
+  };
+
+  setVolume = e => {
+    this.setState({ volume: parseFloat(e.target.value) });
   };
 
   onDuration = duration => {
@@ -86,6 +109,15 @@ class Pomodoro extends React.Component {
     }
   };
 
+  onPlay = () => {
+    this.setState({ playing: true });
+  };
+
+  onPause = () => {
+    this.setState({ playing: false });
+  };
+
+  // ここからポモドーロ
   setTimeForCode = () => {
     this.setState({ modeType: "Code", time: 1500 });
   };
@@ -123,21 +155,33 @@ class Pomodoro extends React.Component {
   };
 
   render() {
-    const { setUrl, playPause, onProgress, onDuration } = this;
+    const {
+      setUrl,
+      playPause,
+      onProgress,
+      onDuration,
+      setVolume,
+      setFirstMusic,
+      onPlay,
+      onPause
+    } = this;
+
     const {
       musicList,
       time,
       url,
       playing,
-      volumem,
-      muted,
+      volume,
       played,
-      loaded,
       duration,
-      playbackRate,
-      loop,
-      musicName
+      musicName,
+      artist
     } = this.state;
+
+    if (!url) {
+      const { src, artists, name, id } = musicList[0];
+      setFirstMusic(src, name, artists, id);
+    }
 
     return (
       <div className="main">
@@ -146,21 +190,20 @@ class Pomodoro extends React.Component {
             musicName={musicName}
             url={url}
             playing={playing}
-            volumem={volumem}
-            muted={muted}
-            played={played}
-            loaded={loaded}
-            duration={duration}
-            playbackRate={playbackRate}
-            loop={loop}
+            volume={volume}
             onProgress={state => onProgress(state)}
             onDuration={duration => onDuration(duration)}
+            playPause={playPause}
+            onPlay={() => onPlay()}
+            onPause={() => onPause()}
           />
           <PomodoroMusicList
             musicList={musicList}
             url={url}
             playing={playing}
-            setUrl={(src, musicName) => setUrl(src, musicName)}
+            setUrl={(src, musicName, artist, id) =>
+              setUrl(src, musicName, artist, id)
+            }
             formatChange={seconds => this.format(seconds)}
           />
         </div>
@@ -182,6 +225,10 @@ class Pomodoro extends React.Component {
             playing={playing}
             played={played}
             duration={duration}
+            volume={volume}
+            setVolume={e => setVolume(e)}
+            musicName={musicName}
+            artist={artist}
           />
         ) : (
           <div />

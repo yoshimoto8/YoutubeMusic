@@ -1,6 +1,12 @@
 .main {
   display: flex;
 }
+
+.mainPomodoro {
+  position: left;
+  height: 1000px;
+}
+
 .musicPlay {
   width: 950px;
 }

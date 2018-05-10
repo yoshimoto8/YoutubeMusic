@@ -6,18 +6,15 @@ const PomodoroMusicDisplay = props => {
   const {
     musicName,
     url,
-    setRef,
     playing,
-    volumem,
-    muted,
-    played,
-    loaded,
-    duration,
-    playbackRate,
-    loop,
+    volume,
     onProgress,
-    onDuration
+    onDuration,
+    playPause,
+    onPlay,
+    onPause
   } = props;
+
   return (
     <div className="musicPlayDisplay">
       <ReactPlayer
@@ -25,14 +22,19 @@ const PomodoroMusicDisplay = props => {
         width="250px"
         controls
         url={url}
+        volume={volume}
         playing={playing}
         onSeek={e => console.log("onSeek", e)}
         onProgress={onProgress}
         onDuration={onDuration}
+        onPlay={() => onPlay()}
+        onPause={() => onPause()}
       />
       <div className="musicTopAbout">
         <div className="musicName">{musicName}</div>
-        <button className="startBtn">曲を再生する</button>
+        <button className="startBtn" onClick={() => playPause()}>
+          {playing ? "一時停止" : "曲の再生"}
+        </button>
       </div>
     </div>
   );

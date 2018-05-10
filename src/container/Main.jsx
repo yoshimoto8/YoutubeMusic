@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Pomodoro from "./Pomodoro";
-import Music from "./Music";
 import "./styles/Main.css";
 
 class Main extends React.Component {
