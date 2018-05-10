@@ -121,9 +121,11 @@ class Pomodoro extends React.Component {
   setTimeForCode = () => {
     this.setState({ modeType: "Code", time: 1500 });
   };
+
   setTimeForSocial = () => {
     this.setState({ modeType: "Social", time: 900 });
   };
+
   setTimeForCoffee = () => {
     this.setState({ modeType: "Coffee", time: 300 });
   };
