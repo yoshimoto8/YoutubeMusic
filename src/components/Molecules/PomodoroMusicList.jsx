@@ -1,15 +1,27 @@
 import React from "react";
 import MusicTitle from "../Atoms/MusicTitle";
+import MusicListIcon from "../Atoms/MusicListIcon";
+import "./styles/PomodoroMusicList.css";
 
 const PomodoroMusicList = props => {
-  const { musicList, musicArgments, setUrl } = props;
+  const { musicList, url, setUrl, formatChange } = props;
   return (
-    <div>
+    <div className="musicList">
       {musicList.map((data, index) => {
-        const playNow = data.src === musicArgments.url;
+        const playNow = data.src === url;
         return (
-          <div key={index} onClick={() => setUrl(data.src)}>
-            <MusicTitle title={data.name} playNow={playNow} />
+          <div
+            className="musicRow"
+            key={index}
+            onClick={() => setUrl(data.src, data.name)}
+          >
+            <MusicListIcon playNow={playNow} />
+            <MusicTitle
+              title={data.name}
+              artist={data.artists}
+              playNow={playNow}
+            />
+            <div className="musicTime">{formatChange(data.time)}</div>
           </div>
         );
       })}

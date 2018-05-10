@@ -5,6 +5,7 @@ import Display from "../components/Molecules/Display";
 import SelectModes from "../components/Molecules/SelectModes";
 import PomodoroMusicList from "../components/Molecules/PomodoroMusicList";
 import PomodoroMusicDisplay from "../components/Molecules/PomodoroMusicDisplay";
+import MusicOperation from "../components/Molecules/MusicOperation";
 import "./styles/Pomodoro.css";
 
 class Pomodoro extends React.Component {
@@ -14,8 +15,8 @@ class Pomodoro extends React.Component {
     modeType: 0
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       time: 1500,
       modeType: "Code",
@@ -23,61 +24,67 @@ class Pomodoro extends React.Component {
       musicList: [
         {
           name: "Capsule Non-stop Remix",
+          artists: "nothing",
+          time: 322,
           src: "https://www.youtube.com/watch?v=pqUy6Q8pllA"
         },
         {
           name: "Perfume & capsule Progressive House MIX",
+          artists: "Perfume",
+          time: 424,
           src: "https://www.youtube.com/watch?v=X3rOqETfHdk"
         },
         {
           name: "Perfume Mix [Perfume All Time Best Mix ～Cool Side～]",
+          artists: "Perfume",
+          time: 333,
           src: "https://www.youtube.com/watch?v=kbQb0E8e-ug&t=2145s"
         },
         {
           name: "The Chainsmokers - Don't Let Me Down ",
+          artists: "The Chainsmokers",
+          time: 534,
           src: "https://www.youtube.com/watch?v=s8XIgR5OGJc"
         },
         {
           name: "Twenty One Pilots - Stressed Out",
+          artists: "トゥエンティ・ワン・パイロッツ",
+          time: 600,
           src: "https://www.youtube.com/watch?v=0t2tjNqGyJI"
         }
       ],
-      musicArgments: {
-        url: null,
-        playing: false
-      }
+
+      musicName: "",
+      url: null,
+      playing: true,
+      volume: 0.8,
+      muted: false,
+      played: 0,
+      loaded: 0,
+      duration: 0,
+      playbackRate: 1.0,
+      loop: false
     };
   }
-
-  setUrl = src => {
-    const newState = update(this.state.musicArgments, { url: { $set: src } });
-    this.setState({ musicArgments: newState });
+  setUrl = (src, musicName) => {
+    this.setState({ url: src, musicName: musicName });
   };
 
-  playPause = id => {
-    this.setState({ playing: !this.state.playing });
+  playPause = () => {
+    const conditions = this.state.playing ? false : true;
+    this.setState({ playing: conditions });
   };
 
-  onPlay = id => {
-    console.log("onPlay");
-    const newData = update(this.state.defaultMusicList, {
-      [id]: { playing: { $set: true } }
-    });
-    this.setState({ defaultMusicList: newData });
+  onDuration = duration => {
+    console.log("onDuration", duration);
+    this.setState({ duration });
   };
 
-  onPause = id => {
-    console.log("onPause");
-    this.setState({ playing: false });
+  onProgress = state => {
+    if (!this.state.seeking) {
+      this.setState(state);
+    }
   };
-
-  // formatType() {
-  //   return [
-  //     { type: "Code", time: 1500 },
-  //     { type: "Social", time: 900 },
-  //     { type: "Coffee", time: 300 }
-  //   ];
-  // }
 
   setTimeForCode = () => {
     this.setState({ modeType: "Code", time: 1500 });
@@ -116,32 +123,69 @@ class Pomodoro extends React.Component {
   };
 
   render() {
-    const { time, musicList, musicArgments } = this.state;
+    const { setUrl, playPause, onProgress, onDuration } = this;
+    const {
+      musicList,
+      time,
+      url,
+      playing,
+      volumem,
+      muted,
+      played,
+      loaded,
+      duration,
+      playbackRate,
+      loop,
+      musicName
+    } = this.state;
+
     return (
       <div className="main">
+        <div className="musicPlay">
+          <PomodoroMusicDisplay
+            musicName={musicName}
+            url={url}
+            playing={playing}
+            volumem={volumem}
+            muted={muted}
+            played={played}
+            loaded={loaded}
+            duration={duration}
+            playbackRate={playbackRate}
+            loop={loop}
+            onProgress={state => onProgress(state)}
+            onDuration={duration => onDuration(duration)}
+          />
+          <PomodoroMusicList
+            musicList={musicList}
+            url={url}
+            playing={playing}
+            setUrl={(src, musicName) => setUrl(src, musicName)}
+            formatChange={seconds => this.format(seconds)}
+          />
+        </div>
         <div className="mainPomodoro">
           <Display
             showTime={this.format(time)}
             modeType={this.state.modeType}
           />
-          <div>
-            <SelectModes
-              setTimeForCode={() => this.setTimeForCode()}
-              setTimeForSocial={() => this.setTimeForSocial()}
-              setTimeForCoffee={() => this.setTimeForCoffee()}
-            />
-
-            <TimeManagement play={() => this.play()} stop={() => this.stop()} />
-          </div>
-        </div>
-        <div className="musicPlay">
-          <PomodoroMusicDisplay musicArgments={musicArgments} />
-          <PomodoroMusicList
-            musicList={musicList}
-            musicArgments={musicArgments}
-            setUrl={src => this.setUrl(src)}
+          <SelectModes
+            setTimeForCode={() => this.setTimeForCode()}
+            setTimeForSocial={() => this.setTimeForSocial()}
+            setTimeForCoffee={() => this.setTimeForCoffee()}
           />
+          <TimeManagement play={() => this.play()} stop={() => this.stop()} />
         </div>
+        {url ? (
+          <MusicOperation
+            playPause={() => playPause()}
+            playing={playing}
+            played={played}
+            duration={duration}
+          />
+        ) : (
+          <div />
+        )}
       </div>
     );
   }
