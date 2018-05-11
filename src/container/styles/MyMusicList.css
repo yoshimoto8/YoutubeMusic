@@ -1,0 +1,10 @@
+.defaultMusicPlayList {
+  display: flex;
+}
+.defaultMusicPlayBox h2 {
+  margin: 20px 20px 10px;
+  color: #fff;
+}
+.musicPlayBox {
+  margin: 10px 20px;
+}
