@@ -58,6 +58,7 @@ class Pomodoro extends React.Component {
           src: "https://www.youtube.com/watch?v=GOurhX0YAPQ"
         }
       ],
+      albumLength: null,
       playingId: null,
       musicName: "",
       artist: "",
@@ -72,9 +73,12 @@ class Pomodoro extends React.Component {
       loop: false
     };
   }
+  componentDidMount() {
+    const albumLength = this.state.musicList.length;
+    this.setState({ albumLength });
+  }
 
   setFirstMusic = (src, musicName, artist, id) => {
-    console.log(id);
     const playingId = id - 1;
     this.setState({
       url: src,
@@ -85,8 +89,14 @@ class Pomodoro extends React.Component {
     });
   };
 
-  setUrl = (src, musicName, artist) => {
-    this.setState({ url: src, musicName: musicName, artist: artist });
+  setUrl = (src, musicName, artist, id) => {
+    const playingId = id - 1;
+    this.setState({
+      playingId: playingId,
+      url: src,
+      musicName: musicName,
+      artist: artist
+    });
   };
 
   playPause = () => {
@@ -99,7 +109,6 @@ class Pomodoro extends React.Component {
   };
 
   onDuration = duration => {
-    console.log("onDuration", duration);
     this.setState({ duration });
   };
 
@@ -115,6 +124,30 @@ class Pomodoro extends React.Component {
 
   onPause = () => {
     this.setState({ playing: false });
+  };
+
+  nextPlayMusic = playingId => {
+    const nextPlayId = playingId + 1;
+    const { id, src, name, artists } = this.state.musicList[nextPlayId];
+    this.setState({
+      playingId: id,
+      url: src,
+      musicName: name,
+      artist: artists,
+      playing: true
+    });
+  };
+
+  backPlayMusic = playingId => {
+    const nextPlayId = playingId - 1;
+    const { id, src, name, artists } = this.state.musicList[nextPlayId];
+    this.setState({
+      playingId: id,
+      url: src,
+      musicName: name,
+      artist: artists,
+      playing: true
+    });
   };
 
   // ここからポモドーロ
@@ -165,7 +198,9 @@ class Pomodoro extends React.Component {
       setVolume,
       setFirstMusic,
       onPlay,
-      onPause
+      onPause,
+      nextPlayMusic,
+      backPlayMusic
     } = this;
 
     const {
@@ -177,7 +212,9 @@ class Pomodoro extends React.Component {
       played,
       duration,
       musicName,
-      artist
+      artist,
+      playingId,
+      albumLength
     } = this.state;
 
     if (!url) {
@@ -223,6 +260,8 @@ class Pomodoro extends React.Component {
         </div>
         {url ? (
           <MusicOperation
+            playingId={playingId}
+            albumLength={albumLength}
             playPause={() => playPause()}
             playing={playing}
             played={played}
@@ -231,6 +270,8 @@ class Pomodoro extends React.Component {
             setVolume={e => setVolume(e)}
             musicName={musicName}
             artist={artist}
+            nextPlayMusic={playingId => nextPlayMusic(playingId)}
+            backPlayMusic={playingId => backPlayMusic(playingId)}
           />
         ) : (
           <div />

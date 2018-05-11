@@ -23,6 +23,19 @@
 
 .centerPlayer {
   text-align: center;
+  height: 90px;
+}
+.centerPlayerTop {
+  height: 64px;
+}
+.backPlayMusic {
+  padding-bottom: 43px;
+  padding-right: 10px;
+}
+
+.nextPlayMusic {
+  padding-left: 10px;
+  padding-bottom: 43px;
 }
 
 .timePlayer {
