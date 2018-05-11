@@ -46,7 +46,6 @@ const MusicOperation = props => {
         color="#a9a9a9"
       />
     );
-  console.log(toggleLoop);
   const arrowLoopStyle = loop ? "#1db954" : "#a9a9a9";
 
   return (

@@ -26,7 +26,6 @@ const PomodoroMusicDisplay = props => {
         volume={volume}
         playing={playing}
         loop={loop}
-        onSeek={e => console.log("onSeek", e)}
         onProgress={onProgress}
         onDuration={onDuration}
         onPlay={() => onPlay()}

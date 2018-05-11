@@ -6,7 +6,6 @@ class YouTubeMusic extends React.Component {
   render() {
     const { data, className, onPlay, onPause } = this.props;
     const { id, videoId, playing } = data;
-    console.log(videoId);
     return (
       <ReactPlayer
         className={className}

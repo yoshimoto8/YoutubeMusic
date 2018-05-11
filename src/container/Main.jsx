@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Pomodoro from "./Pomodoro";
+import MyMusicList from "./MyMusicList";
 import "./styles/Main.css";
 
 class Main extends React.Component {
@@ -10,6 +11,11 @@ class Main extends React.Component {
         path: "/",
         sidebar: () => <h2>prodomo</h2>,
         main: () => <Pomodoro />
+      },
+      {
+        path: "/myMusic",
+        sideber: () => <h2>mymusic</h2>,
+        main: () => <MyMusicList />
       }
     ];
 
@@ -20,11 +26,19 @@ class Main extends React.Component {
           <div className="contents">
             <ul className="sidebar">
               <li>
+                <Link to="/myMusic">myMusic</Link>
+              </li>
+              <li>
                 <Link to="/">Pomodoro</Link>
               </li>
             </ul>
             {routes.map((route, index) => (
-              <Route key={index} path={route.path} component={route.main} />
+              <Route
+                exact
+                key={index}
+                path={route.path}
+                component={route.main}
+              />
             ))}
           </div>
         </Router>

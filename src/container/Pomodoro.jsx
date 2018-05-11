@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import TimeManagement from "../components/Molecules/TimeManagement";
 import Display from "../components/Molecules/Display";
 import SelectModes from "../components/Molecules/SelectModes";
@@ -21,41 +22,6 @@ class Pomodoro extends React.Component {
           artists: "Aimer",
           time: 278,
           src: "https://www.youtube.com/watch?v=hIQeXJxWMi4"
-        },
-        {
-          id: 2,
-          name: "Aimer Premier Live 2012.06.08 DIGEST",
-          artists: "Aimer",
-          time: 478,
-          src: "https://www.youtube.com/watch?v=zxvLA7xepGA"
-        },
-        {
-          id: 3,
-          name: "Re:pray",
-          artists: "Aimer",
-          time: 317,
-          src: "https://www.youtube.com/watch?v=cPB-ijSzEMk"
-        },
-        {
-          id: 4,
-          name: "六等星の夜",
-          artists: "Aimer",
-          time: 341,
-          src: "https://www.youtube.com/watch?v=jgSyul7n-8M"
-        },
-        {
-          id: 5,
-          name: "Kataomoi",
-          artists: "Aimer",
-          time: 600,
-          src: "https://www.youtube.com/watch?v=2H36K1Hi72s"
-        },
-        {
-          id: 6,
-          name: "ONE",
-          artists: "Aimer",
-          time: 341,
-          src: "https://www.youtube.com/watch?v=GOurhX0YAPQ"
         }
       ],
       albumLength: null,
@@ -74,8 +40,19 @@ class Pomodoro extends React.Component {
     };
   }
   componentDidMount() {
-    const albumLength = this.state.musicList.length;
-    this.setState({ albumLength });
+    console.log(this.props.musicList);
+    const albumLength = !this.props.musicList
+      ? this.state.musicList.length
+      : this.props.musicList.length;
+
+    !this.props.musicList
+      ? this.setState({
+          albumLength: albumLength
+        })
+      : this.setState({
+          musicList: this.props.musicList,
+          albumLength: albumLength
+        });
   }
 
   setFirstMusic = (src, musicName, artist, id) => {
@@ -90,7 +67,6 @@ class Pomodoro extends React.Component {
   };
 
   setUrl = (src, musicName, artist, id) => {
-    console.log(id);
     const playingId = id;
     this.setState({
       playingId: playingId,
@@ -295,4 +271,8 @@ class Pomodoro extends React.Component {
   }
 }
 
-export default Pomodoro;
+const mapStateToProps = state => ({
+  musicList: state.setPlayList.defaultMusic
+});
+
+export default connect(mapStateToProps, null)(Pomodoro);
