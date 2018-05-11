@@ -1,7 +1,6 @@
 {
   "name": "pomodoro",
   "version": "0.1.0",
-  "homepage": "https://yoshimoto8.github.io/Pomodoro",
   "private": true,
   "dependencies": {
     "@u-wave/react-youtube": "^0.4.2",
@@ -63,8 +62,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "precommit": "pretty-quick --staged",
-    "deploy": "npm run build && gh-pages -d build"
+    "precommit": "pretty-quick --staged"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -76,7 +74,6 @@
     "babel-preset-stage-0": "^6.24.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
-    "gh-pages": "^1.1.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.5",
     "prettier": "^1.12.1"
