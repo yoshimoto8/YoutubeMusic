@@ -61,7 +61,8 @@ class Pomodoro extends React.Component {
       musicName: musicName,
       artist: artist,
       playing: false,
-      playingId: playingId
+      playingId: playingId,
+      played: 0
     });
   };
 
@@ -71,7 +72,8 @@ class Pomodoro extends React.Component {
       playingId: playingId,
       url: src,
       musicName: musicName,
-      artist: artist
+      artist: artist,
+      played: 0
     });
   };
 
@@ -110,7 +112,8 @@ class Pomodoro extends React.Component {
       url: src,
       musicName: name,
       artist: artists,
-      playing: true
+      playing: true,
+      played: 0
     });
   };
 
@@ -122,7 +125,8 @@ class Pomodoro extends React.Component {
       url: src,
       musicName: name,
       artist: artists,
-      playing: true
+      playing: true,
+      played: 0
     });
   };
 
@@ -202,7 +206,6 @@ class Pomodoro extends React.Component {
     if (played === 1 && playingId !== albumLength) {
       nextPlayMusic(playingId);
     }
-    console.log(url);
     if (!url) {
       const { src, artists, name, id } = musicList[0];
       setFirstMusic(src, name, artists, id);

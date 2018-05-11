@@ -1,7 +1,7 @@
 {
   "name": "pomodoro",
   "version": "0.1.0",
-  "homepage": "https://yoshimoto8.github.io/Pomodoro",
+  "homepage": "https://yoshimoto8.github.io/",
   "private": true,
   "dependencies": {
     "@u-wave/react-youtube": "^0.4.2",
