@@ -1,5 +1,3 @@
-function* rootSaga() {
-  yield [];
-}
+function* rootSaga() {}
 
 export default rootSaga;
