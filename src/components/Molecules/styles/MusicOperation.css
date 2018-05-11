@@ -38,6 +38,11 @@
   padding-bottom: 43px;
 }
 
+.loopPlayMusic {
+  padding-left: 20px;
+  padding-bottom: 42px;
+}
+
 .timePlayer {
   display: flex;
   justify-content: center;

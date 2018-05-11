@@ -12,7 +12,8 @@ const PomodoroMusicDisplay = props => {
     onDuration,
     playPause,
     onPlay,
-    onPause
+    onPause,
+    loop
   } = props;
 
   return (
@@ -24,6 +25,7 @@ const PomodoroMusicDisplay = props => {
         url={url}
         volume={volume}
         playing={playing}
+        loop={loop}
         onSeek={e => console.log("onSeek", e)}
         onProgress={onProgress}
         onDuration={onDuration}

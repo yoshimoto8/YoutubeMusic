@@ -5,6 +5,7 @@ import GoJumpRight from "react-icons/lib/go/jump-right";
 import GoJumpLeft from "react-icons/lib/go/jump-left";
 import MusicPlayButton from "../Atoms/MusicPlayButton";
 import IoIosVolumeHigh from "react-icons/lib/io/ios-volume-high";
+import TiArrowLoop from "react-icons/lib/ti/arrow-loop";
 
 const MusicOperation = props => {
   const {
@@ -19,11 +20,13 @@ const MusicOperation = props => {
     artist,
     nextPlayMusic,
     backPlayMusic,
-    albumLength
+    albumLength,
+    toggleLoop,
+    loop
   } = props;
 
   const goBackPlay =
-    playingId === 0 ? (
+    playingId === 1 ? (
       <GoJumpLeft className="backPlayMusic" color="#404040" />
     ) : (
       <GoJumpLeft
@@ -43,6 +46,8 @@ const MusicOperation = props => {
         color="#a9a9a9"
       />
     );
+  console.log(toggleLoop);
+  const arrowLoopStyle = loop ? "#1db954" : "#a9a9a9";
 
   return (
     <footer className="footer">
@@ -59,6 +64,11 @@ const MusicOperation = props => {
             <MusicPlayButton text="start" play={playPause} />
           )}
           {goNextPlay}
+          <TiArrowLoop
+            className="loopPlayMusic"
+            onClick={() => toggleLoop()}
+            color={arrowLoopStyle}
+          />
         </div>
 
         <div className="timePlayer">

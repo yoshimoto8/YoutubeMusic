@@ -79,7 +79,7 @@ class Pomodoro extends React.Component {
   }
 
   setFirstMusic = (src, musicName, artist, id) => {
-    const playingId = id - 1;
+    const playingId = id;
     this.setState({
       url: src,
       musicName: musicName,
@@ -90,7 +90,8 @@ class Pomodoro extends React.Component {
   };
 
   setUrl = (src, musicName, artist, id) => {
-    const playingId = id - 1;
+    console.log(id);
+    const playingId = id;
     this.setState({
       playingId: playingId,
       url: src,
@@ -127,8 +128,8 @@ class Pomodoro extends React.Component {
   };
 
   nextPlayMusic = playingId => {
-    const nextPlayId = playingId + 1;
-    const { id, src, name, artists } = this.state.musicList[nextPlayId];
+    const nextPlay = playingId === 0 ? playingId + 1 : playingId;
+    const { id, src, name, artists } = this.state.musicList[nextPlay];
     this.setState({
       playingId: id,
       url: src,
@@ -139,7 +140,7 @@ class Pomodoro extends React.Component {
   };
 
   backPlayMusic = playingId => {
-    const nextPlayId = playingId - 1;
+    const nextPlayId = playingId - 2;
     const { id, src, name, artists } = this.state.musicList[nextPlayId];
     this.setState({
       playingId: id,
@@ -148,6 +149,10 @@ class Pomodoro extends React.Component {
       artist: artists,
       playing: true
     });
+  };
+
+  toggleLoop = () => {
+    this.setState({ loop: !this.state.loop });
   };
 
   // ここからポモドーロ
@@ -200,7 +205,8 @@ class Pomodoro extends React.Component {
       onPlay,
       onPause,
       nextPlayMusic,
-      backPlayMusic
+      backPlayMusic,
+      toggleLoop
     } = this;
 
     const {
@@ -214,8 +220,13 @@ class Pomodoro extends React.Component {
       musicName,
       artist,
       playingId,
-      albumLength
+      albumLength,
+      loop
     } = this.state;
+
+    if (played === 1 && playingId !== albumLength) {
+      nextPlayMusic(playingId);
+    }
 
     if (!url) {
       const { src, artists, name, id } = musicList[0];
@@ -230,6 +241,7 @@ class Pomodoro extends React.Component {
             url={url}
             playing={playing}
             volume={volume}
+            loop={loop}
             onProgress={state => onProgress(state)}
             onDuration={duration => onDuration(duration)}
             playPause={playPause}
@@ -272,6 +284,8 @@ class Pomodoro extends React.Component {
             artist={artist}
             nextPlayMusic={playingId => nextPlayMusic(playingId)}
             backPlayMusic={playingId => backPlayMusic(playingId)}
+            toggleLoop={() => toggleLoop()}
+            loop={loop}
           />
         ) : (
           <div />
