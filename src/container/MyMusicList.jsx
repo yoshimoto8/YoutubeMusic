@@ -18,7 +18,6 @@ class MyMusicList extends React.Component {
   }
 
   render() {
-    debugger;
     const { defaultMusic } = this.state;
     return (
       <div className="main">
@@ -30,7 +29,6 @@ class MyMusicList extends React.Component {
               className="musicPlayBox"
               onClick={() => {
                 this.props.setPlayList(data.musciList);
-                this.props.history.push("/");
               }}
             >
               <img src={playListImg} alt="" />

@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import { createBrowserHistory } from "history";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import createSagaMiddleware from "redux-saga";
-import { createStore, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers";
 import rootSaga from "./sagas";
@@ -11,13 +12,15 @@ import registerServiceWorker from "./registerServiceWorker";
 import { composeWithDevTools } from "redux-devtools-extension";
 import Pomodoro from "./container/Pomodoro";
 import MyMusicList from "./container/MyMusicList";
+import { syncHistoryWithStore, routerReducer } from "react-router-redux";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
-  reducer,
+  combineReducers({ reducer, routing: routerReducer }),
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
+const history = syncHistoryWithStore(createBrowserHistory(), store);
 sagaMiddleware.run(rootSaga);
 
 const routes = [
@@ -37,7 +40,7 @@ ReactDOM.render(
   <Provider store={store}>
     <div>
       <header className="header" />
-      <Router>
+      <Router history={history}>
         <div className="contents">
           <ul className="sidebar">
             <li>

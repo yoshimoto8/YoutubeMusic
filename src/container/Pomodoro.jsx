@@ -40,7 +40,7 @@ class Pomodoro extends React.Component {
     };
   }
   componentDidMount() {
-    console.log(this.props.musicList);
+    console.log(this.props);
     const albumLength = !this.props.musicList
       ? this.state.musicList.length
       : this.props.musicList.length;
@@ -272,7 +272,7 @@ class Pomodoro extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  musicList: state.setPlayList.defaultMusic
+  musicList: state.reducer.setPlayList.defaultMusic
 });
 
 export default connect(mapStateToProps, null)(Pomodoro);
