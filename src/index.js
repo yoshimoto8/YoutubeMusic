@@ -46,9 +46,6 @@ ReactDOM.render(
             <li>
               <Link to="/">myMusic</Link>
             </li>
-            <li>
-              <Link to="/pomodoro">Pomodoro</Link>
-            </li>
           </ul>
           {routes.map((route, index) => (
             <Route exact key={index} path={route.path} component={route.main} />

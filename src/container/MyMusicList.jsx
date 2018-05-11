@@ -2,14 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { setPlayList } from "../actions/index";
 import { Link } from "react-router-dom";
-import { Aimer, CharliePuth } from "./demoMusicList";
+import { Aimer, CharliePuth, selenaGomez } from "./demoMusicList";
 import "./styles/MyMusicList.css";
 
 class MyMusicList extends React.Component {
   constructor() {
     super();
     this.state = {
-      defaultMusic: [Aimer, CharliePuth]
+      defaultMusic: [Aimer, CharliePuth, selenaGomez]
     };
   }
 
