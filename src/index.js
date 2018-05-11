@@ -10,7 +10,7 @@ import reducer from "./reducers";
 import rootSaga from "./sagas";
 import registerServiceWorker from "./registerServiceWorker";
 import { composeWithDevTools } from "redux-devtools-extension";
-import Pomodoro from "./container/Pomodoro";
+import MusicPlayer from "./container/MusicPlayer";
 import MyMusicList from "./container/MyMusicList";
 import { syncHistoryWithStore, routerReducer } from "react-router-redux";
 
@@ -25,9 +25,9 @@ sagaMiddleware.run(rootSaga);
 
 const routes = [
   {
-    path: "/pomodoro",
+    path: "/MusicPlayer",
     sidebar: () => <h2>prodomo</h2>,
-    main: () => <Pomodoro />
+    main: () => <MusicPlayer />
   },
   {
     path: "/",
