@@ -23,9 +23,8 @@ class MyMusicList extends React.Component {
             {defaultMusic.map((data, index) => {
               const { playListImg, playListName } = data;
               return (
-                <Link to="/">
+                <Link to="/pomodoro" key={index}>
                   <div
-                    key={index}
                     className="musicPlayBox"
                     onClick={() => {
                       this.props.setPlayList(data.musciList);

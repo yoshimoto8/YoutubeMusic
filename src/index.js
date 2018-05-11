@@ -25,12 +25,12 @@ sagaMiddleware.run(rootSaga);
 
 const routes = [
   {
-    path: "/",
+    path: "/pomodoro",
     sidebar: () => <h2>prodomo</h2>,
     main: () => <Pomodoro />
   },
   {
-    path: "/myMusic",
+    path: "/",
     sideber: () => <h2>mymusic</h2>,
     main: () => <MyMusicList />
   }
@@ -44,10 +44,10 @@ ReactDOM.render(
         <div className="contents">
           <ul className="sidebar">
             <li>
-              <Link to="/myMusic">myMusic</Link>
+              <Link to="/">myMusic</Link>
             </li>
             <li>
-              <Link to="/">Pomodoro</Link>
+              <Link to="/pomodoro">Pomodoro</Link>
             </li>
           </ul>
           {routes.map((route, index) => (

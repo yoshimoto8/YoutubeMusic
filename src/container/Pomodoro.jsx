@@ -39,8 +39,7 @@ class Pomodoro extends React.Component {
       loop: false
     };
   }
-  componentDidMount() {
-    console.log(this.props);
+  componentWillMount() {
     const albumLength = !this.props.musicList
       ? this.state.musicList.length
       : this.props.musicList.length;
@@ -203,7 +202,7 @@ class Pomodoro extends React.Component {
     if (played === 1 && playingId !== albumLength) {
       nextPlayMusic(playingId);
     }
-
+    console.log(url);
     if (!url) {
       const { src, artists, name, id } = musicList[0];
       setFirstMusic(src, name, artists, id);
