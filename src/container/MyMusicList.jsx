@@ -21,7 +21,7 @@ class MyMusicList extends React.Component {
           <h2>Default Music</h2>
           <div className="defaultMusicPlayList">
             {defaultMusic.map((data, index) => {
-              const { playListImg, playListName } = data;
+              const { playListImg } = data;
               return (
                 <Link to="/MusicPlayer" key={index}>
                   <div
