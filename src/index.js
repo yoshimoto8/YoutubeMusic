@@ -13,6 +13,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import MusicPlayer from "./container/MusicPlayer";
 import MyMusicList from "./container/MyMusicList";
 import { syncHistoryWithStore, routerReducer } from "react-router-redux";
+import Authentication from "./container/Authentication";
+import MakeAlbum from "./container/MakeAlbum";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -25,14 +27,20 @@ sagaMiddleware.run(rootSaga);
 
 const routes = [
   {
+    path: "/Authentication",
+    main: () => <Authentication />
+  },
+  {
     path: "/MusicPlayer",
-    sidebar: () => <h2>prodomo</h2>,
     main: () => <MusicPlayer />
   },
   {
     path: "/",
-    sideber: () => <h2>mymusic</h2>,
     main: () => <MyMusicList />
+  },
+  {
+    path: "/make",
+    main: () => <MakeAlbum />
   }
 ];
 
@@ -43,8 +51,18 @@ ReactDOM.render(
       <Router history={history}>
         <div className="contents">
           <ul className="sidebar">
+            {sessionStorage.getItem("user") ? (
+              <div />
+            ) : (
+              <li>
+                <Link to="/Authentication">ログイン</Link>
+              </li>
+            )}
             <li>
-              <Link to="/">myMusic</Link>
+              <Link to="/">マイミュージック</Link>
+            </li>
+            <li>
+              <Link to="/make">アルバムを作る</Link>
             </li>
           </ul>
           {routes.map((route, index) => (
