@@ -1,6 +1,21 @@
 import firebase from "firebase";
+import {
+  APIKEY,
+  AUTHDOMAIN,
+  DATABASEURL,
+  PROJECTID,
+  STORAGEBUCKET,
+  MESSAGINGSENDERID
+} from "../ENV";
 
-const config = {};
+const config = {
+  apiKey: APIKEY,
+  authDomain: AUTHDOMAIN,
+  databaseURL: DATABASEURL,
+  projectId: PROJECTID,
+  storageBucket: STORAGEBUCKET,
+  messagingSenderId: MESSAGINGSENDERID
+};
 
 firebase.initializeApp(config);
 
