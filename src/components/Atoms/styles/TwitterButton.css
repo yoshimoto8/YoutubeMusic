@@ -1,0 +1,30 @@
+.fl_tw2 {
+  color: #fff;
+  border-radius: 7px;
+  display: inline-block;
+  height: 50px;
+  width: 190px;
+  text-align: center;
+  font-size: 15x;
+  line-height: 50px;
+  vertical-align: middle;
+  background: #1da1f3;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.fl_tw2 .fa-twitter {
+  text-shadow: 2px 2px 0px #4287d6;
+  font-size: 30px;
+}
+
+.fl_tw2 span {
+  display: inline-block;
+  transition: 0.5s;
+}
+
+.fl_tw2:hover span {
+  -webkit-transform: rotateX(360deg);
+  -ms-transform: rotateX(360deg);
+  transform: rotateX(360deg);
+}
