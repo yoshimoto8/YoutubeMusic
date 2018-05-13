@@ -5,6 +5,7 @@
   "dependencies": {
     "@u-wave/react-youtube": "^0.4.2",
     "autoprefixer": "7.1.6",
+    "axios": "^0.18.0",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
     "babel-preset-react-app": "^3.1.1",
