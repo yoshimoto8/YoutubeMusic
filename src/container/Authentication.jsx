@@ -1,22 +1,18 @@
 import React from "react";
 import "./styles/Authentication.css";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import TwitterButton from "../components/Atoms/TwitterButton";
 import { auth, provider } from "../firebase/client";
 
 class Authentication extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      user: null
-    };
-  }
-
   login = () => {
     auth()
       .signInWithPopup(provider)
       .then(result => {
-        this.setState({ user: result.user });
         sessionStorage.setItem("user", result.user.uid);
+        window.location.reload();
+        this.props.history.push("make");
       })
       .catch(err => {
         console.log("エラーが起こりました。");
@@ -29,7 +25,6 @@ class Authentication extends React.Component {
   };
 
   render() {
-    console.log(sessionStorage.getItem("user"));
     return (
       <div className="authentication">
         <h2>どれでログインするんだあああああああ</h2>
@@ -39,4 +34,4 @@ class Authentication extends React.Component {
   }
 }
 
-export default Authentication;
+export default connect(null, null)(withRouter(Authentication));
