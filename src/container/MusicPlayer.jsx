@@ -34,16 +34,24 @@ class MusicPlayer extends React.Component {
     };
   }
   componentWillMount() {
-    const albumLength = !this.props.musicList
-      ? this.state.musicList.length
-      : this.props.musicList.length;
+    const musicList = this.props.musicList;
+    const setmusicList =
+      typeof musicList === "object"
+        ? Object.keys(musicList).map(function(key) {
+            return musicList[key];
+          })
+        : musicList;
 
-    !this.props.musicList
+    const albumLength = !setmusicList
+      ? this.state.musicList.length
+      : setmusicList.length;
+
+    !setmusicList
       ? this.setState({
           albumLength: albumLength
         })
       : this.setState({
-          musicList: this.props.musicList,
+          musicList: setmusicList,
           albumLength: albumLength
         });
   }
@@ -171,6 +179,8 @@ class MusicPlayer extends React.Component {
       const { src, artists, name, id } = musicList[0];
       setFirstMusic(src, name, artists, id);
     }
+
+    console.log(musicList);
 
     return (
       <div className="main">

@@ -39,7 +39,8 @@ class MakeAlbum extends React.Component {
       .once("value")
       .then(data => {
         const values = data.val();
-        this.setState({ playList: values.musicLists });
+        const playList = values ? values.musicLists : [];
+        this.setState({ playList: playList });
       });
   }
 
@@ -99,7 +100,7 @@ class MakeAlbum extends React.Component {
       .ref(
         `users/${sessionStorage.getItem("user")}/musicLists/${
           this.state.setAddPlayListIndex
-        }/list`
+        }/list/`
       );
     musicListsRef.push(playList);
   };

@@ -11,8 +11,21 @@ class MyMusicList extends React.Component {
   constructor() {
     super();
     this.state = {
-      defaultMusic: [Aimer, CharliePuth, selenaGomez]
+      defaultMusic: [Aimer, CharliePuth, selenaGomez],
+      playList: []
     };
+  }
+
+  componentDidMount() {
+    firebase
+      .database()
+      .ref(`users/${sessionStorage.getItem("user")}`)
+      .once("value")
+      .then(data => {
+        const values = data.val();
+        const playList = values ? values.musicLists : [];
+        this.setState({ playList: playList });
+      });
   }
 
   pushData = () => {
@@ -143,7 +156,8 @@ class MyMusicList extends React.Component {
   };
 
   render() {
-    const { defaultMusic } = this.state;
+    const { defaultMusic, playList } = this.state;
+    console.log(playList);
     return (
       <div className="main">
         <div className="defaultMusicPlayBox">
@@ -159,6 +173,24 @@ class MyMusicList extends React.Component {
                     className="musicPlayBox"
                     onClick={() => {
                       this.props.setPlayList(data.musciList);
+                    }}
+                  >
+                    <img src={playListImg} alt="" height="200" width="250" />
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+          <div className="MyMusicPlayList">
+            {playList.map((data, index) => {
+              console.log(data);
+              const { playListImg } = data;
+              return (
+                <Link to="/MusicPlayer" key={index}>
+                  <div
+                    className="musicPlayBox"
+                    onClick={() => {
+                      this.props.setPlayList(data.list);
                     }}
                   >
                     <img src={playListImg} alt="" height="200" width="250" />
