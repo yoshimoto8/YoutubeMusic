@@ -24,7 +24,6 @@ class MyMusicList extends React.Component {
       .then(data => {
         const values = data.val();
         const playList = values ? values.musicLists : [];
-        playList.length === 0 ? this.pushData() : playList;
         this.setState({ playList: playList });
       });
   }
