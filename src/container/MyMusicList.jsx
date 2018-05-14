@@ -25,7 +25,6 @@ class MyMusicList extends React.Component {
         const values = data.val();
         const playList = values ? values.musicLists : [];
         playList.length === 0 ? this.pushData() : playList;
-        console.log(playList);
         this.setState({ playList: playList });
       });
   }
@@ -87,17 +86,13 @@ class MyMusicList extends React.Component {
               return (
                 <div className="musicPlayBox" key={index}>
                   <div className="displayMusicController">
-                    <Link
-                      to="/MusicPlayer"
-                      className="playBtnMusic"
-                      key={index}
-                    >
+                    <Link to="/MusicPlayer" className="playBtnMusic">
                       <button
                         className="displayMusicPlaybtn"
                         onClick={() => {
                           this.props.setPlayList(data.musciList);
                         }}
-                      />
+                      />x
                     </Link>
                   </div>
                   <img src={playListImg} alt="" height="200" width="250" />

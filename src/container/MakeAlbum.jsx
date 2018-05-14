@@ -2,9 +2,13 @@ import React from "react";
 import update from "immutability-helper";
 import { YOUTUBEAPI } from "../ENV";
 import axios from "axios";
+import { connect } from "react-redux";
+import { setPlayList } from "../actions/index";
 import "./styles/MakeAlbum.css";
+import { Link } from "react-router-dom";
 import SearchMusicTable from "../components/Molecules/SearchMusicTable";
 import firebase from "firebase";
+import noImage from "../images/noimage.png";
 
 class MakeAlbum extends React.Component {
   constructor() {
@@ -25,7 +29,7 @@ class MakeAlbum extends React.Component {
   emptyAlubm = e => {
     e.preventDefault();
     const emptyAlbum = {
-      alubmImage: "",
+      alubmImage: noImage,
       playListName: "アルバム名がありません",
       list: []
     };
@@ -40,7 +44,6 @@ class MakeAlbum extends React.Component {
       .then(data => {
         const values = data.val();
         const playList = values ? values.musicLists : [];
-        console.log(playList);
         this.setState({ playList: playList });
       });
   }
@@ -96,7 +99,6 @@ class MakeAlbum extends React.Component {
     const newStateMusic = update(this.state.playList, {
       $push: [newState]
     });
-    console.log(newStateMusic);
     musicListsRef.set(newStateMusic);
   };
 
@@ -108,7 +110,6 @@ class MakeAlbum extends React.Component {
           this.state.setAddPlayListIndex
         }/list/`
       );
-    console.log(playList);
     musicListsRef.push(playList);
   };
 
@@ -172,24 +173,37 @@ class MakeAlbum extends React.Component {
 
     return (
       <div className="main">
-        <div>
+        <div className="searchYoutubeMusic">
           <h2>Search Youtube Music</h2>
           <div className="myMusicList">
-            <a href="" className="btn" onClick={e => this.emptyAlubm(e)}>
-              +
-            </a>
+            <div>
+              <a href="" className="btn" onClick={e => this.emptyAlubm(e)}>
+                +
+              </a>
+            </div>
             {newAlubm}
             {playList.map((data, index) => {
               const indexNumber = index;
               return (
                 <div
                   key={index}
+                  className="myMusicPlayList"
                   onClick={(playList, index) =>
                     setAddPlayList(data, indexNumber)
                   }
                 >
+                  <div className="makeAlbum-displayMusic">
+                    <Link to="/MusicPlayer">
+                      <button
+                        className="makeAlbum-playBtn"
+                        onClick={() => {
+                          this.props.setPlayList(data.list);
+                        }}
+                      />
+                    </Link>
+                  </div>
                   <img src={data.alubmImage} alt="" width="200" height="200" />
-                  <div>{data.playListName}</div>
+                  <div div="displayMusicName">{data.playListName}</div>
                 </div>
               );
             })}
@@ -233,4 +247,8 @@ class MakeAlbum extends React.Component {
   }
 }
 
-export default MakeAlbum;
+const mapDispatchToProps = dispatch => ({
+  setPlayList: defaultMusic => dispatch(setPlayList(defaultMusic))
+});
+
+export default connect(null, mapDispatchToProps)(MakeAlbum);
