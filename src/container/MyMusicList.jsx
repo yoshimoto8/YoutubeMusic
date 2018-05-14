@@ -85,33 +85,48 @@ class MyMusicList extends React.Component {
             {defaultMusic.map((data, index) => {
               const { playListImg } = data;
               return (
-                <Link to="/MusicPlayer" key={index}>
-                  <div
-                    className="musicPlayBox"
-                    onClick={() => {
-                      this.props.setPlayList(data.musciList);
-                    }}
-                  >
-                    <img src={playListImg} alt="" height="200" width="250" />
+                <div className="musicPlayBox" key={index}>
+                  <div className="displayMusicController">
+                    <Link
+                      to="/MusicPlayer"
+                      className="playBtnMusic"
+                      key={index}
+                    >
+                      <button
+                        className="displayMusicPlaybtn"
+                        onClick={() => {
+                          this.props.setPlayList(data.musciList);
+                        }}
+                      />
+                    </Link>
                   </div>
-                </Link>
+                  <img src={playListImg} alt="" height="200" width="250" />
+                </div>
               );
             })}
           </div>
           <div className="MyMusicPlayList">
             {playList.map((data, index) => {
               const { alubmImage } = data;
+              console.log(data);
               return (
-                <Link to="/MusicPlayer" key={index}>
-                  <div
-                    className="musicPlayBox"
-                    onClick={() => {
-                      this.props.setPlayList(data.list);
-                    }}
-                  >
-                    <img src={alubmImage} alt="" height="200" width="250" />
+                <div className="musicPlayBox" key={index}>
+                  <div className="displayMusicController">
+                    <Link
+                      to="/MusicPlayer"
+                      className="playBtnMusic"
+                      key={index}
+                    >
+                      <button
+                        className="displayMusicPlaybtn"
+                        onClick={() => {
+                          this.props.setPlayList(data.list);
+                        }}
+                      />
+                    </Link>
                   </div>
-                </Link>
+                  <img src={alubmImage} alt="" height="200" width="250" />
+                </div>
               );
             })}
           </div>

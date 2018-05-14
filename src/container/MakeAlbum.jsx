@@ -40,6 +40,7 @@ class MakeAlbum extends React.Component {
       .then(data => {
         const values = data.val();
         const playList = values ? values.musicLists : [];
+        console.log(playList);
         this.setState({ playList: playList });
       });
   }
@@ -50,10 +51,14 @@ class MakeAlbum extends React.Component {
   };
 
   setAddPlayList = (playList, index = null) => {
+    const newList = Object.keys(playList.list).map(function(key) {
+      return playList.list[key];
+    });
+    const playListState = update(playList, { list: { $set: newList } });
     this.setState({
-      setAddPlayList: playList,
+      setAddPlayList: playListState,
       setAddPlayListIndex: index,
-      setAddPlayListLength: playList.list.length
+      setAddPlayListLength: playListState.list.length
     });
   };
 
@@ -91,7 +96,7 @@ class MakeAlbum extends React.Component {
     const newStateMusic = update(this.state.playList, {
       $push: [newState]
     });
-    debugger;
+    console.log(newStateMusic);
     musicListsRef.set(newStateMusic);
   };
 
@@ -103,6 +108,7 @@ class MakeAlbum extends React.Component {
           this.state.setAddPlayListIndex
         }/list/`
       );
+    console.log(playList);
     musicListsRef.push(playList);
   };
 
