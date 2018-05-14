@@ -8,3 +8,7 @@
 .musicPlayBox {
   margin: 10px 20px;
 }
+
+.MyMusicPlayList {
+  display: flex;
+}

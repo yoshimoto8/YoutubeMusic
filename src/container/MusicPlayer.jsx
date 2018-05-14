@@ -144,92 +144,92 @@ class MusicPlayer extends React.Component {
   };
 
   render() {
-    const {
-      setUrl,
-      playPause,
-      onProgress,
-      onDuration,
-      setVolume,
-      setFirstMusic,
-      onPlay,
-      onPause,
-      nextPlayMusic,
-      backPlayMusic,
-      toggleLoop
-    } = this;
+    if (this.state.musicList.length !== 0) {
+      const {
+        setUrl,
+        playPause,
+        onProgress,
+        onDuration,
+        setVolume,
+        setFirstMusic,
+        onPlay,
+        onPause,
+        nextPlayMusic,
+        backPlayMusic,
+        toggleLoop
+      } = this;
 
-    const {
-      musicList,
-      url,
-      playing,
-      volume,
-      played,
-      duration,
-      musicName,
-      artist,
-      playingId,
-      albumLength,
-      loop
-    } = this.state;
+      const {
+        musicList,
+        url,
+        playing,
+        volume,
+        played,
+        duration,
+        musicName,
+        artist,
+        playingId,
+        albumLength,
+        loop
+      } = this.state;
 
-    if (played === 1 && playingId !== albumLength) {
-      nextPlayMusic(playingId);
-    }
-    if (!url) {
+      if (played === 1 && playingId !== albumLength) {
+        nextPlayMusic(playingId);
+      }
       const { src, artists, name, id } = musicList[0];
-      setFirstMusic(src, name, artists, id);
-    }
+      !url ? setFirstMusic(src, name, artists, id) : null;
 
-    console.log(musicList);
+      return (
+        <div className="main">
+          <div className="musicPlay">
+            <PomodoroMusicDisplay
+              musicName={musicName}
+              url={url}
+              playing={playing}
+              volume={volume}
+              loop={loop}
+              onProgress={state => onProgress(state)}
+              onDuration={duration => onDuration(duration)}
+              playPause={playPause}
+              onPlay={() => onPlay()}
+              onPause={() => onPause()}
+            />
+            <PomodoroMusicList
+              musicList={musicList}
+              url={url}
+              playing={playing}
+              setUrl={(src, musicName, artist, id) =>
+                setUrl(src, musicName, artist, id)
+              }
+              formatChange={seconds => this.format(seconds)}
+            />
+          </div>
 
-    return (
-      <div className="main">
-        <div className="musicPlay">
-          <PomodoroMusicDisplay
-            musicName={musicName}
-            url={url}
-            playing={playing}
-            volume={volume}
-            loop={loop}
-            onProgress={state => onProgress(state)}
-            onDuration={duration => onDuration(duration)}
-            playPause={playPause}
-            onPlay={() => onPlay()}
-            onPause={() => onPause()}
-          />
-          <PomodoroMusicList
-            musicList={musicList}
-            url={url}
-            playing={playing}
-            setUrl={(src, musicName, artist, id) =>
-              setUrl(src, musicName, artist, id)
-            }
-            formatChange={seconds => this.format(seconds)}
-          />
+          {url ? (
+            <MusicOperation
+              playingId={playingId}
+              albumLength={albumLength}
+              playPause={() => playPause()}
+              playing={playing}
+              played={played}
+              duration={duration}
+              volume={volume}
+              setVolume={e => setVolume(e)}
+              musicName={musicName}
+              artist={artist}
+              nextPlayMusic={playingId => nextPlayMusic(playingId)}
+              backPlayMusic={playingId => backPlayMusic(playingId)}
+              toggleLoop={() => toggleLoop()}
+              loop={loop}
+            />
+          ) : (
+            <div />
+          )}
         </div>
-
-        {url ? (
-          <MusicOperation
-            playingId={playingId}
-            albumLength={albumLength}
-            playPause={() => playPause()}
-            playing={playing}
-            played={played}
-            duration={duration}
-            volume={volume}
-            setVolume={e => setVolume(e)}
-            musicName={musicName}
-            artist={artist}
-            nextPlayMusic={playingId => nextPlayMusic(playingId)}
-            backPlayMusic={playingId => backPlayMusic(playingId)}
-            toggleLoop={() => toggleLoop()}
-            loop={loop}
-          />
-        ) : (
-          <div />
-        )}
-      </div>
-    );
+      );
+    } else {
+      return <div />;
+    }
   }
 }
 

@@ -91,6 +91,7 @@ class MakeAlbum extends React.Component {
     const newStateMusic = update(this.state.playList, {
       $push: [newState]
     });
+    debugger;
     musicListsRef.set(newStateMusic);
   };
 

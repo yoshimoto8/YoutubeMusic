@@ -1,6 +1,6 @@
 import { SET_PLAYLIST } from "../actions";
 
-const initialState = { defaultMusic: null };
+const initialState = { defaultMusic: [] };
 
 export const setPlayList = (state = initialState, action) => {
   switch (action.type) {
