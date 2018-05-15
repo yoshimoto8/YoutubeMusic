@@ -1,6 +1,7 @@
 import React from "react";
 import Dropzone from "react-dropzone";
 import "./styles/EditAlbumModal.css";
+import firebase from "firebase";
 
 class EditAlbumModal extends React.Component {
   constructor() {
@@ -14,6 +15,17 @@ class EditAlbumModal extends React.Component {
   componentDidMount() {
     this.setState({ editAlubm: this.props.data });
   }
+
+  uploadImage = () => {
+    const file = this.state.files[0];
+    const storageRef = firebase.storage().ref(`upload_files/${file.name}`);
+    storageRef
+      .put(file)
+      .then(result => {
+        debugger;
+      })
+      .catch(err => console.log("エラーーーー", err));
+  };
 
   onDrop(files) {
     this.setState({
@@ -33,7 +45,7 @@ class EditAlbumModal extends React.Component {
           </Dropzone>
           <h1>{playListName}</h1>
         </div>
-        <button>登録する</button>
+        <button onClick={() => this.uploadImage()}>登録する</button>
         <button onClick={() => this.props.closeModal()}>やめる</button>
       </div>
     );

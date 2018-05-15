@@ -68,8 +68,6 @@ class MyAlbum extends React.Component {
       });
   };
 
-  updateImage = img => {};
-
   updateMyMusicList = Music => {
     const { key, musicList } = this.state.selectupdateMusic;
     const newMusicList = [...musicList, Music];
