@@ -85,14 +85,13 @@ class MyMusicList extends React.Component {
               return (
                 <div className="musicPlayBox" key={index}>
                   <div className="displayMusicController">
-                    <Link to="/MusicPlayer" className="playBtnMusic">
-                      <button
-                        className="displayMusicPlaybtn"
-                        onClick={() => {
-                          this.props.setPlayList(data.musciList);
-                        }}
-                      />x
-                    </Link>
+                    <Link
+                      to="/MusicPlayer"
+                      className="displayMusicPlaybtn"
+                      onClick={() => {
+                        this.props.setPlayList(data.musciList);
+                      }}
+                    />
                   </div>
                   <img src={playListImg} alt="" height="200" width="250" />
                 </div>

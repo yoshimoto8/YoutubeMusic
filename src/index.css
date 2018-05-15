@@ -45,3 +45,9 @@ body {
 .sidebar a:hover {
   color: white;
 }
+
+.sidebar div {
+  padding: 10px;
+  padding-top: 20px;
+  color: hsla(0, 0%, 100%, 0.6);
+}

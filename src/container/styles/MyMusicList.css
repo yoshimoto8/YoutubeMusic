@@ -1,10 +1,12 @@
 .defaultMusicPlayList {
   display: flex;
 }
+
 .defaultMusicPlayBox h2 {
   margin: 20px 20px 10px;
   color: #fff;
 }
+
 .musicPlayBox {
   margin: 10px 20px;
 }
@@ -32,6 +34,7 @@
 }
 
 .displayMusicPlaybtn {
+  padding-top: 115px;
   background-image: url("../../images/play.svg");
   border: 0;
   background-color: transparent;

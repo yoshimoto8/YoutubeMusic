@@ -62,9 +62,13 @@ ReactDOM.render(
             <li>
               <Link to="/">マイミュージック</Link>
             </li>
-            <li>
-              <Link to="/Myalbum">Myalbum</Link>
-            </li>
+            {sessionStorage.getItem("user") ? (
+              <li>
+                <Link to="/Myalbum">Myalbum</Link>
+              </li>
+            ) : (
+              <div>Myalbum</div>
+            )}
           </ul>
           <GithubCorner
             href="https://github.com/yoshimoto8/Pomodoro"
