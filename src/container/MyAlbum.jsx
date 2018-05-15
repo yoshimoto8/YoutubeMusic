@@ -175,12 +175,11 @@ class MyAlbum extends React.Component {
             return (
               <div key={index} className="myAlbum-displayMusic">
                 <div className="myAlbum-musicController">
-                  <Link to="/MusicPlayer">
-                    <button
-                      className="myAlbum-playBtn"
-                      onClick={() => this.props.setPlayList(musicList)}
-                    />
-                  </Link>
+                  <Link
+                    to="/MusicPlayer"
+                    className="myAlbum-playBtn"
+                    onClick={() => this.props.setPlayList(musicList)}
+                  />
                   <Tooltip
                     position="right"
                     trigger="click"

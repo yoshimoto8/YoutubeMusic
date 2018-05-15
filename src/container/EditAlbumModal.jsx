@@ -16,6 +16,7 @@ class EditAlbumModal extends React.Component {
     this.setState({ editAlubm: this.props.data });
   }
 
+  // 画像アップロード
   uploadImage = () => {
     const file = this.state.files[0];
     const storageRef = firebase.storage().ref(`upload_files/${file.name}`);

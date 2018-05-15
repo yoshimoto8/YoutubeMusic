@@ -1,6 +1,6 @@
 ## Pomodoro-Music Application
 
-Pomodoro-Music client in React + Redux and backend in FireBase
+YoutubeMusic client in React + Redux and backend in FireBase
 
 ## Features
 
