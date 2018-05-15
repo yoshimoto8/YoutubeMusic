@@ -15,6 +15,7 @@ import MyMusicList from "./container/MyMusicList";
 import { syncHistoryWithStore, routerReducer } from "react-router-redux";
 import Authentication from "./container/Authentication";
 import MakeAlbum from "./container/MakeAlbum";
+import MyAlbum from "./container/MyAlbum";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -41,6 +42,10 @@ const routes = [
   {
     path: "/make",
     main: () => <MakeAlbum />
+  },
+  {
+    path: "/Myalbum",
+    main: () => <MyAlbum />
   }
 ];
 
@@ -63,6 +68,9 @@ ReactDOM.render(
             </li>
             <li>
               <Link to="/make">アルバムを作る</Link>
+            </li>
+            <li>
+              <Link to="/Myalbum">Myalbum</Link>
             </li>
           </ul>
           {routes.map((route, index) => (

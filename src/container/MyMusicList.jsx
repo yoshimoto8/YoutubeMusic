@@ -102,7 +102,7 @@ class MyMusicList extends React.Component {
           <div className="MyMusicPlayList">
             {playList.map((data, index) => {
               const { alubmImage } = data;
-              console.log(data);
+              console.log(data.list);
               return (
                 <div className="musicPlayBox" key={index}>
                   <div className="displayMusicController">
