@@ -1,20 +1,19 @@
 import React from "react";
 import update from "immutability-helper";
 import Modal from "react-modal";
-import { Tooltip } from "react-tippy";
 import ReactPlayer from "react-player";
 import axios from "axios";
 import firebase from "firebase";
 import { Link } from "react-router-dom";
+import { Tooltip } from "react-tippy";
 import { connect } from "react-redux";
 import { setPlayList } from "../actions/index";
-import "./styles/MyAlbum.css";
 import { YOUTUBEAPI } from "../ENV";
 import noImage from "../images/noimage.png";
-import "react-tippy/dist/tippy.css";
 import IoAndroidMoreHorizontal from "react-icons/lib/io/android-more-horizontal";
 import EditAlbumModal from "./EditAlbumModal";
-
+import "react-tippy/dist/tippy.css";
+import "./styles/MyAlbum.css";
 class MyAlbum extends React.Component {
   constructor() {
     super();
@@ -79,12 +78,12 @@ class MyAlbum extends React.Component {
         musicList: newMusicList
       })
       .then(() => {
-        const newState = update(this.state.selectupdateMusic, {
-          musicList: { $set: newMusicList }
-        });
-        this.setState({ selectupdateMusic: newState });
         console.log("成功");
       });
+    const newState = update(this.state.selectupdateMusic, {
+      musicList: { $set: newMusicList }
+    });
+    this.setState({ selectupdateMusic: newState });
   };
 
   fetchMyMusicList = () => {
@@ -109,6 +108,7 @@ class MyAlbum extends React.Component {
         }&key=${YOUTUBEAPI}`
       )
       .then(results => {
+        console.log("成功");
         this.setState({ youtubes: results.data.items });
       });
   };
