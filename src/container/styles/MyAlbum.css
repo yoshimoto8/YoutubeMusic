@@ -1,0 +1,63 @@
+.myAlbum-displayMusicBox {
+  display: flex;
+}
+
+.myAlbum-displayMusic {
+  margin: 10px;
+}
+
+.myAlbum-musicController {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.myAlbum-musicController:hover {
+  opacity: 0.5;
+}
+
+.myAlbum-playBtn {
+  margin-top: 60px;
+  margin-left: 25px;
+  background-image: url("../../images/play.svg");
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 80px;
+  height: 80px;
+  background-size: 50px;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.myAlbum-playListName {
+  color: white;
+}
+
+.myAlbum-detailMusic {
+  margin-top: 90px;
+  margin-left: 10px;
+  color: white;
+}
+
+.myAlbum-playBtn:hover {
+  opacity: 0.7;
+}
+
+.myAlbum-musicAction {
+  width: 150px;
+}
+
+.myAlbum-musicAction1 {
+  margin: 5px;
+  color: hsla(0, 0%, 100%, 0.6);
+}
+
+.myAlbum-musicAction1:hover {
+  color: white;
+}
