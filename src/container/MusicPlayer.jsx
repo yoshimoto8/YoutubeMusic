@@ -1,9 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import PomodoroMusicList from "../components/Molecules/PomodoroMusicList";
-import PomodoroMusicDisplay from "../components/Molecules/PomodoroMusicDisplay";
+import MusicLists from "../components/Molecules/MusicLists";
+import MusicDisplay from "../components/Molecules/MusicDisplay";
 import MusicOperation from "../components/Molecules/MusicOperation";
-import "./styles/Pomodoro.css";
 
 class MusicPlayer extends React.Component {
   constructor(props) {
@@ -182,7 +181,7 @@ class MusicPlayer extends React.Component {
       return (
         <div className="main">
           <div className="musicPlay">
-            <PomodoroMusicDisplay
+            <MusicDisplay
               musicName={musicName}
               url={url}
               playing={playing}
@@ -194,7 +193,7 @@ class MusicPlayer extends React.Component {
               onPlay={() => onPlay()}
               onPause={() => onPause()}
             />
-            <PomodoroMusicList
+            <MusicLists
               musicList={musicList}
               url={url}
               playing={playing}
@@ -234,7 +233,7 @@ class MusicPlayer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  musicList: state.reducer.setPlayList.defaultMusic
+  musicList: state.rootReducer.setPlayList.defaultMusic
 });
 
 export default connect(mapStateToProps, null)(MusicPlayer);

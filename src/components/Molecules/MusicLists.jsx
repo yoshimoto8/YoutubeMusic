@@ -1,9 +1,9 @@
 import React from "react";
 import MusicTitle from "../Atoms/MusicTitle";
 import MusicListIcon from "../Atoms/MusicListIcon";
-import "./styles/PomodoroMusicList.css";
+import "./styles/MusicLists.css";
 
-const PomodoroMusicList = props => {
+const MusicLists = props => {
   const { musicList, url, setUrl, formatChange } = props;
   return (
     <div className="musicList">
@@ -29,4 +29,4 @@ const PomodoroMusicList = props => {
   );
 };
 
-export default PomodoroMusicList;
+export default MusicLists;

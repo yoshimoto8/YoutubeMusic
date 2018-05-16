@@ -1,8 +1,8 @@
 import React from "react";
 import ReactPlayer from "react-player";
-import "./styles/PomodoroMusicDisplay.css";
+import "./styles/MusicDisplay.css";
 
-const PomodoroMusicDisplay = props => {
+const MusicDisplay = props => {
   const {
     musicName,
     url,
@@ -41,4 +41,4 @@ const PomodoroMusicDisplay = props => {
   );
 };
 
-export default PomodoroMusicDisplay;
+export default MusicDisplay;
