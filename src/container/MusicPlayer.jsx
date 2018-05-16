@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import PomodoroMusicList from "../components/Molecules/PomodoroMusicList";
-import PomodoroMusicDisplay from "../components/Molecules/PomodoroMusicDisplay";
+import MusicLists from "../components/Molecules/MusicLists";
+import MusicDisplay from "../components/Molecules/MusicDisplay";
 import MusicOperation from "../components/Molecules/MusicOperation";
 
 class MusicPlayer extends React.Component {
@@ -181,7 +181,7 @@ class MusicPlayer extends React.Component {
       return (
         <div className="main">
           <div className="musicPlay">
-            <PomodoroMusicDisplay
+            <MusicDisplay
               musicName={musicName}
               url={url}
               playing={playing}
@@ -193,7 +193,7 @@ class MusicPlayer extends React.Component {
               onPlay={() => onPlay()}
               onPause={() => onPause()}
             />
-            <PomodoroMusicList
+            <MusicLists
               musicList={musicList}
               url={url}
               playing={playing}
