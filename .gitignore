@@ -1,5 +1,5 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
-
+.travis.yml
 # dependencies
 /node_modules
 /src/ENV.js
@@ -20,3 +20,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
