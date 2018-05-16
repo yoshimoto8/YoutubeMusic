@@ -2,13 +2,11 @@ import React from "react";
 import update from "immutability-helper";
 import Modal from "react-modal";
 import ReactPlayer from "react-player";
-import axios from "axios";
 import firebase from "firebase";
 import { Link } from "react-router-dom";
 import { Tooltip } from "react-tippy";
 import { connect } from "react-redux";
-import { setPlayList } from "../actions/index";
-import { YOUTUBEAPI } from "../ENV";
+import { setPlayList, fetchYoutube, createAlubm } from "../actions/index";
 import noImage from "../images/noimage.png";
 import IoAndroidMoreHorizontal from "react-icons/lib/io/android-more-horizontal";
 import EditAlbumModal from "./EditAlbumModal";
@@ -53,18 +51,7 @@ class MyAlbum extends React.Component {
       musicList: [],
       createdOn: new Date()
     };
-    this.createMusicList(emptyAlbum);
-  };
-
-  createMusicList = data => {
-    const db = firebase.firestore();
-    const currentUser = sessionStorage.getItem("user");
-    db
-      .collection(`users/${currentUser}/userMusicList`)
-      .add(data)
-      .then(() => {
-        console.log("seikou");
-      });
+    return emptyAlbum;
   };
 
   updateMyMusicList = Music => {
@@ -99,18 +86,10 @@ class MyAlbum extends React.Component {
       });
   };
 
-  fetchYoutube = e => {
+  handleFetchYoutube = e => {
     e.preventDefault();
-    axios
-      .get(
-        `https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&q=${
-          this.state.searchKeyWord
-        }&key=${YOUTUBEAPI}`
-      )
-      .then(results => {
-        console.log("成功");
-        this.setState({ youtubes: results.data.items });
-      });
+    const { searchKeyWord } = this.state;
+    this.props.fetchYoutube(searchKeyWord);
   };
 
   changeSearchKeyWord = e => {
@@ -135,8 +114,9 @@ class MyAlbum extends React.Component {
   };
 
   render() {
+    const { musicList, createAlubm } = this.props;
     const {
-      fetchYoutube,
+      handleFetchYoutube,
       changeSearchKeyWord,
       generateYoutubeUrl,
       emptyAlubm,
@@ -166,7 +146,11 @@ class MyAlbum extends React.Component {
       <div>
         <div className="myAlbum-displayMusicBox">
           <div>
-            <a href="" className="btn" onClick={e => emptyAlubm(e)}>
+            <a
+              href=""
+              className="btn"
+              onClick={e => createAlubm(emptyAlubm(e))}
+            >
               +
             </a>
           </div>
@@ -215,7 +199,7 @@ class MyAlbum extends React.Component {
             );
           })}
         </div>
-        <form onSubmit={e => fetchYoutube(e)}>
+        <form onSubmit={e => handleFetchYoutube(e)}>
           <input
             type="text"
             value={searchKeyWord}
@@ -223,7 +207,7 @@ class MyAlbum extends React.Component {
           />
           <input type="submit" value="send" />
         </form>
-        {youtubes.map((data, index) => {
+        {musicList.map((data, index) => {
           const { snippet, id } = data;
           const url = generateYoutubeUrl(id.videoId);
           return (
@@ -257,7 +241,13 @@ class MyAlbum extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  setPlayList: defaultMusic => dispatch(setPlayList(defaultMusic))
+  setPlayList: defaultMusic => dispatch(setPlayList(defaultMusic)),
+  fetchYoutube: searchKeyWord => dispatch(fetchYoutube(searchKeyWord)),
+  createAlubm: emptyAlbum => dispatch(createAlubm(emptyAlbum))
 });
 
-export default connect(null, mapDispatchToProps)(MyAlbum);
+const mapStateToProps = state => ({
+  musicList: state.rootReducer.fetchYoutube.musicList
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyAlbum);

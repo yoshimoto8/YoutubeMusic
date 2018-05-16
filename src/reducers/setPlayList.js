@@ -3,7 +3,6 @@ import { SET_PLAYLIST } from "../actions";
 const initialState = { defaultMusic: [] };
 
 export const setPlayList = (state = initialState, action) => {
-  console.log(action.defaultMusic);
   switch (action.type) {
     case SET_PLAYLIST:
       return { defaultMusic: action.defaultMusic };
