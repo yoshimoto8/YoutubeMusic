@@ -1,7 +1,6 @@
 import React from "react";
 import update from "immutability-helper";
 import Modal from "react-modal";
-import ReactPlayer from "react-player";
 import firebase from "firebase";
 import { connect } from "react-redux";
 import { setPlayList, fetchYoutube, createAlubm } from "../actions/index";
@@ -32,7 +31,6 @@ class MyAlbum extends React.Component {
 
   // ここからアルバムを編集する関数
   openModal(data) {
-    console.log(data);
     this.setState({ modalIsOpen: true, selectEditMusic: data });
   }
 
@@ -127,7 +125,6 @@ class MyAlbum extends React.Component {
       emptyAlubm,
       updateMyMusicList,
       onDuration,
-      setEditMusic,
       closeModal,
       openModal,
       setUpdateMusic,
@@ -135,10 +132,10 @@ class MyAlbum extends React.Component {
     } = this;
     const {
       searchKeyWord,
-      youtubes,
       myMusicLists,
       duration,
-      selectEditMusic
+      selectEditMusic,
+      selectupdateMusic
     } = this.state;
     const customStyles = {
       content: {
@@ -150,6 +147,7 @@ class MyAlbum extends React.Component {
         transform: "translate(-50%, -50%)"
       }
     };
+
     return (
       <div>
         <MyAlubmList
@@ -167,6 +165,7 @@ class MyAlbum extends React.Component {
         />
         <MyAlubmResult
           musicList={musicList}
+          selectupdateMusic={selectupdateMusic}
           generateYoutubeUrl={videoId => generateYoutubeUrl(videoId)}
           onDuration={duration => onDuration(duration)}
           duration={duration}

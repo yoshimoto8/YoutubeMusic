@@ -1,14 +1,16 @@
 import React from "react";
 import ReactPlayer from "react-player";
 
+import MyAlubmResultAddBtn from "../Atoms/MyAlubmResultAddBtn";
+
 const MyAlubmResult = props => {
   const {
     musicList,
     generateYoutubeUrl,
-    duration,
     onDuration,
     updateMyMusicList,
-    createMusicFormat
+    createMusicFormat,
+    selectupdateMusic
   } = props;
 
   return (
@@ -23,15 +25,15 @@ const MyAlubmResult = props => {
               width="200px"
               height="200px"
               url={url}
-              onDuration={() => onDuration(duration)}
+              onDuration={duration => onDuration(duration)}
             />
-            <button
-              onClick={Music =>
-                updateMyMusicList(createMusicFormat(url, snippet.title))
-              }
-            >
-              追加する
-            </button>
+            <MyAlubmResultAddBtn
+              updateMyMusicList={updateMyMusicList}
+              createMusicFormat={createMusicFormat}
+              selectupdateMusic={selectupdateMusic}
+              url={url}
+              title={snippet.title}
+            />
           </div>
         );
       })}
