@@ -8,6 +8,7 @@ import { setPlayList, fetchYoutube, createAlubm } from "../actions/index";
 import noImage from "../images/noimage.png";
 import EditAlbumModal from "./EditAlbumModal";
 import MyAlubmList from "../components/Molecules/MyAlubmList";
+import MyAlubmSearch from "../components/Molecules/MyAlubmSearch";
 import "react-tippy/dist/tippy.css";
 import "./styles/MyAlbum.css";
 class MyAlbum extends React.Component {
@@ -157,14 +158,11 @@ class MyAlbum extends React.Component {
           openModal={openModal.bind(this)}
           setUpdateMusic={data => setUpdateMusic(data)}
         />
-        <form onSubmit={e => handleFetchYoutube(e)}>
-          <input
-            type="text"
-            value={searchKeyWord}
-            onChange={e => changeSearchKeyWord(e)}
-          />
-          <input type="submit" value="send" />
-        </form>
+        <MyAlubmSearch
+          handleFetchYoutube={e => handleFetchYoutube(e)}
+          searchKeyWord={searchKeyWord}
+          changeSearchKeyWord={e => changeSearchKeyWord(e)}
+        />
         {musicList.map((data, index) => {
           const { snippet, id } = data;
           const url = generateYoutubeUrl(id.videoId);
