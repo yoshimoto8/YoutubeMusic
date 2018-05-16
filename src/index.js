@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import createSagaMiddleware from "redux-saga";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import reducer from "./reducers";
+import rootReducer from "./reducers";
 import rootSaga from "./sagas";
 import registerServiceWorker from "./registerServiceWorker";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -19,12 +19,11 @@ import GithubCorner from "react-github-corner";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
-  combineReducers({ reducer, routing: routerReducer }),
+  combineReducers({ rootReducer, routing: routerReducer }),
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
-
-const history = syncHistoryWithStore(createBrowserHistory(), store);
 sagaMiddleware.run(rootSaga);
+const history = syncHistoryWithStore(createBrowserHistory(), store);
 
 const routes = [
   {
