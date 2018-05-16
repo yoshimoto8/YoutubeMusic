@@ -1,0 +1,62 @@
+[debug] [2018-05-16T09:18:57.611Z] ----------------------------------------------------------------------
+[debug] [2018-05-16T09:18:57.613Z] Command:       /usr/local/Cellar/node/9.4.0/bin/node /usr/local/bin/firebase deploy
+[debug] [2018-05-16T09:18:57.613Z] CLI Version:   3.18.4
+[debug] [2018-05-16T09:18:57.613Z] Platform:      darwin
+[debug] [2018-05-16T09:18:57.613Z] Node Version:  v9.4.0
+[debug] [2018-05-16T09:18:57.614Z] Time:          Wed May 16 2018 18:18:57 GMT+0900 (JST)
+[debug] [2018-05-16T09:18:57.614Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-05-16T09:18:57.625Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-05-16T09:18:57.625Z] > authorizing via signed-in user
+[debug] [2018-05-16T09:18:57.627Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-05-16T09:18:57.627Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/MRx6ZA1TkiQqLB5IwE0yWuh2VPBo0l7QoZS242L6fz8',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed May 16 2018 18:18:57 GMT+0900 (JST)
+[debug] [2018-05-16T09:18:57.861Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-16T09:18:57.871Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/musicpomodoro  
+  
+ Wed May 16 2018 18:18:57 GMT+0900 (JST)
+[debug] [2018-05-16T09:18:58.697Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-16T09:18:58.697Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/musicpomodoro/tokens  
+  
+ Wed May 16 2018 18:18:58 GMT+0900 (JST)
+[debug] [2018-05-16T09:18:59.552Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'musicpomodoro'...
+[info] 
+[info] i  deploying database, hosting
+[info] i  database: checking rules syntax...
+[debug] [2018-05-16T09:19:00.458Z] >>> HTTP REQUEST PUT https://musicpomodoro.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+}
+ 
+ Wed May 16 2018 18:19:00 GMT+0900 (JST)
+[debug] [2018-05-16T09:19:01.193Z] <<< HTTP RESPONSE 200
+[info] ✔  database: rules syntax for database musicpomodoro is valid
+[info] i  hosting: preparing build directory for upload...
+[debug] [2018-05-16T09:19:01.583Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/musicpomodoro/uploads/-LCcEhzbNF-mHjQjsoBA?fileCount=11&message=  
+  
+ Wed May 16 2018 18:19:01 GMT+0900 (JST)
+[debug] [2018-05-16T09:19:05.693Z] <<< HTTP RESPONSE 409
+[debug] [2018-05-16T09:19:05.693Z] <<< HTTP RESPONSE BODY undefined
+[debug] [2018-05-16T09:19:05.695Z] TypeError: Cannot read property 'error' of undefined
+    at module.exports (/usr/local/lib/node_modules/firebase-tools/lib/responseToError.js:10:13)
+    at Request._callback (/usr/local/lib/node_modules/firebase-tools/lib/api.js:47:25)
+    at Request.self.callback (/usr/local/lib/node_modules/firebase-tools/node_modules/request/request.js:186:22)
+    at Request.emit (events.js:160:13)
+    at Request.<anonymous> (/usr/local/lib/node_modules/firebase-tools/node_modules/request/request.js:1163:10)
+    at Request.emit (events.js:160:13)
+    at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/firebase-tools/node_modules/request/request.js:1085:12)
+    at Object.onceWrapper (events.js:255:19)
+    at IncomingMessage.emit (events.js:165:20)
+    at endReadableNT (_stream_readable.js:1101:12)
+[error] 
+[error] Error: An unexpected error has occurred.

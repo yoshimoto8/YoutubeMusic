@@ -1,0 +1,32 @@
+.HomeHeader {
+  margin: 20 auto;
+  margin-top: 30px;
+}
+
+.HomeHeader ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.HomeHeader a {
+  padding: 0 30px;
+  color: hsla(0, 0%, 100%, 0.6);
+}
+
+.recomend {
+  text-decoration: none;
+  list-style: none;
+}
+
+.recomend:hover {
+  color: white;
+}
+
+.podCasts:hover {
+  color: white;
+}
+
+.newRelease:hover {
+  color: white;
+}

@@ -8,6 +8,7 @@ const MyAlubmResultAddBtn = props => {
     url,
     title
   } = props;
+
   const isSet = Object.keys(selectupdateMusic).length === 0 ? false : true;
 
   if (isSet) {

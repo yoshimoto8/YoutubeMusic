@@ -11,10 +11,10 @@ import rootSaga from "./sagas";
 import registerServiceWorker from "./registerServiceWorker";
 import { composeWithDevTools } from "redux-devtools-extension";
 import MusicPlayer from "./container/MusicPlayer";
-import MyMusicList from "./container/MyMusicList";
 import { syncHistoryWithStore, routerReducer } from "react-router-redux";
 import Authentication from "./container/Authentication";
 import MyAlbum from "./container/MyAlbum";
+import Home from "./container/Home";
 import GithubCorner from "react-github-corner";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -27,7 +27,7 @@ const history = syncHistoryWithStore(createBrowserHistory(), store);
 
 const routes = [
   {
-    path: "/Authentication",
+    path: "/",
     main: () => <Authentication />
   },
   {
@@ -35,12 +35,12 @@ const routes = [
     main: () => <MusicPlayer />
   },
   {
-    path: "/",
-    main: () => <MyMusicList />
-  },
-  {
     path: "/Myalbum",
     main: () => <MyAlbum />
+  },
+  {
+    path: "/Home",
+    main: () => <Home />
   }
 ];
 
@@ -55,11 +55,11 @@ ReactDOM.render(
               <div />
             ) : (
               <li>
-                <Link to="/Authentication">ログイン</Link>
+                <Link to="/">ログイン</Link>
               </li>
             )}
             <li>
-              <Link to="/">マイミュージック</Link>
+              <Link to="/Home">Home</Link>
             </li>
             {sessionStorage.getItem("user") ? (
               <li>
