@@ -9,6 +9,7 @@ import noImage from "../images/noimage.png";
 import EditAlbumModal from "./EditAlbumModal";
 import MyAlubmList from "../components/Molecules/MyAlubmList";
 import MyAlubmSearch from "../components/Molecules/MyAlubmSearch";
+import MyAlubmResult from "../components/Molecules/MyAlubmResult";
 import "react-tippy/dist/tippy.css";
 import "./styles/MyAlbum.css";
 class MyAlbum extends React.Component {
@@ -129,7 +130,8 @@ class MyAlbum extends React.Component {
       setEditMusic,
       closeModal,
       openModal,
-      setUpdateMusic
+      setUpdateMusic,
+      createMusicFormat
     } = this;
     const {
       searchKeyWord,
@@ -163,28 +165,14 @@ class MyAlbum extends React.Component {
           searchKeyWord={searchKeyWord}
           changeSearchKeyWord={e => changeSearchKeyWord(e)}
         />
-        {musicList.map((data, index) => {
-          const { snippet, id } = data;
-          const url = generateYoutubeUrl(id.videoId);
-          return (
-            <div key={index}>
-              <h2>{snippet.title}</h2>
-              <ReactPlayer
-                width="200px"
-                height="200px"
-                url={url}
-                onDuration={duration => onDuration(duration)}
-              />
-              <button
-                onClick={Music =>
-                  updateMyMusicList(this.createMusicFormat(url, snippet.title))
-                }
-              >
-                追加する
-              </button>
-            </div>
-          );
-        })}
+        <MyAlubmResult
+          musicList={musicList}
+          generateYoutubeUrl={videoId => generateYoutubeUrl(videoId)}
+          onDuration={duration => onDuration(duration)}
+          duration={duration}
+          updateMyMusicList={music => updateMyMusicList(music)}
+          createMusicFormat={(url, title) => createMusicFormat(url, title)}
+        />
         <Modal isOpen={this.state.modalIsOpen} style={customStyles}>
           <EditAlbumModal
             data={selectEditMusic}
