@@ -21,7 +21,6 @@ const MyAlubmList = props => {
       </div>
       {myMusicLists.map((data, index) => {
         const { alubmImage, musicList, playListName } = data;
-        console.log(data);
         return (
           <div key={index} className="myAlbum-displayMusic">
             <div className="myAlbum-musicController">
