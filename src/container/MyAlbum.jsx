@@ -3,13 +3,11 @@ import update from "immutability-helper";
 import Modal from "react-modal";
 import ReactPlayer from "react-player";
 import firebase from "firebase";
-import { Link } from "react-router-dom";
-import { Tooltip } from "react-tippy";
 import { connect } from "react-redux";
 import { setPlayList, fetchYoutube, createAlubm } from "../actions/index";
 import noImage from "../images/noimage.png";
-import IoAndroidMoreHorizontal from "react-icons/lib/io/android-more-horizontal";
 import EditAlbumModal from "./EditAlbumModal";
+import MyAlubmList from "../components/Molecules/MyAlubmList";
 import "react-tippy/dist/tippy.css";
 import "./styles/MyAlbum.css";
 class MyAlbum extends React.Component {
@@ -32,6 +30,7 @@ class MyAlbum extends React.Component {
 
   // ここからアルバムを編集する関数
   openModal(data) {
+    console.log(data);
     this.setState({ modalIsOpen: true, selectEditMusic: data });
   }
 
@@ -113,8 +112,12 @@ class MyAlbum extends React.Component {
     return musicDataConstruction;
   };
 
+  setUpdateMusic = data => {
+    this.setState({ selectupdateMusic: data });
+  };
+
   render() {
-    const { musicList, createAlubm } = this.props;
+    const { musicList, createAlubm, setPlayList } = this.props;
     const {
       handleFetchYoutube,
       changeSearchKeyWord,
@@ -123,7 +126,9 @@ class MyAlbum extends React.Component {
       updateMyMusicList,
       onDuration,
       setEditMusic,
-      closeModal
+      closeModal,
+      openModal,
+      setUpdateMusic
     } = this;
     const {
       searchKeyWord,
@@ -144,61 +149,14 @@ class MyAlbum extends React.Component {
     };
     return (
       <div>
-        <div className="myAlbum-displayMusicBox">
-          <div>
-            <a
-              href=""
-              className="btn"
-              onClick={e => createAlubm(emptyAlubm(e))}
-            >
-              +
-            </a>
-          </div>
-          {myMusicLists.map((data, index) => {
-            const { alubmImage, musicList, playListName } = data;
-            return (
-              <div key={index} className="myAlbum-displayMusic">
-                <div className="myAlbum-musicController">
-                  <Link
-                    to="/MusicPlayer"
-                    className="myAlbum-playBtn"
-                    onClick={() => this.props.setPlayList(musicList)}
-                  />
-                  <Tooltip
-                    position="right"
-                    trigger="click"
-                    interactive
-                    html={
-                      <div className="myAlbum-musicAction">
-                        <div
-                          className="myAlbum-musicAction1"
-                          onClick={() => this.openModal(data)}
-                        >
-                          アルバムを編集する
-                        </div>
-                        <div className="myAlbum-musicAction1">
-                          アルバムを消去する
-                        </div>
-                      </div>
-                    }
-                  >
-                    <IoAndroidMoreHorizontal
-                      className="myAlbum-detailMusic"
-                      size="25"
-                    />
-                  </Tooltip>
-                </div>
-                <img src={alubmImage} alt="" height="200px" width="200px" />
-                <h3 className="myAlbum-playListName">{playListName}</h3>
-                <button
-                  onClick={() => this.setState({ selectupdateMusic: data })}
-                >
-                  選択
-                </button>
-              </div>
-            );
-          })}
-        </div>
+        <MyAlubmList
+          myMusicLists={myMusicLists}
+          createAlubm={emptyAlbum => createAlubm(emptyAlbum)}
+          emptyAlubm={e => emptyAlubm(e)}
+          setPlayList={musicList => setPlayList(musicList)}
+          openModal={openModal.bind(this)}
+          setUpdateMusic={data => setUpdateMusic(data)}
+        />
         <form onSubmit={e => handleFetchYoutube(e)}>
           <input
             type="text"
