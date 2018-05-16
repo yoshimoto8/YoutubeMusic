@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import PomodoroMusicList from "../components/Molecules/PomodoroMusicList";
 import PomodoroMusicDisplay from "../components/Molecules/PomodoroMusicDisplay";
 import MusicOperation from "../components/Molecules/MusicOperation";
-import "./styles/Pomodoro.css";
 
 class MusicPlayer extends React.Component {
   constructor(props) {
@@ -234,7 +233,7 @@ class MusicPlayer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  musicList: state.reducer.setPlayList.defaultMusic
+  musicList: state.rootReducer.setPlayList.defaultMusic
 });
 
 export default connect(mapStateToProps, null)(MusicPlayer);
