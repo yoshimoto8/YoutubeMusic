@@ -6,7 +6,7 @@ import firebase from "firebase";
 import { Link } from "react-router-dom";
 import { Tooltip } from "react-tippy";
 import { connect } from "react-redux";
-import { setPlayList, fetchYoutube } from "../actions/index";
+import { setPlayList, fetchYoutube, createAlubm } from "../actions/index";
 import noImage from "../images/noimage.png";
 import IoAndroidMoreHorizontal from "react-icons/lib/io/android-more-horizontal";
 import EditAlbumModal from "./EditAlbumModal";
@@ -51,18 +51,7 @@ class MyAlbum extends React.Component {
       musicList: [],
       createdOn: new Date()
     };
-    this.createMusicList(emptyAlbum);
-  };
-
-  createMusicList = data => {
-    const db = firebase.firestore();
-    const currentUser = sessionStorage.getItem("user");
-    db
-      .collection(`users/${currentUser}/userMusicList`)
-      .add(data)
-      .then(() => {
-        console.log("seikou");
-      });
+    return emptyAlbum;
   };
 
   updateMyMusicList = Music => {
@@ -125,7 +114,7 @@ class MyAlbum extends React.Component {
   };
 
   render() {
-    const { musicList } = this.props;
+    const { musicList, createAlubm } = this.props;
     const {
       handleFetchYoutube,
       changeSearchKeyWord,
@@ -157,7 +146,11 @@ class MyAlbum extends React.Component {
       <div>
         <div className="myAlbum-displayMusicBox">
           <div>
-            <a href="" className="btn" onClick={e => emptyAlubm(e)}>
+            <a
+              href=""
+              className="btn"
+              onClick={e => createAlubm(emptyAlubm(e))}
+            >
               +
             </a>
           </div>
@@ -249,7 +242,8 @@ class MyAlbum extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   setPlayList: defaultMusic => dispatch(setPlayList(defaultMusic)),
-  fetchYoutube: searchKeyWord => dispatch(fetchYoutube(searchKeyWord))
+  fetchYoutube: searchKeyWord => dispatch(fetchYoutube(searchKeyWord)),
+  createAlubm: emptyAlbum => dispatch(createAlubm(emptyAlbum))
 });
 
 const mapStateToProps = state => ({
