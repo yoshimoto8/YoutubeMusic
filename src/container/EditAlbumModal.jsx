@@ -19,14 +19,22 @@ class EditAlbumModal extends React.Component {
   // 画像アップロード
   uploadImage = () => {
     const file = this.state.files[0];
-    const storageRef = firebase.storage().ref(`upload_files/${file.name}`);
-    storageRef
-      .put(file)
-      .then(result => {
-        debugger;
-      })
-      .catch(err => console.log("エラーーーー", err));
+    const storageRef = firebase.storage().ref("upload_files/" + file.name);
+    const uploadTask = storageRef.put(file);
+    uploadTask.on(
+      "state_changed",
+      snapshot => {},
+      function(error) {},
+      function() {}
+    );
+
+    var storage = firebase.storage().ref("upload_files/" + file.name);
+    storageRef.getDownloadURL().then(function(url) {
+      console.log(url);
+    });
   };
+
+  fetchImage = () => {};
 
   onDrop(files) {
     this.setState({
@@ -37,7 +45,6 @@ class EditAlbumModal extends React.Component {
   render() {
     const { editAlubm } = this.state;
     const { playListName } = editAlubm;
-    console.log(this.state.files);
     return (
       <div>
         <div className="EditAlbumModal-edit_top">
