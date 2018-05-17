@@ -27,7 +27,7 @@ class MusicPlayer extends React.Component {
       muted: false,
       played: 0,
       loaded: 0,
-      duration: 0,
+      duration: [],
       playbackRate: 1.0,
       loop: false
     };

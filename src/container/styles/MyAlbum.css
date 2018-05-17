@@ -82,3 +82,34 @@
 .myAlbum-musicAction1:hover {
   color: white;
 }
+
+/* MyAlubmResultAddBtnコンポーネント  */
+
+.MyAlubmResult-resultLists {
+  display: flex;
+}
+
+.MyAlubmResult-resultBox {
+  margin-top: 20px;
+  height: 20%;
+  width: 20%;
+}
+
+.MyAlubmResult-resultPlayer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.MyAlubmResult-resultTitle {
+  color: #fff;
+  height: 80px;
+}
+
+.MyAlubmResultAddBtn-addBtn {
+  margin-top: 20px;
+}
+
+.MyAlubmResultAddBtn-selectBtn {
+  margin-top: 20px;
+  color: white;
+}

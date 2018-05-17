@@ -149,7 +149,7 @@ class MyAlbum extends React.Component {
     };
 
     return (
-      <div>
+      <div className="main">
         <MyAlubmList
           myMusicLists={myMusicLists}
           createAlubm={emptyAlbum => createAlubm(emptyAlbum)}

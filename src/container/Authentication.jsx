@@ -12,7 +12,7 @@ class Authentication extends React.Component {
       .then(result => {
         sessionStorage.setItem("user", result.user.uid);
         window.location.reload();
-        this.props.history.push("/");
+        this.props.history.push("/Home");
       })
       .catch(err => {
         console.log("エラーが起こりました。");

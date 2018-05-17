@@ -14,13 +14,18 @@ const MyAlubmResultAddBtn = props => {
   if (isSet) {
     return (
       <button
+        className="MyAlubmResultAddBtn-addBtn"
         onClick={Music => updateMyMusicList(createMusicFormat(url, title))}
       >
         追加する
       </button>
     );
   } else {
-    return <button>アルバムを選択してくだい</button>;
+    return (
+      <div className="MyAlubmResultAddBtn-selectBtn">
+        アルバムを選択してくだい
+      </div>
+    );
   }
 };
 

@@ -1,6 +1,5 @@
 import React from "react";
 import ReactPlayer from "react-player";
-
 import MyAlubmResultAddBtn from "../Atoms/MyAlubmResultAddBtn";
 
 const MyAlubmResult = props => {
@@ -14,19 +13,20 @@ const MyAlubmResult = props => {
   } = props;
 
   return (
-    <div>
+    <div className="MyAlubmResult-resultLists">
       {musicList.map((data, index) => {
         const { snippet, id } = data;
         const url = generateYoutubeUrl(id.videoId);
         return (
-          <div key={index}>
-            <h2>{snippet.title}</h2>
+          <div key={index} className="MyAlubmResult-resultBox">
             <ReactPlayer
+              className="MyAlubmResult-resultPlayer"
               width="200px"
               height="200px"
               url={url}
               onDuration={duration => onDuration(duration)}
             />
+            <div className="MyAlubmResult-resultTitle">{snippet.title}</div>
             <MyAlubmResultAddBtn
               updateMyMusicList={updateMyMusicList}
               createMusicFormat={createMusicFormat}
