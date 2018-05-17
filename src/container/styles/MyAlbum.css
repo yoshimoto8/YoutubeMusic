@@ -60,6 +60,14 @@
   color: white;
 }
 
+.myAlbum-playListName:hover {
+  color: #1db954;
+}
+
+.myAlbum-selected {
+  color: #1db954;
+}
+
 .myAlbum-detailMusic {
   margin-top: 90px;
   margin-left: 10px;
@@ -96,20 +104,35 @@
 }
 
 .MyAlubmResult-resultPlayer {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 0;
+  padding: 10px;
+}
+
+.MyAlubmResult-wrraper {
+  display: flex;
 }
 
 .MyAlubmResult-resultTitle {
   color: #fff;
-  height: 80px;
+  padding: 10px;
+  font-size: 5px;
+  height: 40px;
 }
 
 .MyAlubmResultAddBtn-addBtn {
-  margin-top: 20px;
+  text-align: center;
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+  padding: 8px 5px;
+  color: hsla(0, 0%, 100%, 0.6);
 }
 
-.MyAlubmResultAddBtn-selectBtn {
+.MyAlubmResultAddBtn-addBtn:hover {
+  color: #fff;
+}
+
+/* .MyAlubmResultAddBtn-selectBtn {
   margin-top: 20px;
   color: white;
-}
+} */

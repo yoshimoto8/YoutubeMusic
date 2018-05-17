@@ -157,6 +157,7 @@ class MyAlbum extends React.Component {
           setPlayList={musicList => setPlayList(musicList)}
           openModal={openModal.bind(this)}
           setUpdateMusic={data => setUpdateMusic(data)}
+          selectupdateMusic={selectupdateMusic}
         />
         <MyAlubmSearch
           handleFetchYoutube={e => handleFetchYoutube(e)}

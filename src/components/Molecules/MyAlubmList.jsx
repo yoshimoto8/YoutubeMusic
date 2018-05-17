@@ -10,7 +10,8 @@ const MyAlubmList = props => {
     myMusicLists,
     setPlayList,
     openModal,
-    setUpdateMusic
+    setUpdateMusic,
+    selectupdateMusic
   } = props;
   return (
     <div className="myAlbum-displayMusicBox">
@@ -21,6 +22,7 @@ const MyAlubmList = props => {
       </div>
       {myMusicLists.map((data, index) => {
         const { alubmImage, musicList, playListName } = data;
+        const isSelected = selectupdateMusic === data;
         return (
           <div key={index} className="myAlbum-displayMusic">
             <div className="myAlbum-musicController">
@@ -54,8 +56,16 @@ const MyAlubmList = props => {
               </Tooltip>
             </div>
             <img src={alubmImage} alt="" height="200px" width="200px" />
-            <h3 className="myAlbum-playListName">{playListName}</h3>
-            <button onClick={() => setUpdateMusic(data)}>選択</button>
+            {isSelected ? (
+              <h3 className="myAlbum-selected">{playListName}</h3>
+            ) : (
+              <h3
+                className="myAlbum-playListName"
+                onClick={() => setUpdateMusic(data)}
+              >
+                {playListName}
+              </h3>
+            )}
           </div>
         );
       })}

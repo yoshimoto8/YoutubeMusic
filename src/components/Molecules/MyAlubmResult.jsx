@@ -26,14 +26,16 @@ const MyAlubmResult = props => {
               url={url}
               onDuration={duration => onDuration(duration)}
             />
-            <div className="MyAlubmResult-resultTitle">{snippet.title}</div>
-            <MyAlubmResultAddBtn
-              updateMyMusicList={updateMyMusicList}
-              createMusicFormat={createMusicFormat}
-              selectupdateMusic={selectupdateMusic}
-              url={url}
-              title={snippet.title}
-            />
+            <div className="MyAlubmResult-wrraper">
+              <MyAlubmResultAddBtn
+                updateMyMusicList={updateMyMusicList}
+                createMusicFormat={createMusicFormat}
+                selectupdateMusic={selectupdateMusic}
+                url={url}
+                title={snippet.title}
+              />
+              <div className="MyAlubmResult-resultTitle">{snippet.title}</div>
+            </div>
           </div>
         );
       })}
