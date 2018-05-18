@@ -12,12 +12,11 @@ const MyAlubmResultAddBtn = props => {
   } = props;
 
   const isSet = Object.keys(selectupdateMusic).length === 0 ? false : true;
-  const sameMusic = selectupdateMusic.musicList.filter(
-    data => data.name === title
-  );
-  const isAdd = sameMusic.length === 0;
+  const sameMusic = isSet
+    ? selectupdateMusic.musicList.filter(data => data.name === title)
+    : [];
 
-  if (isSet && isAdd) {
+  if (isSet && sameMusic.length === 0) {
     return (
       <div
         className="MyAlubmResultAddBtn-addBtn"
