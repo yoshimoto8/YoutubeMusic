@@ -11,7 +11,8 @@ const MyAlubmList = props => {
     setPlayList,
     openModal,
     setUpdateMusic,
-    selectupdateMusic
+    selectupdateMusic,
+    deleteAlbum
   } = props;
 
   return (
@@ -49,7 +50,10 @@ const MyAlubmList = props => {
                     >
                       アルバムを編集する
                     </div>
-                    <div className="myAlbum-musicAction1">
+                    <div
+                      className="myAlbum-musicAction1"
+                      onClick={() => deleteAlbum(data)}
+                    >
                       アルバムを消去する
                     </div>
                   </div>

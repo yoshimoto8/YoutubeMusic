@@ -6,6 +6,9 @@ export const SUCCEEDED_FETCH_YOUTUBE = "SUCCEEDED_FETCH_YOUTUBE";
 export const CREATE_ALUBM = "CREATE_ALUBM";
 export const SUCCEEDED_CREATE_ALUBM = "SUCCEEDED_CREATE_ALUBM";
 
+export const DELETE_ALUBM = "DELETE_ALUBM";
+export const SUCCEEDED_DELETE_ALUBM = "DELETE_ALUBM";
+
 export const setPlayList = defaultMusic => ({
   type: SET_PLAYLIST,
   defaultMusic
@@ -26,5 +29,14 @@ export const createAlubm = emptyAlbum => ({
 });
 export const succeededCreateAlubm = results => ({
   type: SUCCEEDED_CREATE_ALUBM,
+  results
+});
+
+export const deleteAlbum = album => ({
+  type: DELETE_ALUBM,
+  album
+});
+export const succeededDeleteAlbum = results => ({
+  type: SUCCEEDED_DELETE_ALUBM,
   results
 });

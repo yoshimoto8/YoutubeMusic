@@ -3,7 +3,12 @@ import update from "immutability-helper";
 import Modal from "react-modal";
 import firebase from "firebase";
 import { connect } from "react-redux";
-import { setPlayList, fetchYoutube, createAlubm } from "../actions/index";
+import {
+  setPlayList,
+  fetchYoutube,
+  createAlubm,
+  deleteAlbum
+} from "../actions/index";
 import noImage from "../images/noimage.png";
 import EditAlbumModal from "./EditAlbumModal";
 import MyAlubmList from "../components/Molecules/MyAlubmList";
@@ -117,7 +122,7 @@ class MyAlbum extends React.Component {
   };
 
   render() {
-    const { musicList, createAlubm, setPlayList } = this.props;
+    const { musicList, createAlubm, setPlayList, deleteAlbum } = this.props;
     const {
       handleFetchYoutube,
       changeSearchKeyWord,
@@ -163,6 +168,7 @@ class MyAlbum extends React.Component {
           openModal={openModal.bind(this)}
           setUpdateMusic={data => setUpdateMusic(data)}
           selectupdateMusic={selectupdateMusic}
+          deleteAlbum={alubm => deleteAlbum(alubm)}
         />
         <MyAlubmResult
           musicList={musicList}
@@ -187,7 +193,8 @@ class MyAlbum extends React.Component {
 const mapDispatchToProps = dispatch => ({
   setPlayList: defaultMusic => dispatch(setPlayList(defaultMusic)),
   fetchYoutube: searchKeyWord => dispatch(fetchYoutube(searchKeyWord)),
-  createAlubm: emptyAlbum => dispatch(createAlubm(emptyAlbum))
+  createAlubm: emptyAlbum => dispatch(createAlubm(emptyAlbum)),
+  deleteAlbum: alubm => dispatch(deleteAlbum(alubm))
 });
 
 const mapStateToProps = state => ({
