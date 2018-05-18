@@ -10,6 +10,8 @@ export default function fetchYoutubeAPI(keyword) {
 }
 
 export function* fetchYoutubeData(action) {
+  console.log("yobareta");
+  sessionStorage.setItem("search", action.searchKeyWord);
   const responseResult = yield call(fetchYoutubeAPI, action.searchKeyWord);
   if (responseResult) {
     yield put(succeededYoutubeFetch(responseResult.data.items));

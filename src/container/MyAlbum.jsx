@@ -32,6 +32,12 @@ class MyAlbum extends React.Component {
 
   componentDidMount() {
     this.fetchMyMusicList();
+    if (
+      this.props.musicList.length === 0 &&
+      !!sessionStorage.getItem("search")
+    ) {
+      this.props.fetchYoutube(sessionStorage.getItem("search"));
+    }
   }
 
   // ここからアルバムを編集する関数
