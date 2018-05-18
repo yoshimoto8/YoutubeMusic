@@ -15,11 +15,15 @@ const MyAlubmList = props => {
   } = props;
   return (
     <div className="myAlbum-displayMusicBox">
-      <div>
+      <Tooltip
+        title="アルバムを作成することができます"
+        position="left"
+        trigger="mouseenter"
+      >
         <a href="" className="btn" onClick={e => createAlubm(emptyAlubm(e))}>
           +
         </a>
-      </div>
+      </Tooltip>
       {myMusicLists.map((data, index) => {
         const { alubmImage, musicList, playListName } = data;
         const isSelected = selectupdateMusic === data;

@@ -5,7 +5,7 @@ import { YOUTUBEAPI } from "../ENV";
 
 export default function fetchYoutubeAPI(keyword) {
   return axios.get(
-    `https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&q=${keyword}&key=${YOUTUBEAPI}`
+    `https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=15&q=${keyword}&key=${YOUTUBEAPI}`
   );
 }
 

@@ -95,6 +95,7 @@
 
 .MyAlubmResult-resultLists {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .MyAlubmResult-resultBox {
