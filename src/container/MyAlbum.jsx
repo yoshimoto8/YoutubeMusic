@@ -65,11 +65,11 @@ class MyAlbum extends React.Component {
       })
       .then(() => {
         console.log("成功");
+        const newState = update(this.state.selectupdateMusic, {
+          musicList: { $set: newMusicList }
+        });
+        this.setState({ selectupdateMusic: newState });
       });
-    const newState = update(this.state.selectupdateMusic, {
-      musicList: { $set: newMusicList }
-    });
-    this.setState({ selectupdateMusic: newState });
   };
 
   fetchMyMusicList = () => {
@@ -150,6 +150,11 @@ class MyAlbum extends React.Component {
 
     return (
       <div className="main">
+        <MyAlubmSearch
+          handleFetchYoutube={e => handleFetchYoutube(e)}
+          searchKeyWord={searchKeyWord}
+          changeSearchKeyWord={e => changeSearchKeyWord(e)}
+        />
         <MyAlubmList
           myMusicLists={myMusicLists}
           createAlubm={emptyAlbum => createAlubm(emptyAlbum)}
@@ -158,11 +163,6 @@ class MyAlbum extends React.Component {
           openModal={openModal.bind(this)}
           setUpdateMusic={data => setUpdateMusic(data)}
           selectupdateMusic={selectupdateMusic}
-        />
-        <MyAlubmSearch
-          handleFetchYoutube={e => handleFetchYoutube(e)}
-          searchKeyWord={searchKeyWord}
-          changeSearchKeyWord={e => changeSearchKeyWord(e)}
         />
         <MyAlubmResult
           musicList={musicList}

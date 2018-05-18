@@ -13,14 +13,16 @@ const MyAlubmList = props => {
     setUpdateMusic,
     selectupdateMusic
   } = props;
+
   return (
     <div className="myAlbum-displayMusicBox">
       <Tooltip
+        className="myAlbum-addBtnWrapper"
         title="アルバムを作成することができます"
         position="left"
         trigger="mouseenter"
       >
-        <a href="" className="btn" onClick={e => createAlubm(emptyAlubm(e))}>
+        <a className="myAlbum-addBtn" onClick={e => createAlubm(emptyAlubm(e))}>
           +
         </a>
       </Tooltip>
