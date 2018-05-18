@@ -169,7 +169,29 @@
   color: #1db954;
 }
 
-/* .MyAlubmResultAddBtn-selectBtn {
-  margin-top: 20px;
+.myAlbum-stepBackBox {
+  height: 270px;
+}
+.myAlbum-stepNextBox {
+  height: 270px;
+}
+
+.myAlbum-stepBack {
+  text-align: center;
+  margin: 100px 5px;
+  color: hsla(0, 0%, 100%, 0.6);
+  height: 30px;
+  width: 30px;
+}
+
+.myAlbum-stepBack {
+  text-align: center;
+  margin: 100px 5px;
+  color: hsla(0, 0%, 100%, 0.6);
+  height: 30px;
+  width: 30px;
+}
+
+.myAlbum-stepBack:hover {
   color: white;
-} */
+}

@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Tooltip } from "react-tippy";
 import IoAndroidMoreHorizontal from "react-icons/lib/io/android-more-horizontal";
+import FaAngleLeft from "react-icons/lib/fa/angle-left";
+import FaAngleRight from "react-icons/lib/fa/angle-right";
 
 const MyAlubmList = props => {
   const {
@@ -12,9 +14,15 @@ const MyAlubmList = props => {
     openModal,
     setUpdateMusic,
     selectupdateMusic,
-    deleteAlbum
+    deleteAlbum,
+    indexStart,
+    indexEnd,
+    stepNext,
+    stepBack
   } = props;
 
+  const sliceMusicList = myMusicLists.slice(indexStart, indexEnd);
+  console.log(sliceMusicList);
   return (
     <div className="myAlbum-displayMusicBox">
       <Tooltip
@@ -27,7 +35,10 @@ const MyAlubmList = props => {
           +
         </a>
       </Tooltip>
-      {myMusicLists.map((data, index) => {
+      <div className="myAlbum-stepBackBox">
+        <FaAngleLeft className="myAlbum-stepBack" onClick={() => stepBack()} />
+      </div>
+      {sliceMusicList.map((data, index) => {
         const { alubmImage, musicList, playListName } = data;
         const isSelected = selectupdateMusic === data;
         return (
@@ -79,6 +90,9 @@ const MyAlubmList = props => {
           </div>
         );
       })}
+      <div className="myAlbum-stepNextBox">
+        <FaAngleRight className="myAlbum-stepBack" onClick={() => stepNext()} />
+      </div>
     </div>
   );
 };

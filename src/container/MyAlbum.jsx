@@ -20,6 +20,8 @@ class MyAlbum extends React.Component {
   constructor() {
     super();
     this.state = {
+      indexStart: 0,
+      indexEnd: 4,
       modalIsOpen: false,
       searchKeyWord: "",
       duration: 0,
@@ -39,6 +41,20 @@ class MyAlbum extends React.Component {
       this.props.fetchYoutube(sessionStorage.getItem("search"));
     }
   }
+
+  stepNext = () => {
+    this.setState({
+      indexStart: this.state.indexStart + 4,
+      indexEnd: this.state.indexEnd + 4
+    });
+  };
+
+  stepBack = () => {
+    this.setState({
+      indexStart: this.state.indexStart - 4,
+      indexEnd: this.state.indexEnd - 4
+    });
+  };
 
   // ここからアルバムを編集する関数
   openModal(data) {
@@ -139,15 +155,20 @@ class MyAlbum extends React.Component {
       closeModal,
       openModal,
       setUpdateMusic,
-      createMusicFormat
+      createMusicFormat,
+      stepNext,
+      stepBack
     } = this;
     const {
       searchKeyWord,
       myMusicLists,
       duration,
       selectEditMusic,
-      selectupdateMusic
+      selectupdateMusic,
+      indexStart,
+      indexEnd
     } = this.state;
+
     const customStyles = {
       content: {
         top: "50%",
@@ -167,6 +188,8 @@ class MyAlbum extends React.Component {
           changeSearchKeyWord={e => changeSearchKeyWord(e)}
         />
         <MyAlubmList
+          indexStart={indexStart}
+          indexEnd={indexEnd}
           myMusicLists={myMusicLists}
           createAlubm={emptyAlbum => createAlubm(emptyAlbum)}
           emptyAlubm={e => emptyAlubm(e)}
@@ -175,6 +198,8 @@ class MyAlbum extends React.Component {
           setUpdateMusic={data => setUpdateMusic(data)}
           selectupdateMusic={selectupdateMusic}
           deleteAlbum={alubm => deleteAlbum(alubm)}
+          stepNext={() => stepNext()}
+          stepBack={() => stepBack()}
         />
         <MyAlubmResult
           musicList={musicList}
