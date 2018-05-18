@@ -24,7 +24,7 @@ class MyAlbum extends React.Component {
       indexEnd: 4,
       modalIsOpen: false,
       searchKeyWord: "",
-      duration: 0,
+      duration: [],
       youtubes: [],
       myMusicLists: [],
       selectupdateMusic: {},
@@ -39,6 +39,7 @@ class MyAlbum extends React.Component {
       !!sessionStorage.getItem("search")
     ) {
       this.props.fetchYoutube(sessionStorage.getItem("search"));
+      this.setState({ duration: [] });
     }
   }
 
@@ -66,7 +67,8 @@ class MyAlbum extends React.Component {
   };
 
   onDuration = duration => {
-    this.setState({ duration });
+    const newState = update(this.state.duration, { $push: [duration] });
+    this.setState({ duration: newState });
   };
 
   emptyAlubm = e => {
@@ -81,6 +83,7 @@ class MyAlbum extends React.Component {
   };
 
   updateMyMusicList = Music => {
+    console.log(Music);
     const { key, musicList } = this.state.selectupdateMusic;
     const newMusicList = [...musicList, Music];
     const db = firebase.firestore();
@@ -116,6 +119,7 @@ class MyAlbum extends React.Component {
     e.preventDefault();
     const { searchKeyWord } = this.state;
     this.props.fetchYoutube(searchKeyWord);
+    this.setState({ duration: [] });
   };
 
   changeSearchKeyWord = e => {
@@ -126,9 +130,10 @@ class MyAlbum extends React.Component {
     return `https://www.youtube.com/watch?v=${videoId}`;
   };
 
-  createMusicFormat = (url, title) => {
+  createMusicFormat = (url, title, index) => {
     const id = this.state.selectupdateMusic.musicList.length + 1;
-    const time = this.state.duration;
+    const time = this.state.duration[index];
+    console.log(time);
     const musicDataConstruction = {
       id: id,
       name: title,
@@ -208,7 +213,9 @@ class MyAlbum extends React.Component {
           onDuration={duration => onDuration(duration)}
           duration={duration}
           updateMyMusicList={music => updateMyMusicList(music)}
-          createMusicFormat={(url, title) => createMusicFormat(url, title)}
+          createMusicFormat={(url, title, index) =>
+            createMusicFormat(url, title, index)
+          }
         />
         <Modal isOpen={this.state.modalIsOpen} style={customStyles}>
           <EditAlbumModal

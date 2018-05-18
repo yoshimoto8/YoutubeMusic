@@ -33,6 +33,7 @@ const MyAlubmResult = props => {
                 selectupdateMusic={selectupdateMusic}
                 url={url}
                 title={snippet.title}
+                index={index}
               />
               <div className="MyAlubmResult-resultTitle">{snippet.title}</div>
             </div>

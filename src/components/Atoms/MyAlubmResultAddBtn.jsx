@@ -8,7 +8,8 @@ const MyAlubmResultAddBtn = props => {
     createMusicFormat,
     selectupdateMusic,
     url,
-    title
+    title,
+    index
   } = props;
 
   const isSet = Object.keys(selectupdateMusic).length === 0 ? false : true;
@@ -20,7 +21,9 @@ const MyAlubmResultAddBtn = props => {
     return (
       <div
         className="MyAlubmResultAddBtn-addBtn"
-        onClick={Music => updateMyMusicList(createMusicFormat(url, title))}
+        onClick={Music =>
+          updateMyMusicList(createMusicFormat(url, title, index))
+        }
       >
         <MdAdd />
       </div>

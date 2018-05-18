@@ -22,7 +22,6 @@ const MyAlubmList = props => {
   } = props;
 
   const sliceMusicList = myMusicLists.slice(indexStart, indexEnd);
-  console.log(sliceMusicList);
   return (
     <div className="myAlbum-displayMusicBox">
       <Tooltip
