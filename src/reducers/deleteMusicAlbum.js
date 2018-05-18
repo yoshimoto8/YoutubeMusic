@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export const deleteAlbum = (state = initialState, action) => {
-  console.log("呼ばれやよ");
   switch (action.type) {
     case DELETE_ALUBM:
       return { ...state, creating: true, error: null };
