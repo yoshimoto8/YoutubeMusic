@@ -13,7 +13,7 @@ class Home extends React.Component {
         main: () => <RecommendMusic />
       },
       {
-        path: "/Home/NewRelease",
+        path: "/Home/",
         main: () => <NewReleaseMusic />
       }
     ];
@@ -27,7 +27,7 @@ class Home extends React.Component {
                 <Link class="recomend" to="/Home/NewRelease">
                   おすすめ
                 </Link>
-                <Link class="recomend" to="/Home/NewRelease">
+                <Link class="recomend" to="/Home/">
                   ニューリリース
                 </Link>
               </ul>

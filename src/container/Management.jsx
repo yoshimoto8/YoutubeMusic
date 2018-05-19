@@ -33,13 +33,11 @@ class Management extends React.Component {
   };
 
   onDuration = duration => {
-    console.log(duration);
     this.setState({ duration });
   };
 
   add = () => {
     const { url, musicName, artist, duration } = this.state;
-    console.log(duration);
     const id = this.state.musicList.length + 1;
     const music = {
       id: id,
@@ -70,7 +68,6 @@ class Management extends React.Component {
         musicList: this.state.musicList,
         createdOn: new Date()
       };
-      console.log(alubm);
 
       const db = firebase.firestore();
       db
