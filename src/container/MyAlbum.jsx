@@ -83,7 +83,6 @@ class MyAlbum extends React.Component {
   };
 
   updateMyMusicList = Music => {
-    console.log(Music);
     const { key, musicList } = this.state.selectupdateMusic;
     const newMusicList = [...musicList, Music];
     const db = firebase.firestore();
@@ -133,7 +132,6 @@ class MyAlbum extends React.Component {
   createMusicFormat = (url, title, index) => {
     const id = this.state.selectupdateMusic.musicList.length + 1;
     const time = this.state.duration[index];
-    console.log(time);
     const musicDataConstruction = {
       id: id,
       name: title,

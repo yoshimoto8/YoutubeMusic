@@ -13,6 +13,7 @@ import MusicPlayer from "./container/MusicPlayer";
 import { routerReducer } from "react-router-redux";
 import Authentication from "./container/Authentication";
 import MyAlbum from "./container/MyAlbum";
+import Management from "./container/Management";
 import Home from "./container/Home";
 import GithubCorner from "react-github-corner";
 
@@ -39,6 +40,10 @@ const routes = [
   {
     path: "/Home",
     main: () => <Home />
+  },
+  {
+    path: "/Management",
+    main: () => <Management />
   }
 ];
 
@@ -65,6 +70,14 @@ ReactDOM.render(
               </li>
             ) : (
               <div>Myalbum</div>
+            )}
+            {sessionStorage.getItem("user") ===
+            "ihd750LTAXTxfgVsaHXPDzQje9j1" ? (
+              <li>
+                <Link to="/Management">Management</Link>
+              </li>
+            ) : (
+              <div />
             )}
           </ul>
           <GithubCorner

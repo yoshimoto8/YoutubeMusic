@@ -28,9 +28,6 @@ class Home extends React.Component {
                   おすすめ
                 </Link>
                 <Link class="recomend" to="/Home/NewRelease">
-                  PodCasts
-                </Link>
-                <Link class="recomend" to="/Home/NewRelease">
                   ニューリリース
                 </Link>
               </ul>
@@ -38,7 +35,12 @@ class Home extends React.Component {
             {routes.map((route, index) => {
               console.log(route);
               return (
-                <Route key={index} path={route.path} component={route.main} />
+                <Route
+                  exact
+                  key={index}
+                  path={route.path}
+                  component={route.main}
+                />
               );
             })}
           </div>

@@ -11,6 +11,7 @@ const MusicOperation = props => {
   const {
     playingId,
     playing,
+
     playPause,
     played,
     duration,
