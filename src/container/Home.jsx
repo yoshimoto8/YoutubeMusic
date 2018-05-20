@@ -20,31 +20,26 @@ class Home extends React.Component {
 
     return (
       <div className="main">
-        <Router>
-          <div>
-            <div className="HomeHeader">
-              <ul>
-                <Link class="recomend" to="/Home/NewRelease">
-                  おすすめ
-                </Link>
-                <Link class="recomend" to="/Home/">
-                  ニューリリース
-                </Link>
-              </ul>
-            </div>
-            {routes.map((route, index) => {
-              console.log(route);
-              return (
-                <Route
-                  exact
-                  key={index}
-                  path={route.path}
-                  component={route.main}
-                />
-              );
-            })}
+        <div>
+          <div className="HomeHeader">
+            <ul>
+              <Link class="recomend" to="/Home/">
+                ニューリリース
+              </Link>
+            </ul>
           </div>
-        </Router>
+          {routes.map((route, index) => {
+            console.log(route);
+            return (
+              <Route
+                exact
+                key={index}
+                path={route.path}
+                component={route.main}
+              />
+            );
+          })}
+        </div>
       </div>
     );
   }

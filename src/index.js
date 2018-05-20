@@ -15,7 +15,6 @@ import Authentication from "./container/Authentication";
 import MyAlbum from "./container/MyAlbum";
 import Management from "./container/Management";
 import Home from "./container/Home";
-import GithubCorner from "react-github-corner";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -80,11 +79,6 @@ ReactDOM.render(
               <div />
             )}
           </ul>
-          <GithubCorner
-            href="https://github.com/yoshimoto8/Pomodoro"
-            bannerColor="#2BA0A0"
-            octoColor="#272727"
-          />
           {routes.map((route, index) => (
             <Route exact key={index} path={route.path} component={route.main} />
           ))}

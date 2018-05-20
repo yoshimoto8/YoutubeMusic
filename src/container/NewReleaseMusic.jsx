@@ -3,6 +3,7 @@ import firebase from "firebase";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setPlayList } from "../actions";
+import "./styles/newReleaseMusic.css";
 
 class NewReleaseMusic extends React.Component {
   constructor() {
@@ -26,19 +27,18 @@ class NewReleaseMusic extends React.Component {
     return (
       <div>
         {musicLists.map((data, index) => {
-          console.log(data);
           const { alubmImage, playListName, musicList } = data;
           return (
-            <div key={index}>
+            <div key={index} className="newReleaseMusic-musicBox">
+              <div className="newReleaseMusic-musicController">
+                <Link
+                  to="/MusicPlayer"
+                  className="newReleaseMusic-playBtn"
+                  onClick={() => this.props.setPlayList(musicList)}
+                />
+              </div>
               <img src={alubmImage} alt="" height="150px" width="150px" />
-              <Link
-                to="/MusicPlayer"
-                onClick={() => this.props.setPlayList(musicList)}
-              >
-                <button />
-              </Link>
-
-              <div>{playListName}</div>
+              <div className="newReleaseMusic-playListName">{playListName}</div>
             </div>
           );
         })}

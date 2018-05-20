@@ -1,0 +1,40 @@
+.newReleaseMusic-musicController {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: black;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.newReleaseMusic-musicController:hover {
+  opacity: 0.5;
+}
+
+.newReleaseMusic-musicBox {
+  margin: 5px;
+}
+
+.newReleaseMusic-playListName {
+  color: white;
+}
+
+.newReleaseMusic-playBtn {
+  margin-top: 35px;
+  margin-left: 1px;
+  background-image: url("../../images/play.svg");
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 80px;
+  height: 80px;
+  background-size: 50px;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.newReleaseMusic-playBtn:hover {
+  opacity: 0.7;
+}
