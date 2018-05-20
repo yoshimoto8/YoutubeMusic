@@ -1,5 +1,6 @@
 {
   "projects": {
-    "staging": "musicpomodoro"
+    "staging": "musicpomodoro",
+    "default": "musicpomodoro"
   }
 }
