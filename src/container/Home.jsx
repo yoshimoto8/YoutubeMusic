@@ -29,7 +29,6 @@ class Home extends React.Component {
             </ul>
           </div>
           {routes.map((route, index) => {
-            console.log(route);
             return (
               <Route
                 exact

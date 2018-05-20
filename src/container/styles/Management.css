@@ -1,0 +1,11 @@
+.management-displayAddList {
+  display: flex;
+}
+
+.management-displayAddList div {
+  color: white;
+}
+
+.form {
+  margin-top: 100px;
+}

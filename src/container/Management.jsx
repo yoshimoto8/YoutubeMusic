@@ -4,6 +4,7 @@ import Dropzone from "react-dropzone";
 import ReactPlayer from "react-player";
 import { connect } from "react-redux";
 import update from "immutability-helper";
+import "./styles/Management.css";
 
 class Management extends React.Component {
   constructor() {
@@ -13,8 +14,9 @@ class Management extends React.Component {
       url: "",
       musicName: "",
       artist: "",
-      duration: 0,
+      duration: [],
       videoId: "",
+      playLists: [],
       alubmName: "",
       alubmImage: "",
       musicList: []
@@ -23,7 +25,13 @@ class Management extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.setState({ videoId: this.state.url });
+    const obj = {
+      musicName: this.state.musicName,
+      artist: this.state.artist,
+      videoId: this.state.url
+    };
+    const newState = update(this.state.playLists, { $push: [obj] });
+    this.setState({ playLists: newState });
   };
 
   handleChange = e => {
@@ -33,21 +41,17 @@ class Management extends React.Component {
   };
 
   onDuration = duration => {
-    this.setState({ duration });
+    const newState = update(this.state.duration, { $push: [duration] });
+    this.setState({ duration: newState });
   };
 
   add = () => {
-    const { url, musicName, artist, duration } = this.state;
+    const { playLists, duration } = this.state;
     const id = this.state.musicList.length + 1;
-    const music = {
-      id: id,
-      name: musicName,
-      artists: artist,
-      time: duration,
-      src: url
-    };
+    const time = duration[0];
+    const music = { id, time, ...playLists[0] };
     const newState = update(this.state.musicList, { $push: [music] });
-    this.setState({ musicList: newState });
+    this.setState({ musicList: newState, duration: [], playLists: [] });
   };
 
   uploadImage = file => {
@@ -89,16 +93,20 @@ class Management extends React.Component {
   }
 
   render() {
-    const { onDuration, musicList } = this;
+    const { onDuration } = this;
     return (
       <div>
-        <ReactPlayer
-          width="200px"
-          height="200px"
-          onDuration={onDuration}
-          url={this.state.videoId}
-        />
-        <form action="" onSubmit={e => this.onSubmit(e)}>
+        {this.state.playLists.map((data, index) => {
+          return (
+            <ReactPlayer
+              width="200px"
+              height="200px"
+              onDuration={onDuration}
+              url={data.videoId}
+            />
+          );
+        })}
+        <form className="form" action="" onSubmit={e => this.onSubmit(e)}>
           <label htmlFor="url">URL</label>
           <input
             name="url"
@@ -133,6 +141,17 @@ class Management extends React.Component {
             onChange={e => this.handleChangeAlbumName(e)}
           />
         </form>
+        {this.state.musicList.map((data, index) => {
+          return (
+            <div key={index} className="management-displayAddList">
+              <div>id: {data.id}</div>
+              <div>URL: {data.src}</div>
+              <div>名前： {data.name} </div>
+              <div>アーティスト: {data.artists}</div>
+              <div>時間: {data.time}</div>
+            </div>
+          );
+        })}
         <button onClick={() => this.pushAlubm()}>完了</button>
       </div>
     );
