@@ -3,7 +3,7 @@ import firebase from "firebase";
 import { createAlubm } from "../actions";
 import { connect } from "react-redux";
 import MusicLists from "../components/Molecules/MusicLists";
-import MusicDisplay from "../components/Molecules/MusicDisplay";
+import MusicPlayerDisplay from "../components/Molecules/MusicPlayerDisplay";
 import MusicOperation from "../components/Molecules/MusicOperation";
 
 class MusicPlayer extends React.Component {
@@ -200,6 +200,8 @@ class MusicPlayer extends React.Component {
         loop,
         myMusicLists
       } = this.state;
+
+      const { isAddMylist, playListName, alubmImage } = this.props;
       if (played === 1 && playingId !== albumLength) {
         nextPlayMusic(playingId);
       }
@@ -208,7 +210,7 @@ class MusicPlayer extends React.Component {
       return (
         <div className="main">
           <div className="musicPlay">
-            <MusicDisplay
+            <MusicPlayerDisplay
               myMusicLists={myMusicLists}
               musicName={musicName}
               url={url}
@@ -221,8 +223,9 @@ class MusicPlayer extends React.Component {
               onPlay={() => onPlay()}
               onPause={() => onPause()}
               musicList={musicList}
-              alubmImage={this.props.alubmImage}
-              playListName={this.props.playListName}
+              alubmImage={alubmImage}
+              playListName={playListName}
+              isAddMylist={isAddMylist}
               createAlubmFormat={(musicList, alubmImage, playListName) =>
                 createAlubmFormat(musicList, alubmImage, playListName)
               }
@@ -270,7 +273,8 @@ class MusicPlayer extends React.Component {
 const mapStateToProps = state => ({
   musicList: state.rootReducer.setPlayList.defaultMusic,
   alubmImage: state.rootReducer.setPlayList.alubmImage,
-  playListName: state.rootReducer.setPlayList.playListName
+  playListName: state.rootReducer.setPlayList.playListName,
+  isAddMylist: state.rootReducer.setPlayList.isAddMylist
 });
 
 const mapDispatchToProps = dispatch => ({

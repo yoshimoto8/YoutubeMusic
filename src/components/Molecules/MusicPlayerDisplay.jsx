@@ -1,8 +1,9 @@
 import React from "react";
 import ReactPlayer from "react-player";
+import MusicPlayerDisplayAddMylist from "../Atoms/MusicPlayer/MusicPlayerDisplayAddMylist";
 import "./styles/MusicDisplay.css";
 
-const MusicDisplay = props => {
+const MusicPlayerDisplay = props => {
   const {
     musicName,
     url,
@@ -18,7 +19,8 @@ const MusicDisplay = props => {
     alubmImage,
     playListName,
     createAlubmFormat,
-    myMusicLists
+    myMusicLists,
+    isAddMylist
   } = props;
   const sameName = myMusicLists.filter(data => {
     return data.playListName === playListName;
@@ -45,22 +47,18 @@ const MusicDisplay = props => {
           <button className="startBtn" onClick={() => playPause()}>
             {playing ? "一時停止" : "曲の再生"}
           </button>
-          {sameName.length === 0 ? (
-            <button
-              className="mylistBtn"
-              onClick={() =>
-                createAlubmFormat(musicList, alubmImage, playListName)
-              }
-            >
-              マイリストに追加
-            </button>
-          ) : (
-            <button className="mylistBtn">追加済み</button>
-          )}
+          <MusicPlayerDisplayAddMylist
+            isAddMylist={isAddMylist}
+            sameName={sameName}
+            createAlubmFormat={createAlubmFormat}
+            musicList={musicList}
+            alubmImage={alubmImage}
+            playListName={playListName}
+          />
         </div>
       </div>
     </div>
   );
 };
 
-export default MusicDisplay;
+export default MusicPlayerDisplay;
