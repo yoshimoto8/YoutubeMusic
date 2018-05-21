@@ -16,6 +16,11 @@
   color: white;
 }
 
+.playerMusicNameLink {
+  color: white;
+  text-decoration: none;
+}
+
 .playerMusicArtist {
   font-size: 12px;
   color: hsla(0, 0%, 100%, 0.6);
@@ -25,9 +30,11 @@
   text-align: center;
   height: 90px;
 }
+
 .centerPlayerTop {
   height: 64px;
 }
+
 .backPlayMusic {
   padding-bottom: 43px;
   padding-right: 10px;

@@ -11,7 +11,6 @@ const MusicOperation = props => {
   const {
     playingId,
     playing,
-
     playPause,
     played,
     duration,
@@ -23,7 +22,8 @@ const MusicOperation = props => {
     backPlayMusic,
     albumLength,
     toggleLoop,
-    loop
+    loop,
+    url
   } = props;
 
   const goBackPlay =
@@ -52,7 +52,11 @@ const MusicOperation = props => {
   return (
     <footer className="footer">
       <div className="leftPlayer">
-        <div className="playerMusicName">{musicName}</div>
+        <div className="playerMusicName">
+          <a className="playerMusicNameLink" href={url}>
+            {musicName}
+          </a>
+        </div>
         <div className="playerMusicArtist">{artist}</div>
       </div>
       <div className="centerPlayer">

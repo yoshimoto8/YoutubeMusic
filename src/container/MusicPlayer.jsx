@@ -219,6 +219,7 @@ class MusicPlayer extends React.Component {
               backPlayMusic={playingId => backPlayMusic(playingId)}
               toggleLoop={() => toggleLoop()}
               loop={loop}
+              url={url}
             />
           ) : (
             <div />
