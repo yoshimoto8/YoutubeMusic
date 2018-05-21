@@ -49,15 +49,21 @@ const routes = [
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <header className="header" />
       <Router>
         <div className="contents">
           <ul className="sidebar">
             {sessionStorage.getItem("user") ? (
-              <div />
+              <div>
+                <img
+                  className="header-profileImage"
+                  src={sessionStorage.getItem("imageUrl")}
+                  alt=""
+                />
+                <span>{sessionStorage.getItem("userName")}</span>
+              </div>
             ) : (
               <li>
-                <Link to="/Authentication">ログイン</Link>
+                <Link to="/">ログイン</Link>
               </li>
             )}
             <li>

@@ -10,6 +10,10 @@ class Authentication extends React.Component {
     auth()
       .signInWithPopup(provider)
       .then(result => {
+        const userName = result.additionalUserInfo.username;
+        const imageUrl = result.additionalUserInfo.profile.profile_image_url;
+        sessionStorage.setItem("userName", userName);
+        sessionStorage.setItem("imageUrl", imageUrl);
         sessionStorage.setItem("user", result.user.uid);
         window.location.reload();
         this.props.history.push("/Home");
