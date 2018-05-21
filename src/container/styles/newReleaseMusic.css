@@ -1,3 +1,8 @@
+.newReleaseMusic-musicList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .newReleaseMusic-musicController {
   position: absolute;
   width: 150px;

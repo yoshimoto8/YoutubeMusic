@@ -27,7 +27,7 @@ class NewReleaseMusic extends React.Component {
   render() {
     const { musicLists } = this.state;
     return (
-      <div>
+      <div className="newReleaseMusic-musicList">
         {musicLists.map((data, index) => {
           const { alubmImage, playListName, musicList } = data;
           return (

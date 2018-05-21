@@ -26,9 +26,9 @@ class Management extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     const obj = {
-      musicName: this.state.musicName,
-      artist: this.state.artist,
-      videoId: this.state.url
+      name: this.state.musicName,
+      artists: this.state.artist,
+      src: this.state.url
     };
     const newState = update(this.state.playLists, { $push: [obj] });
     this.setState({ playLists: newState });
@@ -65,6 +65,7 @@ class Management extends React.Component {
   };
 
   pushAlubm = () => {
+    console.log(this.state.alubmName);
     this.uploadImage(this.state.file).then(url => {
       const alubm = {
         playListName: this.state.alubmName,
@@ -88,10 +89,6 @@ class Management extends React.Component {
     this.setState({ file });
   }
 
-  handleChangeAlbumName(e) {
-    this.setState({ alubmName: e.target.name });
-  }
-
   render() {
     const { onDuration } = this;
     return (
@@ -99,10 +96,11 @@ class Management extends React.Component {
         {this.state.playLists.map((data, index) => {
           return (
             <ReactPlayer
+              key={index}
               width="200px"
               height="200px"
               onDuration={onDuration}
-              url={data.videoId}
+              url={data.src}
             />
           );
         })}
@@ -135,10 +133,10 @@ class Management extends React.Component {
           <Dropzone onDrop={this.onDrop.bind(this)} />
           <label htmlFor="artist">アルバム名</label>
           <input
-            name="alubmname"
+            name="alubmName"
             type="text"
             value={this.state.albumName}
-            onChange={e => this.handleChangeAlbumName(e)}
+            onChange={e => this.handleChange(e)}
           />
         </form>
         {this.state.musicList.map((data, index) => {
