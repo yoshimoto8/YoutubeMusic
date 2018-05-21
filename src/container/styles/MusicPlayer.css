@@ -50,3 +50,53 @@
   border-radius: 25px;
   border: none;
 }
+
+/* musicplayerLists */
+
+.musicList {
+  padding-left: 30px;
+}
+
+.musicRow {
+  display: flex;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.musicRow:hover {
+  background-color: #222222;
+}
+
+.musicTime {
+  padding-top: 10px;
+  padding-right: 30px;
+  color: hsla(0, 0%, 100%, 0.6);
+}
+
+/* musicIcon */
+
+.musicIcon {
+  padding-top: 2px;
+  padding-right: 5px;
+}
+
+/* musicTitle */
+
+.musicAbout {
+  width: 750px;
+}
+
+.musicTitle {
+  color: #fff;
+  font-size: 17px;
+}
+
+.musicPlayTitle {
+  color: #1db954;
+  font-size: 18px;
+}
+
+.nameArtist {
+  color: hsla(0, 0%, 100%, 0.6);
+  font-size: 14px;
+}

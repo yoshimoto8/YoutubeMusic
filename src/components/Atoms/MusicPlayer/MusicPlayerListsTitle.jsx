@@ -1,7 +1,6 @@
 import React from "react";
-import "./styles/MusicTitle.css";
 
-const MusicTitle = props => {
+const MusicPlayerListsTitle = props => {
   const { title, artist, playNow } = props;
   const nameClass = playNow ? "musicPlayTitle" : "musicTitle";
 
@@ -13,4 +12,4 @@ const MusicTitle = props => {
   );
 };
 
-export default MusicTitle;
+export default MusicPlayerListsTitle;

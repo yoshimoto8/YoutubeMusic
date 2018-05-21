@@ -1,9 +1,8 @@
 import React from "react";
 import IoIosMusicalNote from "react-icons/lib/io/ios-musical-note";
 import IoIosVolumeHigh from "react-icons/lib/io/ios-volume-high";
-import "./styles/MusicListIcon.css";
 
-const MusicListIcon = props => {
+const MusicPlayerListsIcon = props => {
   const { playNow } = props;
   const styles = {
     className: "musicIcon",
@@ -19,4 +18,4 @@ const MusicListIcon = props => {
   return <div>{icon}</div>;
 };
 
-export default MusicListIcon;
+export default MusicPlayerListsIcon;

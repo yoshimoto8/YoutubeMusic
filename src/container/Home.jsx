@@ -23,7 +23,7 @@ class Home extends React.Component {
         <div>
           <div className="HomeHeader">
             <ul>
-              <Link class="recomend" to="/Home/">
+              <Link className="recomend" to="/Home/">
                 ニューリリース
               </Link>
             </ul>

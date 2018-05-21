@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const MusicPlayerDisplayAddMylist = props => {
   const {
@@ -9,7 +10,7 @@ const MusicPlayerDisplayAddMylist = props => {
     playListName,
     isAddMylist
   } = props;
-  console.log(sameName, isAddMylist);
+
   if (isAddMylist) {
     return (
       <div>
@@ -30,6 +31,15 @@ const MusicPlayerDisplayAddMylist = props => {
   } else {
     return <div />;
   }
+};
+
+MusicPlayerDisplayAddMylist.propTypes = {
+  sameName: PropTypes.array,
+  createAlubmFormat: PropTypes.func,
+  musicList: PropTypes.array,
+  alubmImage: PropTypes.string,
+  playListName: PropTypes.string,
+  isAddMylist: PropTypes.bool
 };
 
 export default MusicPlayerDisplayAddMylist;

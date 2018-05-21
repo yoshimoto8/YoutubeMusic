@@ -1,7 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ReactPlayer from "react-player";
 import MusicPlayerDisplayAddMylist from "../Atoms/MusicPlayer/MusicPlayerDisplayAddMylist";
-import "./styles/MusicDisplay.css";
 
 const MusicPlayerDisplay = props => {
   const {
@@ -25,7 +25,6 @@ const MusicPlayerDisplay = props => {
   const sameName = myMusicLists.filter(data => {
     return data.playListName === playListName;
   });
-
   return (
     <div className="musicPlayDisplay">
       <ReactPlayer
@@ -59,6 +58,25 @@ const MusicPlayerDisplay = props => {
       </div>
     </div>
   );
+};
+
+MusicPlayerDisplay.propTypes = {
+  musicName: PropTypes.string,
+  url: PropTypes.string,
+  playing: PropTypes.bool,
+  volume: PropTypes.number,
+  onProgress: PropTypes.func,
+  onDuration: PropTypes.func,
+  playPause: PropTypes.func,
+  onPlay: PropTypes.func,
+  onPause: PropTypes.func,
+  loop: PropTypes.bool,
+  musicList: PropTypes.array,
+  alubmImage: PropTypes.string,
+  playListName: PropTypes.string,
+  createAlubmFormat: PropTypes.func,
+  myMusicLists: PropTypes.array,
+  isAddMylist: PropTypes.bool
 };
 
 export default MusicPlayerDisplay;

@@ -2,9 +2,10 @@ import React from "react";
 import firebase from "firebase";
 import { createAlubm } from "../actions";
 import { connect } from "react-redux";
-import MusicLists from "../components/Molecules/MusicLists";
+import MusicPlayerLists from "../components/Molecules/MusicPlayerLists";
 import MusicPlayerDisplay from "../components/Molecules/MusicPlayerDisplay";
 import MusicOperation from "../components/Molecules/MusicOperation";
+import "./styles/MusicPlayer.css";
 
 class MusicPlayer extends React.Component {
   constructor(props) {
@@ -230,7 +231,7 @@ class MusicPlayer extends React.Component {
                 createAlubmFormat(musicList, alubmImage, playListName)
               }
             />
-            <MusicLists
+            <MusicPlayerLists
               musicList={musicList}
               url={url}
               playing={playing}

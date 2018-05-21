@@ -1,9 +1,8 @@
 import React from "react";
-import MusicTitle from "../Atoms/MusicTitle";
-import MusicListIcon from "../Atoms/MusicListIcon";
-import "./styles/MusicLists.css";
+import MusicPlayerListsTitle from "../Atoms/MusicPlayer/MusicPlayerListsTitle";
+import MusicPlayerListsIcon from "../Atoms/MusicPlayer/MusicPlayerListsIcon";
 
-const MusicLists = props => {
+const MusicPlayerLists = props => {
   const { musicList, url, setUrl, formatChange } = props;
   return (
     <div className="musicList">
@@ -15,8 +14,8 @@ const MusicLists = props => {
             key={index}
             onClick={() => setUrl(data.src, data.name, data.artists, data.id)}
           >
-            <MusicListIcon playNow={playNow} />
-            <MusicTitle
+            <MusicPlayerListsIcon playNow={playNow} />
+            <MusicPlayerListsTitle
               title={data.name}
               artist={data.artists}
               playNow={playNow}
@@ -29,4 +28,4 @@ const MusicLists = props => {
   );
 };
 
-export default MusicLists;
+export default MusicPlayerLists;
