@@ -2,7 +2,7 @@ import React from "react";
 import "./styles/Authentication.css";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import TwitterButton from "../components/Atoms/TwitterButton";
+import AuthenticationTwitterButton from "../components/Atoms/Authentication/AuthenticationTwitterButton";
 import { auth, provider } from "../firebase/client";
 
 class Authentication extends React.Component {
@@ -32,7 +32,7 @@ class Authentication extends React.Component {
     return (
       <div className="authentication">
         <h2>どれでログインするんだあああああああ</h2>
-        <TwitterButton login={() => this.login()} />
+        <AuthenticationTwitterButton login={() => this.login()} />
       </div>
     );
   }

@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles/MusicPlayButton.css";
 
 const MusicPlayButton = props => {
   const { text, play } = props;

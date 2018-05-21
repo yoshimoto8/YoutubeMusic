@@ -4,7 +4,7 @@ import { createAlubm } from "../actions";
 import { connect } from "react-redux";
 import MusicPlayerLists from "../components/Molecules/MusicPlayerLists";
 import MusicPlayerDisplay from "../components/Molecules/MusicPlayerDisplay";
-import MusicOperation from "../components/Molecules/MusicOperation";
+import MusicPlayerOperation from "../components/Molecules/MusicPlayerOperation";
 import "./styles/MusicPlayer.css";
 
 class MusicPlayer extends React.Component {
@@ -243,7 +243,7 @@ class MusicPlayer extends React.Component {
           </div>
 
           {url ? (
-            <MusicOperation
+            <MusicPlayerOperation
               playingId={playingId}
               albumLength={albumLength}
               playPause={() => playPause()}
