@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import MusicPlayerListsTitle from "../Atoms/MusicPlayer/MusicPlayerListsTitle";
 import MusicPlayerListsIcon from "../Atoms/MusicPlayer/MusicPlayerListsIcon";
 
@@ -26,6 +27,13 @@ const MusicPlayerLists = props => {
       })}
     </div>
   );
+};
+
+MusicPlayerLists.propTypes = {
+  musicList: PropTypes.array,
+  url: PropTypes.string,
+  setUrl: PropTypes.func,
+  formatChange: PropTypes.func
 };
 
 export default MusicPlayerLists;

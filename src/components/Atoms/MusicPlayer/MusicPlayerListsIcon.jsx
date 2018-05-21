@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import IoIosMusicalNote from "react-icons/lib/io/ios-musical-note";
 import IoIosVolumeHigh from "react-icons/lib/io/ios-volume-high";
 
@@ -16,6 +17,10 @@ const MusicPlayerListsIcon = props => {
   );
 
   return <div>{icon}</div>;
+};
+
+MusicPlayerListsIcon.propTypes = {
+  playNow: PropTypes.bool
 };
 
 export default MusicPlayerListsIcon;
