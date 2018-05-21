@@ -65,7 +65,6 @@ class Management extends React.Component {
   };
 
   pushAlubm = () => {
-    console.log(this.state.alubmName);
     this.uploadImage(this.state.file).then(url => {
       const alubm = {
         playListName: this.state.alubmName,

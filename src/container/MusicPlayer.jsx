@@ -1,4 +1,6 @@
 import React from "react";
+import firebase from "firebase";
+import { createAlubm } from "../actions";
 import { connect } from "react-redux";
 import MusicLists from "../components/Molecules/MusicLists";
 import MusicDisplay from "../components/Molecules/MusicDisplay";
@@ -8,6 +10,7 @@ class MusicPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      myMusicLists: [],
       musicList: [
         {
           id: 1,
@@ -33,6 +36,7 @@ class MusicPlayer extends React.Component {
     };
   }
   componentWillMount() {
+    this.fetchMyMusicList();
     const musicList = this.props.musicList;
     const setmusicList =
       typeof musicList === "object"
@@ -54,6 +58,19 @@ class MusicPlayer extends React.Component {
           albumLength: albumLength
         });
   }
+
+  fetchMyMusicList = () => {
+    const db = firebase.firestore();
+    db
+      .collection(`users/${sessionStorage.getItem("user")}/userMusicList`)
+      .onSnapshot(Snapshot => {
+        const myMusicLists = [];
+        Snapshot.forEach(doc => {
+          myMusicLists.push({ ...doc.data(), key: doc.id });
+        });
+        this.setState({ myMusicLists });
+      });
+  };
 
   setFirstMusic = (src, musicName, artist, id) => {
     const playingId = id;
@@ -142,6 +159,16 @@ class MusicPlayer extends React.Component {
     return timeFormated;
   };
 
+  createAlubmFormat = (musicList, alubmImage, playListName) => {
+    const alubm = {
+      alubmImage: alubmImage,
+      playListName: playListName,
+      musicList: musicList,
+      createdOn: new Date()
+    };
+    this.props.createAlubm(alubm);
+  };
+
   render() {
     if (this.state.musicList.length !== 0) {
       const {
@@ -155,7 +182,8 @@ class MusicPlayer extends React.Component {
         onPause,
         nextPlayMusic,
         backPlayMusic,
-        toggleLoop
+        toggleLoop,
+        createAlubmFormat
       } = this;
 
       const {
@@ -169,9 +197,9 @@ class MusicPlayer extends React.Component {
         artist,
         playingId,
         albumLength,
-        loop
+        loop,
+        myMusicLists
       } = this.state;
-
       if (played === 1 && playingId !== albumLength) {
         nextPlayMusic(playingId);
       }
@@ -181,6 +209,7 @@ class MusicPlayer extends React.Component {
         <div className="main">
           <div className="musicPlay">
             <MusicDisplay
+              myMusicLists={myMusicLists}
               musicName={musicName}
               url={url}
               playing={playing}
@@ -191,6 +220,12 @@ class MusicPlayer extends React.Component {
               playPause={playPause}
               onPlay={() => onPlay()}
               onPause={() => onPause()}
+              musicList={musicList}
+              alubmImage={this.props.alubmImage}
+              playListName={this.props.playListName}
+              createAlubmFormat={(musicList, alubmImage, playListName) =>
+                createAlubmFormat(musicList, alubmImage, playListName)
+              }
             />
             <MusicLists
               musicList={musicList}
@@ -233,7 +268,13 @@ class MusicPlayer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  musicList: state.rootReducer.setPlayList.defaultMusic
+  musicList: state.rootReducer.setPlayList.defaultMusic,
+  alubmImage: state.rootReducer.setPlayList.alubmImage,
+  playListName: state.rootReducer.setPlayList.playListName
 });
 
-export default connect(mapStateToProps, null)(MusicPlayer);
+const mapDispatchToProps = dispatch => ({
+  createAlubm: emptyAlbum => dispatch(createAlubm(emptyAlbum))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MusicPlayer);

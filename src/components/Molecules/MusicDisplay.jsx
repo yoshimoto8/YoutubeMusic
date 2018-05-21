@@ -13,8 +13,16 @@ const MusicDisplay = props => {
     playPause,
     onPlay,
     onPause,
-    loop
+    loop,
+    musicList,
+    alubmImage,
+    playListName,
+    createAlubmFormat,
+    myMusicLists
   } = props;
+  const sameName = myMusicLists.filter(data => {
+    return data.playListName === playListName;
+  });
 
   return (
     <div className="musicPlayDisplay">
@@ -33,9 +41,23 @@ const MusicDisplay = props => {
       />
       <div className="musicTopAbout">
         <div className="musicName">{musicName}</div>
-        <button className="startBtn" onClick={() => playPause()}>
-          {playing ? "一時停止" : "曲の再生"}
-        </button>
+        <div className="musicDisplay-buttonList">
+          <button className="startBtn" onClick={() => playPause()}>
+            {playing ? "一時停止" : "曲の再生"}
+          </button>
+          {sameName.length === 0 ? (
+            <button
+              className="mylistBtn"
+              onClick={() =>
+                createAlubmFormat(musicList, alubmImage, playListName)
+              }
+            >
+              マイリストに追加
+            </button>
+          ) : (
+            <button className="mylistBtn">追加済み</button>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -36,7 +36,9 @@ class NewReleaseMusic extends React.Component {
                 <Link
                   to="/MusicPlayer"
                   className="newReleaseMusic-playBtn"
-                  onClick={() => this.props.setPlayList(musicList)}
+                  onClick={() =>
+                    this.props.setPlayList(musicList, alubmImage, playListName)
+                  }
                 />
               </div>
               <img src={alubmImage} alt="" height="150px" width="150px" />
@@ -50,7 +52,8 @@ class NewReleaseMusic extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  setPlayList: defaultMusic => dispatch(setPlayList(defaultMusic))
+  setPlayList: (defaultMusic, alubmImage, playListName) =>
+    dispatch(setPlayList(defaultMusic, alubmImage, playListName))
 });
 
 export default connect(null, mapDispatchToProps)(NewReleaseMusic);

@@ -9,9 +9,11 @@ export const SUCCEEDED_CREATE_ALUBM = "SUCCEEDED_CREATE_ALUBM";
 export const DELETE_ALUBM = "DELETE_ALUBM";
 export const SUCCEEDED_DELETE_ALUBM = "DELETE_ALUBM";
 
-export const setPlayList = defaultMusic => ({
+export const setPlayList = (defaultMusic, alubmImage, playListName) => ({
   type: SET_PLAYLIST,
-  defaultMusic
+  defaultMusic,
+  alubmImage,
+  playListName
 });
 
 export const fetchYoutube = searchKeyWord => ({
