@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import GoJumpRight from "react-icons/lib/go/jump-right";
 import GoJumpLeft from "react-icons/lib/go/jump-left";
 import MusicPlayButton from "./MusicPlayButton";
@@ -56,6 +57,17 @@ const MusicPlayerOperationCenterTop = props => {
       />
     </div>
   );
+};
+
+MusicPlayerOperationCenterTop.propTypes = {
+  arrowLoopStyle: PropTypes.string,
+  toggleLoop: PropTypes.func,
+  playing: PropTypes.bool,
+  playPause: PropTypes.func,
+  playingId: PropTypes.number,
+  backPlayMusic: PropTypes.func,
+  albumLength: PropTypes.number,
+  nextPlayMusic: PropTypes.func
 };
 
 export default MusicPlayerOperationCenterTop;

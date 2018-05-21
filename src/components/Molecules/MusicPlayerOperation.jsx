@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import MusicPlayerOperationCenterTop from "../Atoms/MusicPlayer/MusicPlayerOperationCenterTop";
 import MusicPlayerOperationCenterBottom from "../Atoms/MusicPlayer/MusicPlayerOperationCenterBottom";
 import MusicPlayerOperationLeft from "../Atoms/MusicPlayer/MusicPlayerOperationLeft";
@@ -47,6 +48,24 @@ const MusicPlayerOperation = props => {
       <MusicPlayerOperationRight setVolume={setVolume} volume={volume} />
     </footer>
   );
+};
+
+MusicPlayerOperation.propTypes = {
+  playingId: PropTypes.number,
+  playing: PropTypes.bool,
+  playPause: PropTypes.func,
+  played: PropTypes.number,
+  duration: PropTypes.any.isRequired,
+  volume: PropTypes.number,
+  setVolume: PropTypes.func,
+  musicName: PropTypes.string,
+  artist: PropTypes.string,
+  nextPlayMusic: PropTypes.func,
+  backPlayMusic: PropTypes.func,
+  albumLength: PropTypes.number,
+  toggleLoop: PropTypes.func,
+  loop: PropTypes.bool,
+  url: PropTypes.string
 };
 
 export default MusicPlayerOperation;

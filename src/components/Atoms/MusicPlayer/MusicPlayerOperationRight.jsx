@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import IoIosVolumeHigh from "react-icons/lib/io/ios-volume-high";
 
 const MusicPlayerOperationRight = props => {
@@ -18,6 +19,11 @@ const MusicPlayerOperationRight = props => {
       />
     </div>
   );
+};
+
+MusicPlayerOperationRight.propTypes = {
+  setVolume: PropTypes.func,
+  volume: PropTypes.number
 };
 
 export default MusicPlayerOperationRight;
