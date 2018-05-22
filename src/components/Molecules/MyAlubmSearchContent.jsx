@@ -9,12 +9,9 @@ const MyAlubmSearchContent = props => {
     searchKeyWord,
     changeSearchKeyWord,
     musicList,
-    selectupdateMusic,
     generateYoutubeUrl,
     onDuration,
-    duration,
-    updateMyMusicList,
-    createMusicFormat
+    duration
   } = props;
 
   return (

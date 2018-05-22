@@ -260,3 +260,8 @@
   color: hsla(0, 0%, 100%, 0.6);
   font-size: 13px;
 }
+
+.MyAlbum-bottomName {
+  text-align: center;
+  margin: 0 auto;
+}
