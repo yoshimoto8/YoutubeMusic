@@ -3,7 +3,7 @@ import format from "./duration";
 
 const MyAlbumFavoriteTime = props => {
   const { duration } = props;
-  return <div className="MyalbumFavorite-time">{format(duration)}</div>;
+  return <div className="MyalbumFavoriteTime-time">{format(duration)}</div>;
 };
 
 export default MyAlbumFavoriteTime;

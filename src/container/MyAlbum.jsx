@@ -1,4 +1,5 @@
 import React from "react";
+import update from "immutability-helper";
 import Modal from "react-modal";
 import firebase from "firebase";
 import { connect } from "react-redux";
@@ -21,7 +22,8 @@ class MyAlbum extends React.Component {
       modalIsOpen: false,
       youtubes: [],
       myMusicLists: [],
-      selectEditMusic: {}
+      selectEditMusic: {},
+      selectupdateMusic: {}
     };
   }
 
@@ -34,6 +36,37 @@ class MyAlbum extends React.Component {
     this.setState({
       setMusic: { url: url, musicName: musicName, artist: artist }
     });
+  };
+
+  pushMyAlubm = (musicName, duration, artist, url) => {
+    const music = this.musicFormat(musicName, duration, artist, url);
+    const { key, musicList } = this.state.selectupdateMusic;
+    const newMusic = [...musicList, music];
+    const db = firebase.firestore();
+    db
+      .collection(`users/${sessionStorage.getItem("user")}/userMusicList`)
+      .doc(key)
+      .update({
+        musicList: newMusic
+      })
+      .then(() => {
+        console.log("成功");
+        const newState = update(this.state.selectupdateMusic, {
+          musicList: { $set: newMusic }
+        });
+        this.setState({ selectupdateMusic: newState });
+      });
+  };
+
+  musicFormat = (musicName, duration, artist, url) => {
+    const id = this.state.selectupdateMusic.musicList.length + 1;
+    return {
+      id: id,
+      artists: artist,
+      name: musicName,
+      src: url,
+      time: duration
+    };
   };
 
   fetchMyFavoriteMusic() {
@@ -113,7 +146,8 @@ class MyAlbum extends React.Component {
       setUpdateMusic,
       stepNext,
       stepBack,
-      setMusicFunc
+      setMusicFunc,
+      pushMyAlubm
     } = this;
     const {
       myMusicLists,
@@ -135,8 +169,6 @@ class MyAlbum extends React.Component {
         transform: "translate(-50%, -50%)"
       }
     };
-    console.log(!!Object.keys(setMusic).length);
-
     return (
       <div className="main">
         <MyAlubmList
@@ -166,12 +198,17 @@ class MyAlbum extends React.Component {
                 <MyAlbumFavorite
                   key={index}
                   url={url}
+                  setMusic={setMusic}
                   musicName={musicName}
                   duration={duration}
                   artist={artist}
                   setMusicFunc={(url, musicName, artist) =>
                     setMusicFunc(url, musicName, artist)
                   }
+                  pushMyAlubm={(musicName, duration, artist, url) =>
+                    pushMyAlubm(musicName, duration, artist, url)
+                  }
+                  selectupdateMusic={selectupdateMusic}
                 />
               );
             })}

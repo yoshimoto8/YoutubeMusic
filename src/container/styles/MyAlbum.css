@@ -198,6 +198,7 @@
 }
 
 .MyAlbumFavorite {
+  margin: 20px 0;
   color: #fff;
   display: flex;
 }
@@ -208,6 +209,13 @@
 
 .MyalbumFavorite-musicName {
   font-size: 15px;
+  cursor: pointer;
+}
+
+.MyAlbumFavorite-check {
+  color: hsla(0, 0%, 100%, 0.6);
+  margin: 0 10px;
+  cursor: pointer;
 }
 
 .MyalbumFavorite-artist {
@@ -215,12 +223,22 @@
   color: hsla(0, 0%, 100%, 0.6);
 }
 
-.MyalbumFavorite-time {
+.MyalbumFavoriteTime-time {
+  width: 10%;
   color: hsla(0, 0%, 100%, 0.6);
+}
+
+.MyAlbumFavorite-nameBox {
+  width: 90%;
 }
 
 .MyAlbumFavoriteMusic-display {
   width: 30%;
+}
+
+.MyalbumFavorite-setMusicName {
+  color: #1db954;
+  font-size: 15px;
 }
 
 .MyAlbumFavoriteMusic-displayShow {
