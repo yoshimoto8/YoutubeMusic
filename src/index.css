@@ -33,6 +33,7 @@ body {
 
 .sidebar li {
   padding-top: 10px;
+  padding-left: 10px;
 }
 
 .sidebar a {

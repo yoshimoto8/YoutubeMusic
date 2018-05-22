@@ -170,6 +170,20 @@ class MusicPlayer extends React.Component {
     this.props.createAlubm(alubm);
   };
 
+  addFavoriteMusic = (musicName, url, artist, duration) => {
+    console.log(duration);
+    const db = firebase.firestore();
+    db
+      .collection(`users/${sessionStorage.getItem("user")}/userFavoriteMusic`)
+      .add({
+        musicName: musicName,
+        url: url,
+        artist: artist,
+        duration: duration
+      })
+      .then(console.log("成功"));
+  };
+
   render() {
     if (this.state.musicList.length !== 0) {
       const {
@@ -184,7 +198,8 @@ class MusicPlayer extends React.Component {
         nextPlayMusic,
         backPlayMusic,
         toggleLoop,
-        createAlubmFormat
+        createAlubmFormat,
+        addFavoriteMusic
       } = this;
 
       const {
@@ -259,6 +274,9 @@ class MusicPlayer extends React.Component {
               toggleLoop={() => toggleLoop()}
               loop={loop}
               url={url}
+              addFavoriteMusic={(musicName, url, artist, duration) =>
+                addFavoriteMusic(musicName, url, artist, duration)
+              }
             />
           ) : (
             <div />

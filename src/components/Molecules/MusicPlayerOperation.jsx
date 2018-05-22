@@ -21,7 +21,8 @@ const MusicPlayerOperation = props => {
     albumLength,
     toggleLoop,
     loop,
-    url
+    url,
+    addFavoriteMusic
   } = props;
   const arrowLoopStyle = loop ? "#1db954" : "#a9a9a9";
   return (
@@ -42,6 +43,11 @@ const MusicPlayerOperation = props => {
           backPlayMusic={backPlayMusic}
           albumLength={albumLength}
           nextPlayMusic={nextPlayMusic}
+          addFavoriteMusic={addFavoriteMusic}
+          musicName={musicName}
+          url={url}
+          artist={artist}
+          duration={duration}
         />
         <MusicPlayerOperationCenterBottom duration={duration} played={played} />
       </div>
@@ -65,7 +71,8 @@ MusicPlayerOperation.propTypes = {
   albumLength: PropTypes.number,
   toggleLoop: PropTypes.func,
   loop: PropTypes.bool,
-  url: PropTypes.string
+  url: PropTypes.string,
+  addFavoriteMusic: PropTypes.func
 };
 
 export default MusicPlayerOperation;

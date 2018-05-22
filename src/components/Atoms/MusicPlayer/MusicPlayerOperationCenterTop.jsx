@@ -14,7 +14,12 @@ const MusicPlayerOperationCenterTop = props => {
     playingId,
     backPlayMusic,
     albumLength,
-    nextPlayMusic
+    nextPlayMusic,
+    addFavoriteMusic,
+    musicName,
+    url,
+    artist,
+    duration
   } = props;
 
   const goBackPlay =
@@ -47,6 +52,11 @@ const MusicPlayerOperationCenterTop = props => {
 
   return (
     <div className="centerPlayerTop">
+      <button
+        onClick={() => addFavoriteMusic(musicName, url, artist, duration)}
+      >
+        aaa
+      </button>
       {goBackPlay}
       {playBtn}
       {goNextPlay}
@@ -67,7 +77,12 @@ MusicPlayerOperationCenterTop.propTypes = {
   playingId: PropTypes.number,
   backPlayMusic: PropTypes.func,
   albumLength: PropTypes.number,
-  nextPlayMusic: PropTypes.func
+  nextPlayMusic: PropTypes.func,
+  addFavoriteMusic: PropTypes.func,
+  musicName: PropTypes.string,
+  url: PropTypes.string,
+  artist: PropTypes.string,
+  duration: PropTypes.any.isRequired
 };
 
 export default MusicPlayerOperationCenterTop;

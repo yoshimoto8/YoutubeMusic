@@ -66,15 +66,17 @@ ReactDOM.render(
                 <Link to="/">ログイン</Link>
               </li>
             )}
-            <li>
-              <Link to="/Home">Home</Link>
-            </li>
+            {sessionStorage.getItem("user") ? (
+              <li>
+                <Link to="/Home">Home</Link>
+              </li>
+            ) : null}
             {sessionStorage.getItem("user") ? (
               <li>
                 <Link to="/Myalbum">Myalbum</Link>
               </li>
             ) : (
-              <div>Myalbum</div>
+              <li>Myalbum</li>
             )}
             {sessionStorage.getItem("user") ===
             "ihd750LTAXTxfgVsaHXPDzQje9j1" ? (
