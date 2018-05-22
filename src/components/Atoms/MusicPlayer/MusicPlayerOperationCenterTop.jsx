@@ -4,6 +4,7 @@ import GoJumpRight from "react-icons/lib/go/jump-right";
 import GoJumpLeft from "react-icons/lib/go/jump-left";
 import MusicPlayButton from "./MusicPlayButton";
 import TiArrowLoop from "react-icons/lib/ti/arrow-loop";
+import FaHeartO from "react-icons/lib/fa/heart-o";
 
 const MusicPlayerOperationCenterTop = props => {
   const {
@@ -52,11 +53,11 @@ const MusicPlayerOperationCenterTop = props => {
 
   return (
     <div className="centerPlayerTop">
-      <button
+      <FaHeartO
+        className="MusicPlayerOperationCenterTop-favorite"
         onClick={() => addFavoriteMusic(musicName, url, artist, duration)}
-      >
-        aaa
-      </button>
+        style={{ color: "#404040" }}
+      />
       {goBackPlay}
       {playBtn}
       {goNextPlay}

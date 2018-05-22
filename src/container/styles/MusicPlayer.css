@@ -131,6 +131,12 @@
   color: hsla(0, 0%, 100%, 0.6);
 }
 
+.MusicPlayerOperationCenterTop-favorite {
+  margin-right: 25px;
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+
 .centerPlayer {
   text-align: center;
   height: 90px;

@@ -171,7 +171,6 @@ class MusicPlayer extends React.Component {
   };
 
   addFavoriteMusic = (musicName, url, artist, duration) => {
-    console.log(duration);
     const db = firebase.firestore();
     db
       .collection(`users/${sessionStorage.getItem("user")}/userFavoriteMusic`)
@@ -182,6 +181,19 @@ class MusicPlayer extends React.Component {
         duration: duration
       })
       .then(console.log("成功"));
+  };
+
+  fetchFavoriteMusic = () => {
+    const db = firebase.firestore();
+    db
+      .collection(`users/${sessionStorage.getItem("user")}/userMusicList`)
+      .onSnapshot(Snapshot => {
+        const myMusicLists = [];
+        Snapshot.forEach(doc => {
+          myMusicLists.push({ ...doc.data(), key: doc.id });
+        });
+        this.setState({ myMusicLists });
+      });
   };
 
   render() {
