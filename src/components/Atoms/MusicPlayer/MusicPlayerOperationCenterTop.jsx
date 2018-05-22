@@ -5,6 +5,7 @@ import GoJumpLeft from "react-icons/lib/go/jump-left";
 import MusicPlayButton from "./MusicPlayButton";
 import TiArrowLoop from "react-icons/lib/ti/arrow-loop";
 import FaHeartO from "react-icons/lib/fa/heart-o";
+import FaHeart from "react-icons/lib/fa/heart";
 
 const MusicPlayerOperationCenterTop = props => {
   const {
@@ -20,7 +21,8 @@ const MusicPlayerOperationCenterTop = props => {
     musicName,
     url,
     artist,
-    duration
+    duration,
+    myFavoriteMusic
   } = props;
 
   const goBackPlay =
@@ -51,13 +53,26 @@ const MusicPlayerOperationCenterTop = props => {
     <MusicPlayButton text="start" play={playPause} />
   );
 
-  return (
-    <div className="centerPlayerTop">
+  const sameUrl = myFavoriteMusic.filter(data => {
+    return data.url === url;
+  });
+  const favoriteIcon =
+    sameUrl.length === 0 ? (
       <FaHeartO
         className="MusicPlayerOperationCenterTop-favorite"
         onClick={() => addFavoriteMusic(musicName, url, artist, duration)}
         style={{ color: "#404040" }}
       />
+    ) : (
+      <FaHeart
+        className="MusicPlayerOperationCenterTop-favorite"
+        style={{ color: "#1db954" }}
+      />
+    );
+
+  return (
+    <div className="centerPlayerTop">
+      {favoriteIcon}
       {goBackPlay}
       {playBtn}
       {goNextPlay}
@@ -83,7 +98,8 @@ MusicPlayerOperationCenterTop.propTypes = {
   musicName: PropTypes.string,
   url: PropTypes.string,
   artist: PropTypes.string,
-  duration: PropTypes.any.isRequired
+  duration: PropTypes.any.isRequired,
+  myFavoriteMusic: PropTypes.array
 };
 
 export default MusicPlayerOperationCenterTop;

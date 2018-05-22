@@ -12,6 +12,7 @@ class MusicPlayer extends React.Component {
     super(props);
     this.state = {
       myMusicLists: [],
+      myFavoriteMusic: [],
       musicList: [
         {
           id: 1,
@@ -38,6 +39,7 @@ class MusicPlayer extends React.Component {
   }
   componentWillMount() {
     this.fetchMyMusicList();
+    this.fetchFavoriteMusic();
     const musicList = this.props.musicList;
     const setmusicList =
       typeof musicList === "object"
@@ -186,13 +188,13 @@ class MusicPlayer extends React.Component {
   fetchFavoriteMusic = () => {
     const db = firebase.firestore();
     db
-      .collection(`users/${sessionStorage.getItem("user")}/userMusicList`)
+      .collection(`users/${sessionStorage.getItem("user")}/userFavoriteMusic`)
       .onSnapshot(Snapshot => {
-        const myMusicLists = [];
+        const myFavoriteMusic = [];
         Snapshot.forEach(doc => {
-          myMusicLists.push({ ...doc.data(), key: doc.id });
+          myFavoriteMusic.push({ ...doc.data(), key: doc.id });
         });
-        this.setState({ myMusicLists });
+        this.setState({ myFavoriteMusic });
       });
   };
 
@@ -226,9 +228,9 @@ class MusicPlayer extends React.Component {
         playingId,
         albumLength,
         loop,
-        myMusicLists
+        myMusicLists,
+        myFavoriteMusic
       } = this.state;
-
       const { isAddMylist, playListName, alubmImage } = this.props;
       if (played === 1 && playingId !== albumLength) {
         nextPlayMusic(playingId);
@@ -289,6 +291,7 @@ class MusicPlayer extends React.Component {
               addFavoriteMusic={(musicName, url, artist, duration) =>
                 addFavoriteMusic(musicName, url, artist, duration)
               }
+              myFavoriteMusic={myFavoriteMusic}
             />
           ) : (
             <div />
