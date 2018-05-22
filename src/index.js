@@ -15,6 +15,7 @@ import Authentication from "./container/Authentication";
 import MyAlbum from "./container/MyAlbum";
 import Management from "./container/Management";
 import Home from "./container/Home";
+import Search from "./container/Search";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -43,6 +44,10 @@ const routes = [
   {
     path: "/Management",
     main: () => <Management />
+  },
+  {
+    path: "/Search",
+    main: () => <Search />
   }
 ];
 
@@ -78,6 +83,11 @@ ReactDOM.render(
             ) : (
               <li>Myalbum</li>
             )}
+            {sessionStorage.getItem("user") ? (
+              <li>
+                <Link to="/Search">Search</Link>
+              </li>
+            ) : null}
             {sessionStorage.getItem("user") ===
             "ihd750LTAXTxfgVsaHXPDzQje9j1" ? (
               <li>

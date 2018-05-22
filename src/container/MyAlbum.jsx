@@ -1,19 +1,11 @@
 import React from "react";
-import update from "immutability-helper";
 import Modal from "react-modal";
 import firebase from "firebase";
 import { connect } from "react-redux";
-import {
-  setPlayList,
-  fetchYoutube,
-  createAlubm,
-  deleteAlbum
-} from "../actions/index";
+import { setPlayList, createAlubm, deleteAlbum } from "../actions/index";
 import noImage from "../images/noimage.png";
 import EditAlbumModal from "./EditAlbumModal";
 import MyAlubmList from "../components/Molecules/MyAlubmList";
-import MyAlubmSearch from "../components/Molecules/MyAlubmSearch";
-import MyAlubmResult from "../components/Molecules/MyAlubmResult";
 import "react-tippy/dist/tippy.css";
 import "./styles/MyAlbum.css";
 class MyAlbum extends React.Component {
@@ -23,24 +15,14 @@ class MyAlbum extends React.Component {
       indexStart: 0,
       indexEnd: 4,
       modalIsOpen: false,
-      searchKeyWord: "",
-      duration: [],
       youtubes: [],
       myMusicLists: [],
-      selectupdateMusic: {},
       selectEditMusic: {}
     };
   }
 
   componentDidMount() {
     this.fetchMyMusicList();
-    if (
-      this.props.musicList.length === 0 &&
-      !!sessionStorage.getItem("search")
-    ) {
-      this.props.fetchYoutube(sessionStorage.getItem("search"));
-      this.setState({ duration: [] });
-    }
   }
 
   stepNext = () => {
@@ -66,11 +48,6 @@ class MyAlbum extends React.Component {
     this.setState({ modalIsOpen: false });
   };
 
-  onDuration = duration => {
-    const newState = update(this.state.duration, { $push: [duration] });
-    this.setState({ duration: newState });
-  };
-
   emptyAlubm = e => {
     e.preventDefault();
     const emptyAlbum = {
@@ -80,25 +57,6 @@ class MyAlbum extends React.Component {
       createdOn: new Date()
     };
     return emptyAlbum;
-  };
-
-  updateMyMusicList = Music => {
-    const { key, musicList } = this.state.selectupdateMusic;
-    const newMusicList = [...musicList, Music];
-    const db = firebase.firestore();
-    db
-      .collection(`users/${sessionStorage.getItem("user")}/userMusicList`)
-      .doc(key)
-      .update({
-        musicList: newMusicList
-      })
-      .then(() => {
-        console.log("成功");
-        const newState = update(this.state.selectupdateMusic, {
-          musicList: { $set: newMusicList }
-        });
-        this.setState({ selectupdateMusic: newState });
-      });
   };
 
   fetchMyMusicList = () => {
@@ -114,32 +72,8 @@ class MyAlbum extends React.Component {
       });
   };
 
-  handleFetchYoutube = e => {
-    e.preventDefault();
-    const { searchKeyWord } = this.state;
-    this.props.fetchYoutube(searchKeyWord);
-    this.setState({ duration: [] });
-  };
-
   changeSearchKeyWord = e => {
     this.setState({ searchKeyWord: e.target.value });
-  };
-
-  generateYoutubeUrl = videoId => {
-    return `https://www.youtube.com/watch?v=${videoId}`;
-  };
-
-  createMusicFormat = (url, title, index) => {
-    const id = this.state.selectupdateMusic.musicList.length + 1;
-    const time = this.state.duration[index];
-    const musicDataConstruction = {
-      id: id,
-      name: title,
-      artists: "名無し",
-      time: time,
-      src: url
-    };
-    return musicDataConstruction;
   };
 
   setUpdateMusic = data => {
@@ -147,25 +81,17 @@ class MyAlbum extends React.Component {
   };
 
   render() {
-    const { musicList, createAlubm, setPlayList, deleteAlbum } = this.props;
+    const { createAlubm, setPlayList, deleteAlbum } = this.props;
     const {
-      handleFetchYoutube,
-      changeSearchKeyWord,
-      generateYoutubeUrl,
       emptyAlubm,
-      updateMyMusicList,
-      onDuration,
       closeModal,
       openModal,
       setUpdateMusic,
-      createMusicFormat,
       stepNext,
       stepBack
     } = this;
     const {
-      searchKeyWord,
       myMusicLists,
-      duration,
       selectEditMusic,
       selectupdateMusic,
       indexStart,
@@ -185,11 +111,6 @@ class MyAlbum extends React.Component {
 
     return (
       <div className="main">
-        <MyAlubmSearch
-          handleFetchYoutube={e => handleFetchYoutube(e)}
-          searchKeyWord={searchKeyWord}
-          changeSearchKeyWord={e => changeSearchKeyWord(e)}
-        />
         <MyAlubmList
           indexStart={indexStart}
           indexEnd={indexEnd}
@@ -204,17 +125,6 @@ class MyAlbum extends React.Component {
           stepNext={() => stepNext()}
           stepBack={() => stepBack()}
         />
-        <MyAlubmResult
-          musicList={musicList}
-          selectupdateMusic={selectupdateMusic}
-          generateYoutubeUrl={videoId => generateYoutubeUrl(videoId)}
-          onDuration={duration => onDuration(duration)}
-          duration={duration}
-          updateMyMusicList={music => updateMyMusicList(music)}
-          createMusicFormat={(url, title, index) =>
-            createMusicFormat(url, title, index)
-          }
-        />
         <Modal isOpen={this.state.modalIsOpen} style={customStyles}>
           <EditAlbumModal
             data={selectEditMusic}
@@ -228,13 +138,8 @@ class MyAlbum extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   setPlayList: defaultMusic => dispatch(setPlayList(defaultMusic)),
-  fetchYoutube: searchKeyWord => dispatch(fetchYoutube(searchKeyWord)),
   createAlubm: emptyAlbum => dispatch(createAlubm(emptyAlbum)),
   deleteAlbum: alubm => dispatch(deleteAlbum(alubm))
 });
 
-const mapStateToProps = state => ({
-  musicList: state.rootReducer.fetchYoutube.musicList
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MyAlbum);
+export default connect(null, mapDispatchToProps)(MyAlbum);

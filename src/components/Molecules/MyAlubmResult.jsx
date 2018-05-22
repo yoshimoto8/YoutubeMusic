@@ -1,17 +1,8 @@
 import React from "react";
 import ReactPlayer from "react-player";
-import MyAlubmResultAddBtn from "../Atoms/MyAlubmResultAddBtn";
 
 const MyAlubmResult = props => {
-  const {
-    musicList,
-    generateYoutubeUrl,
-    onDuration,
-    updateMyMusicList,
-    createMusicFormat,
-    selectupdateMusic
-  } = props;
-
+  const { musicList, generateYoutubeUrl, onDuration } = props;
   return (
     <div className="MyAlubmResult-resultLists">
       {musicList.map((data, index) => {
@@ -27,14 +18,6 @@ const MyAlubmResult = props => {
               onDuration={duration => onDuration(duration)}
             />
             <div className="MyAlubmResult-wrraper">
-              <MyAlubmResultAddBtn
-                updateMyMusicList={updateMyMusicList}
-                createMusicFormat={createMusicFormat}
-                selectupdateMusic={selectupdateMusic}
-                url={url}
-                title={snippet.title}
-                index={index}
-              />
               <div className="MyAlubmResult-resultTitle">{snippet.title}</div>
             </div>
           </div>
