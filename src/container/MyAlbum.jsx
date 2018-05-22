@@ -6,12 +6,16 @@ import { setPlayList, createAlubm, deleteAlbum } from "../actions/index";
 import noImage from "../images/noimage.png";
 import EditAlbumModal from "./EditAlbumModal";
 import MyAlubmList from "../components/Molecules/MyAlubmList";
+import MyAlbumFavorite from "../components/Molecules/MyAlbumFavorite";
+import MyAlbumFavoriteMusic from "../components/Molecules/MyAlbumFavoriteMusic";
 import "react-tippy/dist/tippy.css";
 import "./styles/MyAlbum.css";
 class MyAlbum extends React.Component {
   constructor() {
     super();
     this.state = {
+      myFavoriteMusic: [],
+      setMusic: {},
       indexStart: 0,
       indexEnd: 4,
       modalIsOpen: false,
@@ -23,7 +27,40 @@ class MyAlbum extends React.Component {
 
   componentDidMount() {
     this.fetchMyMusicList();
+    this.fetchMyFavoriteMusic();
   }
+
+  setMusicFunc = (url, musicName, artist) => {
+    this.setState({
+      setMusic: { url: url, musicName: musicName, artist: artist }
+    });
+  };
+
+  fetchMyFavoriteMusic() {
+    const db = firebase.firestore();
+    db
+      .collection(`users/${sessionStorage.getItem("user")}/userFavoriteMusic`)
+      .onSnapshot(Snapshot => {
+        const myFavoriteMusic = [];
+        Snapshot.forEach(doc => {
+          myFavoriteMusic.push({ ...doc.data(), key: doc.id });
+        });
+        this.setState({ myFavoriteMusic });
+      });
+  }
+
+  fetchMyMusicList = () => {
+    const db = firebase.firestore();
+    db
+      .collection(`users/${sessionStorage.getItem("user")}/userMusicList`)
+      .onSnapshot(Snapshot => {
+        const myMusicLists = [];
+        Snapshot.forEach(doc => {
+          myMusicLists.push({ ...doc.data(), key: doc.id });
+        });
+        this.setState({ myMusicLists });
+      });
+  };
 
   stepNext = () => {
     this.setState({
@@ -59,19 +96,6 @@ class MyAlbum extends React.Component {
     return emptyAlbum;
   };
 
-  fetchMyMusicList = () => {
-    const db = firebase.firestore();
-    db
-      .collection(`users/${sessionStorage.getItem("user")}/userMusicList`)
-      .onSnapshot(Snapshot => {
-        const myMusicLists = [];
-        Snapshot.forEach(doc => {
-          myMusicLists.push({ ...doc.data(), key: doc.id });
-        });
-        this.setState({ myMusicLists });
-      });
-  };
-
   changeSearchKeyWord = e => {
     this.setState({ searchKeyWord: e.target.value });
   };
@@ -88,14 +112,17 @@ class MyAlbum extends React.Component {
       openModal,
       setUpdateMusic,
       stepNext,
-      stepBack
+      stepBack,
+      setMusicFunc
     } = this;
     const {
       myMusicLists,
       selectEditMusic,
       selectupdateMusic,
       indexStart,
-      indexEnd
+      indexEnd,
+      myFavoriteMusic,
+      setMusic
     } = this.state;
 
     const customStyles = {
@@ -108,6 +135,7 @@ class MyAlbum extends React.Component {
         transform: "translate(-50%, -50%)"
       }
     };
+    console.log(!!Object.keys(setMusic).length);
 
     return (
       <div className="main">
@@ -125,6 +153,30 @@ class MyAlbum extends React.Component {
           stepNext={() => stepNext()}
           stepBack={() => stepBack()}
         />
+        <div className="MyAlbum-favoriteBox">
+          {!!Object.keys(setMusic).length ? (
+            <MyAlbumFavoriteMusic setMusic={setMusic} />
+          ) : (
+            <div className="MyAlbumFavoriteMusic-display" />
+          )}
+          <div>
+            {myFavoriteMusic.map((data, index) => {
+              const { musicName, duration, artist, url } = data;
+              return (
+                <MyAlbumFavorite
+                  key={index}
+                  url={url}
+                  musicName={musicName}
+                  duration={duration}
+                  artist={artist}
+                  setMusicFunc={(url, musicName, artist) =>
+                    setMusicFunc(url, musicName, artist)
+                  }
+                />
+              );
+            })}
+          </div>
+        </div>
         <Modal isOpen={this.state.modalIsOpen} style={customStyles}>
           <EditAlbumModal
             data={selectEditMusic}

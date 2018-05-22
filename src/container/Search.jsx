@@ -43,7 +43,7 @@ class Search extends React.Component {
     const { searchKeyWord, duration } = this.state;
     const { musicList } = this.props;
     return (
-      <div>
+      <div className="main">
         <MyAlubmSearchContent
           handleFetchYoutube={e => handleFetchYoutube(e)}
           searchKeyWord={searchKeyWord}

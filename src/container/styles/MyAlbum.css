@@ -196,3 +196,49 @@
 .myAlbum-stepBack:hover {
   color: white;
 }
+
+.MyAlbumFavorite {
+  color: #fff;
+  display: flex;
+}
+
+.MyAlbum-favoriteBox {
+  display: flex;
+}
+
+.MyalbumFavorite-musicName {
+  font-size: 15px;
+}
+
+.MyalbumFavorite-artist {
+  font-size: 10px;
+  color: hsla(0, 0%, 100%, 0.6);
+}
+
+.MyalbumFavorite-time {
+  color: hsla(0, 0%, 100%, 0.6);
+}
+
+.MyAlbumFavoriteMusic-display {
+  width: 30%;
+}
+
+.MyAlbumFavoriteMusic-displayShow {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.MyAlbumFavoriteMusic-musicName {
+  width: 200px;
+  text-align: center;
+  margin: 10px auto 0;
+  color: white;
+  font-size: 15px;
+}
+
+.MyAlbumFavoriteMusic-artist {
+  text-align: center;
+  margin: 10px auto 0;
+  color: hsla(0, 0%, 100%, 0.6);
+  font-size: 13px;
+}
