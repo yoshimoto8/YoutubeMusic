@@ -82,6 +82,7 @@
 }
 
 .myAlbum-playListName {
+  width: 200px;
   cursor: pointer;
   color: white;
 }
@@ -91,6 +92,7 @@
 }
 
 .myAlbum-selected {
+  width: 200px;
   cursor: pointer;
   color: #1db954;
 }
