@@ -17,7 +17,6 @@ class Home extends React.Component {
         main: () => <NewReleaseMusic />
       }
     ];
-
     return (
       <div className="main">
         <div>

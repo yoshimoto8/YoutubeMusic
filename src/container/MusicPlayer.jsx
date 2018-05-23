@@ -232,6 +232,7 @@ class MusicPlayer extends React.Component {
         myMusicLists,
         myFavoriteMusic
       } = this.state;
+
       const { isAddMylist, playListName, alubmImage } = this.props;
       if (played === 1 && playingId !== albumLength) {
         nextPlayMusic(playingId);

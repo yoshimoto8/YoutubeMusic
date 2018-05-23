@@ -38,6 +38,11 @@ class MyAlbum extends React.Component {
     });
   };
 
+  setFirstMusic = music => {
+    debugger;
+    this.setState({ setMusic: music });
+  };
+
   pushMyAlubm = (musicName, duration, artist, url) => {
     const music = this.musicFormat(musicName, duration, artist, url);
     const { key, musicList } = this.state.selectupdateMusic;
@@ -78,7 +83,10 @@ class MyAlbum extends React.Component {
         Snapshot.forEach(doc => {
           myFavoriteMusic.push({ ...doc.data(), key: doc.id });
         });
-        this.setState({ myFavoriteMusic });
+        this.setState({
+          myFavoriteMusic: myFavoriteMusic,
+          setMusic: myFavoriteMusic[0]
+        });
       });
   }
 
@@ -147,7 +155,8 @@ class MyAlbum extends React.Component {
       stepNext,
       stepBack,
       setMusicFunc,
-      pushMyAlubm
+      pushMyAlubm,
+      setFirstMusic
     } = this;
     const {
       myMusicLists,
@@ -169,6 +178,12 @@ class MyAlbum extends React.Component {
         transform: "translate(-50%, -50%)"
       }
     };
+    // console.log(setMusic);
+    // console.log(myFavoriteMusic[0]);
+    // const isEmpty = !Object.keys(setMusic).length;
+    // if (isEmpty) {
+    //   this.setFirstMusic(myFavoriteMusic[0]);
+    // }
     return (
       <div className="main">
         <MyAlubmList
