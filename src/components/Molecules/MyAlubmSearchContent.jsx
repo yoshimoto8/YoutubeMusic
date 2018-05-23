@@ -11,7 +11,9 @@ const MyAlubmSearchContent = props => {
     musicList,
     generateYoutubeUrl,
     onDuration,
-    duration
+    duration,
+    addFavoriteMusic,
+    myFavoriteMusic
   } = props;
 
   return (
@@ -26,6 +28,8 @@ const MyAlubmSearchContent = props => {
         generateYoutubeUrl={generateYoutubeUrl}
         onDuration={onDuration}
         duration={duration}
+        addFavoriteMusic={addFavoriteMusic}
+        myFavoriteMusic={myFavoriteMusic}
       />
     </div>
   );

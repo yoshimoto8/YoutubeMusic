@@ -1,13 +1,26 @@
 import React from "react";
 import ReactPlayer from "react-player";
+import FaHeartO from "react-icons/lib/fa/heart-o";
+import FaHeart from "react-icons/lib/fa/heart";
 
 const MyAlubmResult = props => {
-  const { musicList, generateYoutubeUrl, onDuration } = props;
+  const {
+    musicList,
+    generateYoutubeUrl,
+    onDuration,
+    addFavoriteMusic,
+    duration,
+    myFavoriteMusic
+  } = props;
   return (
     <div className="MyAlubmResult-resultLists">
       {musicList.map((data, index) => {
         const { snippet, id } = data;
         const url = generateYoutubeUrl(id.videoId);
+        const favoriteArray = myFavoriteMusic.filter(data => {
+          return data.url === url;
+        });
+        const isFavorite = favoriteArray.length === 0 ? false : true;
         return (
           <div key={index} className="MyAlubmResult-resultBox">
             <ReactPlayer
@@ -15,9 +28,21 @@ const MyAlubmResult = props => {
               width="200px"
               height="200px"
               url={url}
-              onDuration={duration => onDuration(duration)}
+              onDuration={onDuration}
             />
             <div className="MyAlubmResult-wrraper">
+              <div
+                className="Search-favorite"
+                onClick={() =>
+                  addFavoriteMusic(snippet.title, url, duration[index])
+                }
+              >
+                {isFavorite ? (
+                  <FaHeart color="#1db954" />
+                ) : (
+                  <FaHeartO color="hsla(0, 0%, 100%, 0.6)" />
+                )}
+              </div>
               <div className="MyAlubmResult-resultTitle">{snippet.title}</div>
             </div>
           </div>

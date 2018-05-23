@@ -1,5 +1,6 @@
 .newReleaseMusic-musicList {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -24,7 +25,10 @@
 }
 
 .newReleaseMusic-playListName {
+  font-size: 13px;
   color: white;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .newReleaseMusic-playBtn {

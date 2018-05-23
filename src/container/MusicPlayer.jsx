@@ -37,6 +37,7 @@ class MusicPlayer extends React.Component {
       loop: false
     };
   }
+
   componentWillMount() {
     this.fetchMyMusicList();
     this.fetchFavoriteMusic();
@@ -237,6 +238,7 @@ class MusicPlayer extends React.Component {
       }
       const { src, artists, name, id } = musicList[0];
       !url ? setFirstMusic(src, name, artists, id) : null;
+
       return (
         <div className="main">
           <div className="musicPlay">

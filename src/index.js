@@ -73,25 +73,25 @@ ReactDOM.render(
             )}
             {sessionStorage.getItem("user") ? (
               <li>
-                <Link to="/Home">Home</Link>
+                <Link to="/Home">ホーム</Link>
               </li>
             ) : null}
             {sessionStorage.getItem("user") ? (
               <li>
-                <Link to="/Myalbum">Myalbum</Link>
+                <Link to="/Myalbum">マイアルバム</Link>
               </li>
             ) : (
-              <li>Myalbum</li>
+              <li>マイアルバム</li>
             )}
             {sessionStorage.getItem("user") ? (
               <li>
-                <Link to="/Search">Search</Link>
+                <Link to="/Search">検索</Link>
               </li>
             ) : null}
             {sessionStorage.getItem("user") ===
             "ihd750LTAXTxfgVsaHXPDzQje9j1" ? (
               <li>
-                <Link to="/Management">Management</Link>
+                <Link to="/Management">マネジメント</Link>
               </li>
             ) : (
               <div />

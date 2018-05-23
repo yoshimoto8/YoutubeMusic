@@ -1,16 +1,49 @@
 import React from "react";
 import update from "immutability-helper";
+import firebase from "firebase";
 import { connect } from "react-redux";
 import { fetchYoutube } from "../actions";
 import MyAlubmSearchContent from "../components/Molecules/MyAlubmSearchContent";
+import "./styles/Search.css";
 
 class Search extends React.Component {
   constructor() {
     super();
     this.state = {
       duration: [],
-      searchKeyWord: ""
+      searchKeyWord: "",
+      myFavoriteMusic: []
     };
+  }
+
+  componentDidMount() {
+    this.fetchMyFavoriteMusic();
+  }
+
+  addFavoriteMusic = (musicName, url, duration) => {
+    const db = firebase.firestore();
+    db
+      .collection(`users/${sessionStorage.getItem("user")}/userFavoriteMusic`)
+      .add({
+        musicName: musicName,
+        url: url,
+        artist: "登録されてません",
+        duration: duration
+      })
+      .then(console.log("成功"));
+  };
+
+  fetchMyFavoriteMusic() {
+    const db = firebase.firestore();
+    db
+      .collection(`users/${sessionStorage.getItem("user")}/userFavoriteMusic`)
+      .onSnapshot(Snapshot => {
+        const myFavoriteMusic = [];
+        Snapshot.forEach(doc => {
+          myFavoriteMusic.push({ ...doc.data(), key: doc.id });
+        });
+        this.setState({ myFavoriteMusic });
+      });
   }
 
   onDuration = duration => {
@@ -38,9 +71,10 @@ class Search extends React.Component {
       handleFetchYoutube,
       changeSearchKeyWord,
       generateYoutubeUrl,
-      onDuration
+      onDuration,
+      addFavoriteMusic
     } = this;
-    const { searchKeyWord, duration } = this.state;
+    const { searchKeyWord, duration, myFavoriteMusic } = this.state;
     const { musicList } = this.props;
     return (
       <div className="main">
@@ -52,6 +86,10 @@ class Search extends React.Component {
           generateYoutubeUrl={videoId => generateYoutubeUrl(videoId)}
           onDuration={duration => onDuration(duration)}
           duration={duration}
+          addFavoriteMusic={(musicName, url, duration) =>
+            addFavoriteMusic(musicName, url, duration)
+          }
+          myFavoriteMusic={myFavoriteMusic}
         />
       </div>
     );
