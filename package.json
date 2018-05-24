@@ -29,6 +29,7 @@
     "html-webpack-plugin": "2.29.0",
     "immutability-helper": "^2.7.0",
     "jest": "20.0.4",
+    "jquery": "^3.3.1",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",

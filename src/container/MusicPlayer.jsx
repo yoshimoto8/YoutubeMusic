@@ -1,5 +1,6 @@
 import React from "react";
 import firebase from "firebase";
+import $ from "jquery";
 import { createAlubm } from "../actions";
 import { connect } from "react-redux";
 import MusicPlayerLists from "../components/Molecules/MusicPlayerLists";
@@ -61,6 +62,18 @@ class MusicPlayer extends React.Component {
           musicList: setmusicList,
           albumLength: albumLength
         });
+  }
+
+  componentDidMount() {
+    const isEmpty = this.props.musicList.length === 0 ? true : false;
+    if (isEmpty) {
+      const musicList = sessionStorage.getItem("musicList");
+      const objMusicList = $.parseJSON(musicList);
+      this.setState({ musicList: objMusicList });
+    } else {
+      const musicList = JSON.stringify(this.props.musicList);
+      sessionStorage.setItem("musicList", musicList);
+    }
   }
 
   fetchMyMusicList = () => {
@@ -239,7 +252,6 @@ class MusicPlayer extends React.Component {
       }
       const { src, artists, name, id } = musicList[0];
       !url ? setFirstMusic(src, name, artists, id) : null;
-
       return (
         <div className="main">
           <div className="musicPlay">
