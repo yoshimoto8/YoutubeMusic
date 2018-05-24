@@ -104,17 +104,19 @@ class MyAlbum extends React.Component {
   };
 
   stepNext = () => {
-    this.setState({
-      indexStart: this.state.indexStart + 4,
-      indexEnd: this.state.indexEnd + 4
-    });
+    if (this.state.myMusicLists.length > this.state.indexEnd)
+      this.setState({
+        indexStart: this.state.indexStart + 4,
+        indexEnd: this.state.indexEnd + 4
+      });
   };
 
   stepBack = () => {
-    this.setState({
-      indexStart: this.state.indexStart - 4,
-      indexEnd: this.state.indexEnd - 4
-    });
+    if (this.state.indexStart !== 0)
+      this.setState({
+        indexStart: this.state.indexStart - 4,
+        indexEnd: this.state.indexEnd - 4
+      });
   };
 
   // ここからアルバムを編集する関数
