@@ -7,6 +7,18 @@ h2 {
   color: white;
 }
 
+.authentication-infoApp {
+  color: #fff;
+}
+
+.AuthenticationDisplayMusic-wrapper {
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 30px auto 30px;
+}
+
 /* twitter button */
 
 .fl_tw2 {

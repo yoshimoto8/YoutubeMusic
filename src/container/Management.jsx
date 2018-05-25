@@ -92,6 +92,7 @@ class Management extends React.Component {
     const { onDuration } = this;
     return (
       <div>
+        <h2>アルバム登録</h2>
         {this.state.playLists.map((data, index) => {
           return (
             <ReactPlayer

@@ -16,6 +16,7 @@ import MyAlbum from "./container/MyAlbum";
 import Management from "./container/Management";
 import Home from "./container/Home";
 import Search from "./container/Search";
+import Artist from "./container/Artist";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -48,6 +49,10 @@ const routes = [
   {
     path: "/Search",
     main: () => <Search />
+  },
+  {
+    path: "/Artist",
+    main: () => <Artist />
   }
 ];
 
@@ -73,23 +78,26 @@ ReactDOM.render(
             )}
             {sessionStorage.getItem("user") ? (
               <li>
-                <Link to="/Home">ホーム</Link>
+                <Link to="/Home">アルバム</Link>
+              </li>
+            ) : null}
+            {sessionStorage.getItem("user") ? (
+              <li>
+                <Link to="/Artist">アーティスト</Link>
               </li>
             ) : null}
             {sessionStorage.getItem("user") ? (
               <li>
                 <Link to="/Myalbum">マイアルバム</Link>
               </li>
-            ) : (
-              <li>マイアルバム</li>
-            )}
+            ) : null}
             {sessionStorage.getItem("user") ? (
               <li>
                 <Link to="/Search">検索</Link>
               </li>
             ) : null}
             {sessionStorage.getItem("user") ===
-            "ihd750LTAXTxfgVsaHXPDzQje9j1" ? (
+            "RweyHs81VFRqmmzRUmS2sfV3dLi2" ? (
               <li>
                 <Link to="/Management">マネジメント</Link>
               </li>

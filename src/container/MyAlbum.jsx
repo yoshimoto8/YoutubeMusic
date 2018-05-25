@@ -9,6 +9,8 @@ import EditAlbumModal from "./EditAlbumModal";
 import MyAlubmList from "../components/Molecules/MyAlubmList";
 import MyAlbumFavorite from "../components/Molecules/MyAlbumFavorite";
 import MyAlbumFavoriteMusic from "../components/Molecules/MyAlbumFavoriteMusic";
+import FaAngleLeft from "react-icons/lib/fa/angle-left";
+import FaAngleRight from "react-icons/lib/fa/angle-right";
 import "react-tippy/dist/tippy.css";
 import "./styles/MyAlbum.css";
 class MyAlbum extends React.Component {
@@ -19,6 +21,8 @@ class MyAlbum extends React.Component {
       setMusic: {},
       indexStart: 0,
       indexEnd: 4,
+      favariteIndexStart: 0,
+      favariteIndexEnd: 8,
       modalIsOpen: false,
       youtubes: [],
       myMusicLists: [],
@@ -103,6 +107,9 @@ class MyAlbum extends React.Component {
       });
   };
 
+  favariteStepNext = () => {};
+  favariteStepBack = () => {};
+
   stepNext = () => {
     if (this.state.myMusicLists.length > this.state.indexEnd)
       this.setState({
@@ -166,7 +173,9 @@ class MyAlbum extends React.Component {
       indexStart,
       indexEnd,
       myFavoriteMusic,
-      setMusic
+      setMusic,
+      favariteIndexStart,
+      favariteIndexEnd
     } = this.state;
 
     const customStyles = {
@@ -179,6 +188,10 @@ class MyAlbum extends React.Component {
         transform: "translate(-50%, -50%)"
       }
     };
+    const myFavoriteMusicSlice = myFavoriteMusic.slice(
+      favariteIndexStart,
+      favariteIndexEnd
+    );
     return (
       <div className="main">
         <MyAlubmList
@@ -196,12 +209,18 @@ class MyAlbum extends React.Component {
           stepBack={() => stepBack()}
         />
         <div className="MyAlbum-bottomName">
+          <div className="MyAlbum-pageNation">
+            <FaAngleLeft size="30px" />
+          </div>
           <h2>お気にりリスト</h2>
+          <div className="MyAlbum-pageNation">
+            <FaAngleRight size="30px" />
+          </div>
         </div>
         <div className="MyAlbum-favoriteBox">
           <MyAlbumFavoriteMusic setMusic={setMusic} />
           <div>
-            {myFavoriteMusic.map((data, index) => {
+            {myFavoriteMusicSlice.map((data, index) => {
               const { musicName, duration, artist, url } = data;
               return (
                 <MyAlbumFavorite
