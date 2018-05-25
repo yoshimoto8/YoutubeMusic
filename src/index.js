@@ -17,6 +17,10 @@ import Management from "./container/Management";
 import Home from "./container/Home";
 import Search from "./container/Search";
 import Artist from "./container/Artist";
+import FaSearch from "react-icons/lib/fa/search";
+import MdFace from "react-icons/lib/md/face";
+import MdFilter from "react-icons/lib/md/filter";
+import MdFavorite from "react-icons/lib/md/favorite";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -63,13 +67,15 @@ ReactDOM.render(
         <div className="contents">
           <ul className="sidebar">
             {sessionStorage.getItem("user") ? (
-              <div>
+              <div className="header-profileImageBox">
                 <img
                   className="header-profileImage"
                   src={sessionStorage.getItem("imageUrl")}
                   alt=""
                 />
-                <span>{sessionStorage.getItem("userName")}</span>
+                <div className="header-profileName">
+                  {sessionStorage.getItem("userName")}
+                </div>
               </div>
             ) : (
               <li>
@@ -78,22 +84,30 @@ ReactDOM.render(
             )}
             {sessionStorage.getItem("user") ? (
               <li>
-                <Link to="/Home">アルバム</Link>
+                <Link to="/Home">
+                  <MdFilter className="sidebar-icon" />アルバム
+                </Link>
               </li>
             ) : null}
             {sessionStorage.getItem("user") ? (
               <li>
-                <Link to="/Artist">アーティスト</Link>
+                <Link to="/Artist">
+                  <MdFace className="sidebar-icon" />アーティスト
+                </Link>
               </li>
             ) : null}
             {sessionStorage.getItem("user") ? (
               <li>
-                <Link to="/Myalbum">マイアルバム</Link>
+                <Link to="/Myalbum">
+                  <MdFavorite className="sidebar-icon" />マイアルバム
+                </Link>
               </li>
             ) : null}
             {sessionStorage.getItem("user") ? (
               <li>
-                <Link to="/Search">検索</Link>
+                <Link to="/Search">
+                  <FaSearch size="15px" className="sidebar-icon" />検索
+                </Link>
               </li>
             ) : null}
             {sessionStorage.getItem("user") ===
