@@ -199,11 +199,7 @@ class MyAlbum extends React.Component {
           <h2>お気にりリスト</h2>
         </div>
         <div className="MyAlbum-favoriteBox">
-          {!!Object.keys(setMusic).length ? (
-            <MyAlbumFavoriteMusic setMusic={setMusic} />
-          ) : (
-            <div className="MyAlbumFavoriteMusic-display" />
-          )}
+          <MyAlbumFavoriteMusic setMusic={setMusic} />
           <div>
             {myFavoriteMusic.map((data, index) => {
               const { musicName, duration, artist, url } = data;

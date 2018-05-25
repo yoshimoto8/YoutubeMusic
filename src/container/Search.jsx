@@ -18,6 +18,12 @@ class Search extends React.Component {
 
   componentDidMount() {
     this.fetchMyFavoriteMusic();
+    if (this.props.musicList.length === 0) {
+      const searchKeyWord = sessionStorage.getItem("searchKeyWord");
+      !!searchKeyWord
+        ? this.props.fetchYoutube(searchKeyWord)
+        : this.props.fetchYoutube("remix");
+    }
   }
 
   addFavoriteMusic = (musicName, url, duration) => {
@@ -54,6 +60,7 @@ class Search extends React.Component {
   handleFetchYoutube = e => {
     e.preventDefault();
     const { searchKeyWord } = this.state;
+    sessionStorage.setItem("searchKeyWord", searchKeyWord);
     this.props.fetchYoutube(searchKeyWord);
     this.setState({ duration: [] });
   };
