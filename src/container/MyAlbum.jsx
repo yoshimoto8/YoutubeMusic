@@ -27,7 +27,8 @@ class MyAlbum extends React.Component {
       youtubes: [],
       myMusicLists: [],
       selectEditMusic: {},
-      selectupdateMusic: {}
+      selectupdateMusic: {},
+      setIdMusic: 0
     };
   }
 
@@ -43,7 +44,6 @@ class MyAlbum extends React.Component {
   };
 
   setFirstMusic = music => {
-    debugger;
     this.setState({ setMusic: music });
   };
 
@@ -89,7 +89,7 @@ class MyAlbum extends React.Component {
         });
         this.setState({
           myFavoriteMusic: myFavoriteMusic,
-          setMusic: myFavoriteMusic[0]
+          setMusic: myFavoriteMusic[this.state.setIdMusic]
         });
       });
   }
@@ -107,8 +107,24 @@ class MyAlbum extends React.Component {
       });
   };
 
-  favariteStepNext = () => {};
-  favariteStepBack = () => {};
+  favariteStepNext = () => {
+    if (this.state.myFavoriteMusic.length > this.state.favariteIndexEnd) {
+      this.setState({
+        favariteIndexStart: this.state.favariteIndexStart + 8,
+        favariteIndexEnd: this.state.favariteIndexEnd + 8,
+        setMusic: this.state.myFavoriteMusic[this.state.setIdMusic + 8]
+      });
+    }
+  };
+  favariteStepBack = () => {
+    if (this.state.favariteIndexStart !== 0) {
+      this.setState({
+        favariteIndexStart: this.state.favariteIndexStart - 8,
+        favariteIndexEnd: this.state.favariteIndexEnd - 8,
+        setMusic: this.state.myFavoriteMusic[this.state.setIdMusic - 8]
+      });
+    }
+  };
 
   stepNext = () => {
     if (this.state.myMusicLists.length > this.state.indexEnd)
@@ -117,7 +133,6 @@ class MyAlbum extends React.Component {
         indexEnd: this.state.indexEnd + 4
       });
   };
-
   stepBack = () => {
     if (this.state.indexStart !== 0)
       this.setState({
@@ -164,7 +179,9 @@ class MyAlbum extends React.Component {
       stepNext,
       stepBack,
       setMusicFunc,
-      pushMyAlubm
+      pushMyAlubm,
+      favariteStepNext,
+      favariteStepBack
     } = this;
     const {
       myMusicLists,
@@ -210,11 +227,11 @@ class MyAlbum extends React.Component {
         />
         <div className="MyAlbum-bottomName">
           <div className="MyAlbum-pageNation">
-            <FaAngleLeft size="30px" />
+            <FaAngleLeft size="30px" onClick={() => favariteStepBack()} />
           </div>
           <h2>お気にりリスト</h2>
           <div className="MyAlbum-pageNation">
-            <FaAngleRight size="30px" />
+            <FaAngleRight size="30px" onClick={() => favariteStepNext()} />
           </div>
         </div>
         <div className="MyAlbum-favoriteBox">
