@@ -112,6 +112,7 @@ class MyAlbum extends React.Component {
       this.setState({
         favariteIndexStart: this.state.favariteIndexStart + 8,
         favariteIndexEnd: this.state.favariteIndexEnd + 8,
+        setIdMusic: this.state.setIdMusic + 8,
         setMusic: this.state.myFavoriteMusic[this.state.setIdMusic + 8]
       });
     }
@@ -121,6 +122,7 @@ class MyAlbum extends React.Component {
       this.setState({
         favariteIndexStart: this.state.favariteIndexStart - 8,
         favariteIndexEnd: this.state.favariteIndexEnd - 8,
+        setIdMusic: this.state.setIdMusic - 8,
         setMusic: this.state.myFavoriteMusic[this.state.setIdMusic - 8]
       });
     }
