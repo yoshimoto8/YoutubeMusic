@@ -43,7 +43,15 @@ class ArtistMusicPlayer extends React.Component {
           <div>
             {artist.musicList.map((data, index) => {
               console.log(data);
-              return <div>{data.name}</div>;
+              return (
+                <div className="ArtistMusicPlayer-row">
+                  <div>
+                    <div>{data.name}</div>
+                    <div>{data.artists}</div>
+                  </div>
+                  <div>{data.time}</div>
+                </div>
+              );
             })}
           </div>
         </div>
