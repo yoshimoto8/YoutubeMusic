@@ -19,6 +19,7 @@
 }
 
 .ArtistMusicPlayer-row {
+  cursor: pointer;
   display: flex;
   width: 70%;
   margin-top: 50px;
@@ -34,9 +35,16 @@
 }
 
 .ArtistMusicPlayer-nameArtistBox {
-  width: 600px;
+  width: 700px;
+  margin-left: 30px;
 }
 
 .ArtistMusicPlayer-time {
   color: hsla(0, 0%, 100%, 0.6);
+}
+
+.ArtistMusicPlayer-musicDisplay {
+  width: 25%;
+  text-align: center;
+  margin: 50px 30px;
 }
