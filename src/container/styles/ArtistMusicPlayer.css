@@ -1,6 +1,7 @@
 .ArtistMusicPlayer {
   display: flex;
 }
+
 .ArtistMusicPlayer-artistInfo {
   width: 30%;
   text-align: center;
@@ -11,6 +12,7 @@
   width: 250px;
   height: 250px;
 }
+
 .ArtistMusicPlayer-artistInfo div {
   font-size: 20px;
   color: white;
@@ -18,4 +20,23 @@
 
 .ArtistMusicPlayer-row {
   display: flex;
+  width: 70%;
+  margin-top: 50px;
+}
+
+.ArtistMusicPlayer-name {
+  color: white;
+}
+
+.ArtistMusicPlayer-artist {
+  font-size: 10px;
+  color: hsla(0, 0%, 100%, 0.6);
+}
+
+.ArtistMusicPlayer-nameArtistBox {
+  width: 600px;
+}
+
+.ArtistMusicPlayer-time {
+  color: white;
 }

@@ -29,6 +29,21 @@ class ArtistMusicPlayer extends React.Component {
     this.setState({ artist: this.props.artist });
   }
 
+  format = seconds => {
+    const date = new Date(seconds * 1000);
+    const hh = date.getUTCHours();
+    const mm = date.getUTCMinutes();
+    const ss = this.pad(date.getUTCSeconds());
+    if (hh) {
+      return `${hh}:${this.pad(mm)}:${ss}`;
+    }
+    return `${mm}:${ss}`;
+  };
+
+  pad = string => {
+    return ("0" + string).slice(-2);
+  };
+
   render() {
     const { artist } = this.state;
     const musicLength = artist.musicList.length;
@@ -45,11 +60,15 @@ class ArtistMusicPlayer extends React.Component {
               console.log(data);
               return (
                 <div className="ArtistMusicPlayer-row">
-                  <div>
-                    <div>{data.name}</div>
-                    <div>{data.artists}</div>
+                  <div className="ArtistMusicPlayer-nameArtistBox">
+                    <div className="ArtistMusicPlayer-name">{data.name}</div>
+                    <div className="ArtistMusicPlayer-artist">
+                      {data.artists}
+                    </div>
                   </div>
-                  <div>{data.time}</div>
+                  <div className="ArtistMusicPlayer-time">
+                    {this.format(data.time)}
+                  </div>
                 </div>
               );
             })}
