@@ -1,0 +1,52 @@
+.ArtistMusicPlayer {
+  width: 1180px;
+  height: 400px;
+  opacity: 0.9;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0, 0, 0, 0.5) 50%,
+    #111111 100%
+  );
+  /* background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)); */
+  /* background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)); */
+  /* background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)); */
+}
+
+.test2 {
+  background-size: 1180px 400px;
+  background-image: url("https://i.ytimg.com/vi/Jb9z5bGdqwE/maxresdefault.jpg");
+  width: 1180px;
+  height: 400px;
+}
+
+.test {
+  background-color: #181818;
+  width: 1180px;
+  height: 900px;
+}
+
+.ArtistMusicPlayer-artistInfo {
+  width: 1180px;
+  height: 400px;
+  text-align: center;
+  color: white;
+  font-size: 60px;
+}
+
+.ArtistMusicPlayer-artistName {
+  padding: 100px 0;
+}
+
+.ArtistMusicPlayer-popular {
+  color: white;
+  font-size: 30px;
+}
+
+.ArtistMusicPlayer-musicHeader {
+  text-align: center;
+  margin: 0 auto;
+  color: white;
+  font-size: 30px;
+}

@@ -1,5 +1,7 @@
 export const SET_PLAYLIST = "SET_PLAYLIST";
 
+export const SET_ARTIST = "SET_ARTIST";
+
 export const FETCH_YOUTUBE = "FETCH_YOUTUBE";
 export const SUCCEEDED_FETCH_YOUTUBE = "SUCCEEDED_FETCH_YOUTUBE";
 
@@ -14,6 +16,11 @@ export const setPlayList = (defaultMusic, alubmImage, playListName) => ({
   defaultMusic,
   alubmImage,
   playListName
+});
+
+export const setArtist = artistData => ({
+  type: SET_ARTIST,
+  artistData
 });
 
 export const fetchYoutube = searchKeyWord => ({

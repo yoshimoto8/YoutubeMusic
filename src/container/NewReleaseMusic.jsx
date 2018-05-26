@@ -14,6 +14,10 @@ class NewReleaseMusic extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchArtist();
+  }
+
+  fetchArtist = () => {
     const db = firebase.firestore();
     db.collection("publicAlbum").onSnapshot(Snapshot => {
       const musicLists = [];
@@ -22,7 +26,7 @@ class NewReleaseMusic extends React.Component {
       });
       this.setState({ musicLists });
     });
-  }
+  };
 
   render() {
     const { musicLists } = this.state;

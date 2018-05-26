@@ -17,6 +17,7 @@ import Management from "./container/Management";
 import Home from "./container/Home";
 import Search from "./container/Search";
 import Artist from "./container/Artist";
+import ArtistMusicPlayer from "./container/ArtistMusicPlayer";
 import FaSearch from "react-icons/lib/fa/search";
 import MdFace from "react-icons/lib/md/face";
 import MdFilter from "react-icons/lib/md/filter";
@@ -57,6 +58,10 @@ const routes = [
   {
     path: "/Artist",
     main: () => <Artist />
+  },
+  {
+    path: "/ArtistMusicPlayer",
+    main: () => <ArtistMusicPlayer />
   }
 ];
 

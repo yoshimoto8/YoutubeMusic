@@ -32,7 +32,7 @@ body {
   margin-top: 0;
   height: 900px;
   width: 270px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .sidebar li {

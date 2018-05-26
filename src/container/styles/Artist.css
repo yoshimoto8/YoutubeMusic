@@ -1,0 +1,59 @@
+.Artist-header {
+  text-align: center;
+  margin: 30px auto 0;
+}
+
+.Artist-display {
+  display: flex;
+  justify-content: center;
+}
+
+.Artist-artistBox {
+  text-align: center;
+  margin: 30px 50px 0;
+}
+
+.Artist-image {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+}
+
+.Artist-name {
+  margin-top: 10px;
+  color: white;
+}
+
+.Artist-musicController {
+  position: absolute;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  background-color: black;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.Artist-musicController:hover {
+  opacity: 0.5;
+}
+
+.Artist-playBtn {
+  margin-top: 35px;
+  margin-left: 1px;
+  background-image: url("../../images/play.svg");
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 80px;
+  height: 80px;
+  background-size: 50px;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.Artist-playBtn:hover {
+  opacity: 0.7;
+}
