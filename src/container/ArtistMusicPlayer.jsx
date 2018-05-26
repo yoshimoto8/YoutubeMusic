@@ -25,6 +25,8 @@ class ArtistMusicPlayer extends React.Component {
     //   const objArtist = $.parseJSON(artist);
     //   this.setState({ objArtist });
     // }
+
+    this.setState({ artist: this.props.artist });
   }
 
   render() {
@@ -32,9 +34,18 @@ class ArtistMusicPlayer extends React.Component {
     const musicLength = artist.musicList.length;
     return (
       <div className="main">
-        <div className="ArtistMusicPlayer-artistInfo">
-          <img src={artist.src} alt="" />
-          <h2>{`${artist.name}のミュージックリスト`}</h2>
+        <div className="ArtistMusicPlayer">
+          <div className="ArtistMusicPlayer-artistInfo">
+            <img src={artist.src} alt="" />
+            <h2>{`${artist.name}のミュージックリスト`}</h2>
+            <div>{`${musicLength}曲`}</div>
+          </div>
+          <div>
+            {artist.musicList.map((data, index) => {
+              console.log(data);
+              return <div>{data.name}</div>;
+            })}
+          </div>
         </div>
       </div>
     );
