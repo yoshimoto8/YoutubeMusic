@@ -40,6 +40,27 @@ class Artist extends React.Component {
           name: "Just A Dream",
           src: "https://www.youtube.com/watch?v=a2RA0vsZXf8",
           time: 270
+        },
+        {
+          artists: "Kurt Hugo Schneide",
+          id: 2,
+          name: "Just A Dream",
+          src: "https://www.youtube.com/watch?v=a2RA0vsZXf8",
+          time: 270
+        },
+        {
+          artists: "Kurt Hugo Schneide",
+          id: 3,
+          name: "Just A Dream",
+          src: "https://www.youtube.com/watch?v=a2RA0vsZXf8",
+          time: 270
+        },
+        {
+          artists: "Kurt Hugo Schneide",
+          id: 4,
+          name: "Just A Dream",
+          src: "https://www.youtube.com/watch?v=a2RA0vsZXf8",
+          time: 270
         }
       ]
     };

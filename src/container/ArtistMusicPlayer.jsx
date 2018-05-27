@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import ReactPlayer from "react-player";
 import $ from "jquery";
 import "./styles/ArtistMusicPlayer.css";
+import ArtistMusicPlayerOperation from "../components/Molecules/ArtistMusicPlayerOperation";
 import ArtistMusicPlayerRow from "../components/Molecules/ArtistMusicPlayerRow";
 
 class ArtistMusicPlayer extends React.Component {
@@ -10,13 +11,28 @@ class ArtistMusicPlayer extends React.Component {
     super();
     this.state = {
       artist: {},
-      setMusic: ""
+      setMusic: {},
+      playing: false
     };
   }
 
   componentWillMount() {
     this.setState({ artist: this.props.artist });
   }
+
+  onPlay = () => {
+    this.setState({ playing: !this.state.playing });
+  };
+
+  setMusicFunc = (src, name, artist) => {
+    this.setState({
+      setMusic: {
+        src: src,
+        name: name,
+        artist: artist
+      }
+    });
+  };
 
   format = seconds => {
     const date = new Date(seconds * 1000);
@@ -33,21 +49,16 @@ class ArtistMusicPlayer extends React.Component {
     return ("0" + string).slice(-2);
   };
 
-  setMusicFunc = music => {
-    console.log("call");
-    this.setState({ setMusic: music });
-  };
-
   render() {
-    const { setMusicFunc, format } = this;
-    const { artist, setMusic } = this.state;
+    const { setMusicFunc, format, onPlay } = this;
+    const { artist, setMusic, playing } = this.state;
     // ↓適当
     const musicLength =
       artist.musicList === undefined ? 1 : artist.musicList.length;
     return (
       <div className="main">
         <div className="ArtistMusicPlayer">
-          {setMusic.length === 0 ? (
+          {!Object.keys(setMusic).length ? (
             <div className="ArtistMusicPlayer-artistInfo">
               <img src={artist.src} alt="" />
               <h2>{`${artist.name}のミュージックリスト`}</h2>
@@ -57,22 +68,32 @@ class ArtistMusicPlayer extends React.Component {
             <div className="ArtistMusicPlayer-musicDisplay">
               <ReactPlayer
                 className="ArtistMusicPlayer-player"
-                url={setMusic}
+                url={setMusic.src}
                 width="250px"
                 height="250px"
+                onPlay={onPlay}
+                playing={playing}
               />
               <h2>{`${artist.name}のミュージックリスト`}</h2>
               <div>{`${musicLength}曲`}</div>
+              <button
+                className="ArtistMusicPlayer-startBtn"
+                onClick={() => onPlay()}
+              >
+                {playing ? "曲を停止させる" : "曲を再生する"}
+              </button>
             </div>
           )}
           <div>
             {artist.musicList.map((data, index) => {
               console.log(data);
-              const isSet = data.src === setMusic;
+              const isSet = data.src === setMusic.src;
               return (
                 <ArtistMusicPlayerRow
                   data={data}
-                  setMusicFunc={music => setMusicFunc(music)}
+                  setMusicFunc={(src, name, artist) =>
+                    setMusicFunc(src, name, artist)
+                  }
                   format={secounds => format(secounds)}
                   isSet={isSet}
                 />
@@ -80,6 +101,7 @@ class ArtistMusicPlayer extends React.Component {
             })}
           </div>
         </div>
+        <ArtistMusicPlayerOperation />
       </div>
     );
   }

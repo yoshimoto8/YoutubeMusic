@@ -2,7 +2,6 @@ import React from "react";
 
 const ArtistMusicPlayerRowInfo = props => {
   const { name, artist, isSet } = props;
-  console.log(isSet);
   const nameClass = isSet
     ? "ArtistMusicPlayer-setMusicName"
     : "ArtistMusicPlayer-name";
