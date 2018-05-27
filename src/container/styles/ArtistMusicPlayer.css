@@ -96,3 +96,33 @@
   font-size: 10px;
   color: hsla(0, 0%, 100%, 0.6);
 }
+
+.start {
+  background-image: url("../../images/play.svg");
+}
+
+.stop {
+  background-image: url("../../images/stop.svg");
+}
+
+.musicBtnIcon {
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 60px;
+  height: 60px;
+  background-size: 30px;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.musicBtnIcon:hover {
+  opacity: 0.8;
+}
+
+.musicBtnIcon:active,
+.musicBtnIcon:focus {
+  outline: 0;
+  opacity: 0.5;
+}

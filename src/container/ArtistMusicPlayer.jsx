@@ -21,11 +21,14 @@ class ArtistMusicPlayer extends React.Component {
   }
 
   onPlay = () => {
-    this.setState({ playing: !this.state.playing });
+    this.setState({ playing: true });
+  };
+
+  onStop = () => {
+    this.setState({ playing: false });
   };
 
   setMusicFunc = (src, name, artist) => {
-    console.log(artist);
     this.setState({
       setMusic: {
         src: src,
@@ -72,7 +75,7 @@ class ArtistMusicPlayer extends React.Component {
                 url={setMusic.src}
                 width="250px"
                 height="250px"
-                onPlay={onPlay}
+                onPlay={() => onPlay()}
                 playing={playing}
               />
               <h2>{`${artist.name}のミュージックリスト`}</h2>
@@ -87,10 +90,10 @@ class ArtistMusicPlayer extends React.Component {
           )}
           <div>
             {artist.musicList.map((data, index) => {
-              console.log(data);
               const isSet = data.src === setMusic.src;
               return (
                 <ArtistMusicPlayerRow
+                  key={index}
                   data={data}
                   setMusicFunc={(src, name, artist) =>
                     setMusicFunc(src, name, artist)
@@ -105,7 +108,11 @@ class ArtistMusicPlayer extends React.Component {
         {!Object.keys(setMusic).length ? (
           <div />
         ) : (
-          <ArtistMusicPlayerOperation setMusic={setMusic} />
+          <ArtistMusicPlayerOperation
+            setMusic={setMusic}
+            playing={playing}
+            onPlay={() => onPlay()}
+          />
         )}
       </div>
     );
