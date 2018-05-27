@@ -96,9 +96,7 @@ ReactDOM.render(
             ) : null}
             {sessionStorage.getItem("user") ? (
               <li>
-                <Link to="/Artist">
-                  <MdFace className="sidebar-icon" />アーティスト
-                </Link>
+                <MdFace className="sidebar-icon" />アーティスト(準備中)
               </li>
             ) : null}
             {sessionStorage.getItem("user") ? (

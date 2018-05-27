@@ -1,9 +1,11 @@
 import React from "react";
+import ArtistMusicPlayerOperationLeft from "../Atoms/ArtistMusicPlayer/ArtistMusicPlayerOperationLeft";
 
-const ArtistMusicPlayerOperation = () => {
+const ArtistMusicPlayerOperation = props => {
+  const { setMusic } = props;
   return (
     <footer className="footer">
-      <div />
+      <ArtistMusicPlayerOperationLeft setMusic={setMusic} />
     </footer>
   );
 };

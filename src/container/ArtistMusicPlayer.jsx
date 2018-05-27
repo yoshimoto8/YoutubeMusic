@@ -25,6 +25,7 @@ class ArtistMusicPlayer extends React.Component {
   };
 
   setMusicFunc = (src, name, artist) => {
+    console.log(artist);
     this.setState({
       setMusic: {
         src: src,
@@ -101,7 +102,11 @@ class ArtistMusicPlayer extends React.Component {
             })}
           </div>
         </div>
-        <ArtistMusicPlayerOperation />
+        {!Object.keys(setMusic).length ? (
+          <div />
+        ) : (
+          <ArtistMusicPlayerOperation setMusic={setMusic} />
+        )}
       </div>
     );
   }

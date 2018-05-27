@@ -83,3 +83,16 @@
   border-radius: 25px;
   border: none;
 }
+
+.ArtistMusicPlayerOperationLeft-box {
+  margin: 30px 10px;
+}
+
+.ArtistMusicPlayerOperationLeft-musicName {
+  color: #fff;
+}
+
+.ArtistMusicPlayerOperationLeft-musicArtist {
+  font-size: 10px;
+  color: hsla(0, 0%, 100%, 0.6);
+}
