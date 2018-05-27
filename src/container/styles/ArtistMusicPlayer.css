@@ -48,3 +48,17 @@
   text-align: center;
   margin: 50px 30px;
 }
+
+.ArtistMusicPlayer-musicDisplay div {
+  font-size: 20px;
+  color: white;
+}
+
+.ArtistMusicPlayer-player {
+  text-align: center;
+  margin: auto;
+}
+
+.ArtistMusicPlayer-setMusicName {
+  color: #1db954;
+}

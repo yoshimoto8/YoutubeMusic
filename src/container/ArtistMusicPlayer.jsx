@@ -55,18 +55,26 @@ class ArtistMusicPlayer extends React.Component {
             </div>
           ) : (
             <div className="ArtistMusicPlayer-musicDisplay">
-              <ReactPlayer url={setMusic} width="250px" height="250px" />
+              <ReactPlayer
+                className="ArtistMusicPlayer-player"
+                url={setMusic}
+                width="250px"
+                height="250px"
+              />
+              <h2>{`${artist.name}のミュージックリスト`}</h2>
+              <div>{`${musicLength}曲`}</div>
             </div>
           )}
-
           <div>
             {artist.musicList.map((data, index) => {
               console.log(data);
+              const isSet = data.src === setMusic;
               return (
                 <ArtistMusicPlayerRow
                   data={data}
                   setMusicFunc={music => setMusicFunc(music)}
                   format={secounds => format(secounds)}
+                  isSet={isSet}
                 />
               );
             })}
