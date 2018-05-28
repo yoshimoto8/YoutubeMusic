@@ -18,7 +18,18 @@ class Authentication extends React.Component {
 
   componentDidMount() {
     this.fetchPublicMusic();
+    if (this.is_smartPhone()) {
+      alert(
+        "大変申し訳ございません。このアプリはiPhone,Androidに対応しておりません。"
+      );
+    }
   }
+
+  is_smartPhone = () => {
+    var media = ["iPhone", "iPad", "Android"];
+    var pattern = new RegExp(media.join("|"), "i");
+    return pattern.test(navigator.userAgent);
+  };
 
   fetchPublicMusic = () => {
     const db = firebase.firestore();
@@ -54,6 +65,7 @@ class Authentication extends React.Component {
   };
 
   render() {
+    console.log("yobaretaty");
     const { publicMusicList } = this.state;
     const displayMusic = publicMusicList.slice(1, 7);
     return (
