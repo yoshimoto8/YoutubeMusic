@@ -29,15 +29,19 @@ class ArtistMusicPlayer extends React.Component {
   };
 
   nextMusic = () => {
-    const id = this.state.setMusic.id + 1;
-    const result = this.state.artist.musicList.find(obj => obj.id === id);
-    this.setState({ setMusic: result });
+    if (this.state.setMusic.id !== this.state.artist.musicList.length) {
+      const id = this.state.setMusic.id + 1;
+      const result = this.state.artist.musicList.find(obj => obj.id === id);
+      this.setState({ setMusic: result });
+    }
   };
 
   backMusic = () => {
-    const id = this.state.setMusic.id - 1;
-    const result = this.state.artist.musicList.find(obj => obj.id === id);
-    this.setState({ setMusic: result });
+    if (this.state.setMusic.id !== 1) {
+      const id = this.state.setMusic.id - 1;
+      const result = this.state.artist.musicList.find(obj => obj.id === id);
+      this.setState({ setMusic: result });
+    }
   };
 
   setMusicFunc = (src, name, artist, id) => {
