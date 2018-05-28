@@ -47,6 +47,18 @@ class MyAlbum extends React.Component {
     this.setState({ setMusic: music });
   };
 
+  deleteFavoriteMusic = url => {
+    const result = this.state.myFavoriteMusic.find(obj => obj.url === url);
+    const db = firebase.firestore();
+    db
+      .collection(`users/${sessionStorage.getItem("user")}/userFavoriteMusic`)
+      .doc(result.key)
+      .delete()
+      .then(() => {
+        console.log("成功");
+      });
+  };
+
   pushMyAlubm = (musicName, duration, artist, url) => {
     const music = this.musicFormat(musicName, duration, artist, url);
     const { key, musicList } = this.state.selectupdateMusic;
@@ -183,7 +195,8 @@ class MyAlbum extends React.Component {
       setMusicFunc,
       pushMyAlubm,
       favariteStepNext,
-      favariteStepBack
+      favariteStepBack,
+      deleteFavoriteMusic
     } = this;
     const {
       myMusicLists,
@@ -256,6 +269,7 @@ class MyAlbum extends React.Component {
                     pushMyAlubm(musicName, duration, artist, url)
                   }
                   selectupdateMusic={selectupdateMusic}
+                  deleteFavoriteMusic={url => deleteFavoriteMusic(url)}
                 />
               );
             })}

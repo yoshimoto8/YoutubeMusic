@@ -50,7 +50,7 @@ class ArtistMusicPlayer extends React.Component {
         id: id,
         src: src,
         name: name,
-        artist: artist
+        artists: artist
       }
     });
   };
