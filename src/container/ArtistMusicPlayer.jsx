@@ -28,9 +28,22 @@ class ArtistMusicPlayer extends React.Component {
     this.setState({ playing: false });
   };
 
-  setMusicFunc = (src, name, artist) => {
+  nextMusic = () => {
+    const id = this.state.setMusic.id + 1;
+    const result = this.state.artist.musicList.find(obj => obj.id === id);
+    this.setState({ setMusic: result });
+  };
+
+  backMusic = () => {
+    const id = this.state.setMusic.id - 1;
+    const result = this.state.artist.musicList.find(obj => obj.id === id);
+    this.setState({ setMusic: result });
+  };
+
+  setMusicFunc = (src, name, artist, id) => {
     this.setState({
       setMusic: {
+        id: id,
         src: src,
         name: name,
         artist: artist
@@ -54,7 +67,7 @@ class ArtistMusicPlayer extends React.Component {
   };
 
   render() {
-    const { setMusicFunc, format, onPlay } = this;
+    const { setMusicFunc, format, onPlay, onStop, nextMusic, backMusic } = this;
     const { artist, setMusic, playing } = this.state;
     // ↓適当
     const musicLength =
@@ -95,8 +108,8 @@ class ArtistMusicPlayer extends React.Component {
                 <ArtistMusicPlayerRow
                   key={index}
                   data={data}
-                  setMusicFunc={(src, name, artist) =>
-                    setMusicFunc(src, name, artist)
+                  setMusicFunc={(src, name, artist, id) =>
+                    setMusicFunc(src, name, artist, id)
                   }
                   format={secounds => format(secounds)}
                   isSet={isSet}
@@ -112,6 +125,9 @@ class ArtistMusicPlayer extends React.Component {
             setMusic={setMusic}
             playing={playing}
             onPlay={() => onPlay()}
+            onStop={() => onStop()}
+            nextMusic={() => nextMusic()}
+            backMusic={() => backMusic()}
           />
         )}
       </div>

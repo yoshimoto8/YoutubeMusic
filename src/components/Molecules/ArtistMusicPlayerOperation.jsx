@@ -3,11 +3,17 @@ import ArtistMusicPlayerOperationLeft from "../Atoms/ArtistMusicPlayer/ArtistMus
 import ArtistMusicPlayerOperationCenter from "../Atoms/ArtistMusicPlayer/ArtistMusicPlayerOperationCenter";
 
 const ArtistMusicPlayerOperation = props => {
-  const { setMusic, playing, onPlay } = props;
+  const { setMusic, playing, onPlay, onStop, nextMusic, backMusic } = props;
   return (
     <footer className="footer">
       <ArtistMusicPlayerOperationLeft setMusic={setMusic} />
-      <ArtistMusicPlayerOperationCenter playing={playing} onPlay={onPlay} />
+      <ArtistMusicPlayerOperationCenter
+        playing={playing}
+        onPlay={onPlay}
+        onStop={onStop}
+        nextMusic={nextMusic}
+        backMusic={backMusic}
+      />
     </footer>
   );
 };

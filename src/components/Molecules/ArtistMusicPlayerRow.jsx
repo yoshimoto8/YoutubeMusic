@@ -14,7 +14,7 @@ const ArtistMusicPlayerRow = props => {
     <div
       className="ArtistMusicPlayer-row"
       onClick={(src, name, artist) =>
-        setMusicFunc(data.src, data.name, data.artists)
+        setMusicFunc(data.src, data.name, data.artists, data.id)
       }
     >
       {musicIcon}

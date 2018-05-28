@@ -126,3 +126,20 @@
   outline: 0;
   opacity: 0.5;
 }
+
+.ArtistMusicPlayerOperationCenter {
+  margin: auto;
+  text-align: center;
+}
+
+.ArtistMusicPlayerOperationCenter-GoJumpLeft {
+  margin-bottom: 50px;
+  margin-right: 20px;
+  color: hsla(0, 0%, 100%, 0.6);
+}
+
+.ArtistMusicPlayerOperationCenter-GoJumpRight {
+  margin-bottom: 50px;
+  margin-left: 20px;
+  color: hsla(0, 0%, 100%, 0.6);
+}
