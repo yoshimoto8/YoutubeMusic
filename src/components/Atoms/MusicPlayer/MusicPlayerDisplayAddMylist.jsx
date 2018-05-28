@@ -10,7 +10,6 @@ const MusicPlayerDisplayAddMylist = props => {
     playListName,
     isAddMylist
   } = props;
-
   if (isAddMylist) {
     return (
       <div>

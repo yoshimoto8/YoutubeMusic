@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Tooltip } from "react-tippy";
+import FaEllipsisH from "react-icons/lib/fa/ellipsis-h";
 import MusicPlayerListsTitle from "../Atoms/MusicPlayer/MusicPlayerListsTitle";
 import MusicPlayerListsIcon from "../Atoms/MusicPlayer/MusicPlayerListsIcon";
 
 const MusicPlayerLists = props => {
-  const { musicList, url, setUrl, formatChange } = props;
+  const { musicList, url, setUrl, formatChange, isAddMylist } = props;
   return (
     <div className="musicList">
       {musicList.map((data, index) => {
@@ -33,7 +35,8 @@ MusicPlayerLists.propTypes = {
   musicList: PropTypes.array,
   url: PropTypes.string,
   setUrl: PropTypes.func,
-  formatChange: PropTypes.func
+  formatChange: PropTypes.func,
+  isAddMylist: PropTypes.bool
 };
 
 export default MusicPlayerLists;

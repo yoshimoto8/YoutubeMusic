@@ -89,6 +89,11 @@ ReactDOM.render(
             )}
             {sessionStorage.getItem("user") ? (
               <li>
+                <MdFilter className="sidebar-icon" />使い方(準備中)
+              </li>
+            ) : null}
+            {sessionStorage.getItem("user") ? (
+              <li>
                 <Link to="/Home">
                   <MdFilter className="sidebar-icon" />アルバム
                 </Link>

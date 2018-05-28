@@ -220,3 +220,16 @@ progress {
   outline: 0;
   opacity: 0.5;
 }
+
+.MusicPlayerLists-editBtn {
+  color: white;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin: 10px 20px;
+  opacity: 0.5;
+}
+
+.MusicPlayerLists-editBtn:hover {
+  opacity: 1;
+}

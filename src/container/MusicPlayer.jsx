@@ -252,6 +252,7 @@ class MusicPlayer extends React.Component {
       }
       const { src, artists, name, id } = musicList[0];
       !url ? setFirstMusic(src, name, artists, id) : null;
+
       return (
         <div className="main">
           <div className="musicPlay">
@@ -279,6 +280,7 @@ class MusicPlayer extends React.Component {
               musicList={musicList}
               url={url}
               playing={playing}
+              isAddMylist={isAddMylist}
               setUrl={(src, musicName, artist, id) =>
                 setUrl(src, musicName, artist, id)
               }
