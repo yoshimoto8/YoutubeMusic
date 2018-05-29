@@ -33,7 +33,6 @@ const MusicPlayerOperation = props => {
         url={url}
         artist={artist}
       />
-
       <div className="centerPlayer">
         <MusicPlayerOperationCenterTop
           arrowLoopStyle={arrowLoopStyle}

@@ -127,19 +127,43 @@
   opacity: 0.5;
 }
 
+.footer {
+  display: flex;
+}
+
 .ArtistMusicPlayerOperationCenter {
+  height: 100px;
   margin: auto;
+}
+
+.ArtistMusicPlayerOperationCenter-top {
   text-align: center;
+  margin: 0 auto;
 }
 
 .ArtistMusicPlayerOperationCenter-GoJumpLeft {
-  margin-bottom: 50px;
   margin-right: 20px;
   color: hsla(0, 0%, 100%, 0.6);
 }
 
 .ArtistMusicPlayerOperationCenter-GoJumpRight {
-  margin-bottom: 50px;
   margin-left: 20px;
+  color: hsla(0, 0%, 100%, 0.6);
+}
+
+.ArtistMusicPlayerOperationCenter-timePlayer {
+  display: flex;
+  justify-content: center;
+}
+
+.ArtistMusicPlayerOperationCenter-playedTime {
+  font-size: 12px;
+  padding-right: 20px;
+  color: hsla(0, 0%, 100%, 0.6);
+}
+
+.ArtistMusicPlayerOperationCenter-remainingTime {
+  font-size: 12px;
+  padding-left: 20px;
   color: hsla(0, 0%, 100%, 0.6);
 }

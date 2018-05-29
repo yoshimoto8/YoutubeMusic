@@ -12,13 +12,31 @@ class ArtistMusicPlayer extends React.Component {
     this.state = {
       artist: {},
       setMusic: {},
-      playing: false
+      playing: false,
+      played: 0,
+      duration: 0,
+      volume: 0.5
     };
   }
 
   componentWillMount() {
     this.setState({ artist: this.props.artist });
   }
+
+  onProgress = state => {
+    console.log(state);
+    if (!this.state.seeking) {
+      this.setState(state);
+    }
+  };
+
+  setVolume = e => {
+    this.setState({ volume: parseFloat(e.target.value) });
+  };
+
+  onDuration = duration => {
+    this.setState({ duration });
+  };
 
   onPlay = () => {
     this.setState({ playing: true });
@@ -50,7 +68,8 @@ class ArtistMusicPlayer extends React.Component {
         id: id,
         src: src,
         name: name,
-        artists: artist
+        artists: artist,
+        played: 0
       }
     });
   };
@@ -71,8 +90,18 @@ class ArtistMusicPlayer extends React.Component {
   };
 
   render() {
-    const { setMusicFunc, format, onPlay, onStop, nextMusic, backMusic } = this;
-    const { artist, setMusic, playing } = this.state;
+    const {
+      setMusicFunc,
+      format,
+      onPlay,
+      onStop,
+      nextMusic,
+      backMusic,
+      onProgress,
+      onDuration,
+      setVolume
+    } = this;
+    const { artist, setMusic, playing, played, duration, volume } = this.state;
     // ↓適当
     const musicLength =
       artist.musicList === undefined ? 1 : artist.musicList.length;
@@ -94,6 +123,9 @@ class ArtistMusicPlayer extends React.Component {
                 height="250px"
                 onPlay={() => onPlay()}
                 playing={playing}
+                onProgress={onProgress}
+                onDuration={onDuration}
+                volume={volume}
               />
               <h2>{`${artist.name}のミュージックリスト`}</h2>
               <div>{`${musicLength}曲`}</div>
@@ -132,6 +164,10 @@ class ArtistMusicPlayer extends React.Component {
             onStop={() => onStop()}
             nextMusic={() => nextMusic()}
             backMusic={() => backMusic()}
+            played={played}
+            duration={duration}
+            setVolume={e => setVolume(e)}
+            volume={volume}
           />
         )}
       </div>
