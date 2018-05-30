@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import { Tooltip } from "react-tippy";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import createSagaMiddleware from "redux-saga";
 import { createStore, combineReducers, applyMiddleware } from "redux";
@@ -28,6 +29,7 @@ const store = createStore(
   combineReducers({ rootReducer, routing: routerReducer }),
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
+
 sagaMiddleware.run(rootSaga);
 
 const routes = [
@@ -89,19 +91,9 @@ ReactDOM.render(
             )}
             {sessionStorage.getItem("user") ? (
               <li>
-                <MdFilter className="sidebar-icon" />使い方(準備中)
-              </li>
-            ) : null}
-            {sessionStorage.getItem("user") ? (
-              <li>
                 <Link to="/Home">
                   <MdFilter className="sidebar-icon" />アルバム
                 </Link>
-              </li>
-            ) : null}
-            {sessionStorage.getItem("user") ? (
-              <li>
-                <MdFace className="sidebar-icon" />アーティスト(準備中)
               </li>
             ) : null}
             {sessionStorage.getItem("user") ? (
@@ -126,6 +118,16 @@ ReactDOM.render(
             ) : (
               <div />
             )}
+            {sessionStorage.getItem("user") ? (
+              <li>
+                <MdFilter className="sidebar-icon" />使い方(準備中)
+              </li>
+            ) : null}
+            {sessionStorage.getItem("user") ? (
+              <li>
+                <MdFace className="sidebar-icon" />アーティスト(準備中)
+              </li>
+            ) : null}
           </ul>
           {routes.map((route, index) => (
             <Route exact key={index} path={route.path} component={route.main} />

@@ -24,7 +24,6 @@ class ArtistMusicPlayer extends React.Component {
   }
 
   onProgress = state => {
-    console.log(state);
     if (!this.state.seeking) {
       this.setState(state);
     }

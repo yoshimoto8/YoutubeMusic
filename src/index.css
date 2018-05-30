@@ -18,13 +18,19 @@ body {
 
 .header-profileImageBox {
   display: flex;
+  padding-bottom: 0;
+}
+
+.header-profileName:hover {
+  cursor: pointer;
+  color: white;
 }
 
 .header-profileImage {
   height: 30px;
   width: 30px;
   border-radius: 50%;
-  margin-top: 15px;
+  margin-top: 30px;
 }
 
 .sidebar {
