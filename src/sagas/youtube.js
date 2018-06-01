@@ -1,18 +1,12 @@
 import { put, call } from "redux-saga/effects";
+import setStorageSearch from "./setStorage/searchKeyWord.js";
 import { succeededYoutubeFetch } from "../actions";
-import axios from "axios";
-import { YOUTUBEAPI } from "../ENV";
-
-export default function fetchYoutubeAPI(keyword) {
-  return axios.get(
-    `https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=15&q=${keyword}&key=${YOUTUBEAPI}`
-  );
-}
+import fetchYoutubeAPI from "./youtubeAPI/fetchYoutubeAPI";
 
 export function* fetchYoutubeData(action) {
-  sessionStorage.setItem("search", action.searchKeyWord);
   const responseResult = yield call(fetchYoutubeAPI, action.searchKeyWord);
   if (responseResult) {
+    yield call(setStorageSearch, action.searchKeyWord);
     yield put(succeededYoutubeFetch(responseResult.data.items));
   } else {
     console.log("err");

@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import { Tooltip } from "react-tippy";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import createSagaMiddleware from "redux-saga";
 import { createStore, combineReducers, applyMiddleware } from "redux";
@@ -85,9 +84,7 @@ ReactDOM.render(
                 </div>
               </div>
             ) : (
-              <li>
-                <Link to="/">ログイン</Link>
-              </li>
+              <div />
             )}
             {sessionStorage.getItem("user") ? (
               <li>
