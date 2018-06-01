@@ -10,6 +10,8 @@ class Management extends React.Component {
   constructor() {
     super();
     this.state = {
+      artistType: false,
+      alubmType: false,
       file: "",
       url: "",
       musicName: "",
@@ -40,6 +42,14 @@ class Management extends React.Component {
     this.setState({ [name]: e.target.value });
   };
 
+  changeTypeColor = type => {
+    if (type === "alubmType") {
+      this.setState({ alubmType: true, artistType: false });
+    } else {
+      this.setState({ artistType: true, alubmType: false });
+    }
+  };
+
   onDuration = duration => {
     const newState = update(this.state.duration, { $push: [duration] });
     this.setState({ duration: newState });
@@ -65,22 +75,41 @@ class Management extends React.Component {
   };
 
   pushAlubm = () => {
-    this.uploadImage(this.state.file).then(url => {
-      const alubm = {
-        playListName: this.state.alubmName,
-        alubmImage: url,
-        musicList: this.state.musicList,
-        createdOn: new Date()
-      };
-
-      const db = firebase.firestore();
-      db
-        .collection("publicAlbum")
-        .add(alubm)
-        .then(() => {
-          console.log("成功");
-        });
-    });
+    if (this.state.alubmType) {
+      this.uploadImage(this.state.file).then(url => {
+        const alubm = {
+          playListName: this.state.alubmName,
+          alubmImage: url,
+          musicList: this.state.musicList,
+          createdOn: new Date()
+        };
+        const db = firebase.firestore();
+        db
+          .collection("publicAlbum")
+          .add(alubm)
+          .then(() => {
+            console.log("成功");
+          });
+      });
+    } else if (this.state.artistType) {
+      this.uploadImage(this.state.file).then(url => {
+        const alubm = {
+          name: this.state.alubmName,
+          src: url,
+          musicList: this.state.musicList,
+          createdOn: new Date()
+        };
+        const db = firebase.firestore();
+        db
+          .collection("artists")
+          .add(alubm)
+          .then(() => {
+            console.log("成功");
+          });
+      });
+    } else {
+      console.log("typeを選択してください。");
+    }
   };
 
   onDrop(files) {
@@ -90,9 +119,24 @@ class Management extends React.Component {
 
   render() {
     const { onDuration } = this;
+    const alubmColor = this.state.alubmType ? "white" : "black";
+    const artistColor = this.state.artistType ? "white" : "black";
     return (
       <div>
-        <h2>アルバム登録</h2>
+        <div className="Management-type">
+          <h2
+            className={`Management-${artistColor}`}
+            onClick={type => this.changeTypeColor("artistType")}
+          >
+            アーティスト登録
+          </h2>
+          <h2
+            className={`Management-${alubmColor}`}
+            onClick={type => this.changeTypeColor("alubmType")}
+          >
+            アルバム登録
+          </h2>
+        </div>
         {this.state.playLists.map((data, index) => {
           return (
             <ReactPlayer

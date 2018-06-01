@@ -9,3 +9,19 @@
 .form {
   margin-top: 100px;
 }
+
+.Management-type {
+  display: flex;
+}
+
+.Management-type h2 {
+  padding: 0 20px;
+}
+
+.Management-white {
+  color: white;
+}
+
+.Management-black {
+  color: black;
+}

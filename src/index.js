@@ -115,6 +115,14 @@ ReactDOM.render(
             ) : (
               <div />
             )}
+            {sessionStorage.getItem("user") ===
+            "RweyHs81VFRqmmzRUmS2sfV3dLi2" ? (
+              <li>
+                <Link to="/ManagementSecond">マネジメント2</Link>
+              </li>
+            ) : (
+              <div />
+            )}
             {sessionStorage.getItem("user") ? (
               <li>
                 <MdFilter className="sidebar-icon" />使い方(準備中)
