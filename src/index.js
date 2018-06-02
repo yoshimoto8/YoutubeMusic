@@ -88,6 +88,13 @@ ReactDOM.render(
             )}
             {sessionStorage.getItem("user") ? (
               <li>
+                <Link to="/Artist">
+                  <MdFace className="sidebar-icon" />アーティスト(β)
+                </Link>
+              </li>
+            ) : null}
+            {sessionStorage.getItem("user") ? (
+              <li>
                 <Link to="/Home">
                   <MdFilter className="sidebar-icon" />アルバム
                 </Link>
@@ -115,22 +122,9 @@ ReactDOM.render(
             ) : (
               <div />
             )}
-            {sessionStorage.getItem("user") ===
-            "RweyHs81VFRqmmzRUmS2sfV3dLi2" ? (
-              <li>
-                <Link to="/ManagementSecond">マネジメント2</Link>
-              </li>
-            ) : (
-              <div />
-            )}
             {sessionStorage.getItem("user") ? (
               <li>
                 <MdFilter className="sidebar-icon" />使い方(準備中)
-              </li>
-            ) : null}
-            {sessionStorage.getItem("user") ? (
-              <li>
-                <MdFace className="sidebar-icon" />アーティスト(準備中)
               </li>
             ) : null}
           </ul>

@@ -21,6 +21,7 @@ class Management extends React.Component {
       playLists: [],
       alubmName: "",
       alubmImage: "",
+      musicLists: [],
       musicList: []
     };
   }
@@ -112,13 +113,38 @@ class Management extends React.Component {
     }
   };
 
+  fetchArtist = () => {
+    const db = firebase.firestore();
+    db.collection("publicAlbum").onSnapshot(Snapshot => {
+      const musicLists = [];
+      Snapshot.forEach(doc => {
+        musicLists.push({ ...doc.data(), key: doc.id });
+      });
+      this.setState({ musicLists });
+    });
+  };
+
+  filterList = e => {
+    const updateList = this.state.musicLists.filter(item => {
+      return (
+        item.playListName.toLowerCase().search(e.target.value.toLowerCase()) !==
+        -1
+      );
+    });
+    this.setState({ musicLists: updateList });
+  };
+
+  setMusicList = musicList => {
+    this.setState({ musicList });
+  };
+
   onDrop(files) {
     const file = files[0];
     this.setState({ file });
   }
 
   render() {
-    const { onDuration } = this;
+    const { onDuration, fetchArtist, setMusicList } = this;
     const alubmColor = this.state.alubmType ? "white" : "black";
     const artistColor = this.state.artistType ? "white" : "black";
     return (
@@ -136,6 +162,21 @@ class Management extends React.Component {
           >
             アルバム登録
           </h2>
+        </div>
+        <div>
+          <h2 onClick={fetchArtist}>既存のへ追加</h2>
+          <form action="">
+            <input type="text" onChange={this.filterList} />
+          </form>
+          <div>
+            {this.state.musicLists.map((data, index) => {
+              return (
+                <div key={index} onClick={() => setMusicList(data.musicList)}>
+                  {data.playListName}
+                </div>
+              );
+            })}
+          </div>
         </div>
         {this.state.playLists.map((data, index) => {
           return (
@@ -184,6 +225,7 @@ class Management extends React.Component {
           />
         </form>
         {this.state.musicList.map((data, index) => {
+          console.log(data);
           return (
             <div key={index} className="management-displayAddList">
               <div>id: {data.id}</div>

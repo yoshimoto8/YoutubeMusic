@@ -224,6 +224,7 @@ class MyAlbum extends React.Component {
       favariteIndexStart,
       favariteIndexEnd
     );
+
     return (
       <div className="main">
         <MyAlubmList
