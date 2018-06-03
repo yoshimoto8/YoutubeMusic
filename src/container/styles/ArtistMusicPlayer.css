@@ -1,11 +1,11 @@
 .ArtistMusicPlayer {
   display: flex;
+  margin-top: 30px;
 }
 
 .ArtistMusicPlayer-artistInfo {
   width: 30%;
   text-align: center;
-  margin-top: 50px;
 }
 
 .ArtistMusicPlayer-artistInfo img {
@@ -22,7 +22,7 @@
   cursor: pointer;
   display: flex;
   width: 70%;
-  margin-top: 50px;
+  padding-bottom: 20px;
 }
 
 .ArtistMusicPlayer-name {
@@ -46,7 +46,7 @@
 .ArtistMusicPlayer-musicDisplay {
   width: 25%;
   text-align: center;
-  margin: 50px 30px;
+  margin: 0 30px;
 }
 
 .ArtistMusicPlayer-musicDisplay div {

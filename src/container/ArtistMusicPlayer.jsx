@@ -56,7 +56,7 @@ class ArtistMusicPlayer extends React.Component {
     if (this.state.setMusic.id !== this.state.artist.musicList.length) {
       const id = this.state.setMusic.id + 1;
       const result = this.state.artist.musicList.find(obj => obj.id === id);
-      this.setState({ setMusic: result });
+      this.setState({ setMusic: result, played: 0 });
     }
   };
 
@@ -111,6 +111,10 @@ class ArtistMusicPlayer extends React.Component {
     // ↓適当
     const musicLength =
       artist.musicList === undefined ? 1 : artist.musicList.length;
+
+    if (played === 1) {
+      nextMusic();
+    }
     return (
       <div className="main">
         <div className="ArtistMusicPlayer">
