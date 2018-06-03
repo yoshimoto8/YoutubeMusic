@@ -13,6 +13,7 @@ class Management extends React.Component {
       artistType: false,
       alubmType: false,
       update: false,
+      updateFirebaseCollection: "",
       alubm: {},
       file: "",
       url: "",
@@ -47,9 +48,17 @@ class Management extends React.Component {
 
   changeTypeColor = type => {
     if (type === "alubmType") {
-      this.setState({ alubmType: true, artistType: false });
+      this.setState({
+        alubmType: true,
+        artistType: false,
+        updateFirebaseCollection: "artists"
+      });
     } else {
-      this.setState({ artistType: true, alubmType: false });
+      this.setState({
+        artistType: true,
+        alubmType: false,
+        updateFirebaseCollection: "artists"
+      });
     }
   };
 
@@ -115,11 +124,11 @@ class Management extends React.Component {
     }
   };
 
-  updateAlubm = alubm => {
+  update = alubm => {
     const { key } = alubm;
     const db = firebase.firestore();
     db
-      .collection("publicAlbum")
+      .collection(`${this.state.updateFirebaseCollection}`)
       .doc(key)
       .update({
         musicList: this.state.musicList
@@ -138,12 +147,22 @@ class Management extends React.Component {
     });
   };
 
+  fetchArtist = () => {
+    const db = firebase.firestore();
+    db.collection("artists").onSnapshot(Snapshot => {
+      const musicLists = [];
+      Snapshot.forEach(doc => {
+        musicLists.push({ ...doc.data(), key: doc.id });
+      });
+      this.setState({ musicLists });
+    });
+  };
+
   filterList = e => {
     const updateList = this.state.musicLists.filter(item => {
-      return (
-        item.playListName.toLowerCase().search(e.target.value.toLowerCase()) !==
-        -1
-      );
+      const name =
+        item.playListName === undefined ? item.name : item.playListName;
+      return name.toLowerCase().search(e.target.value.toLowerCase()) !== -1;
     });
     this.setState({ musicLists: updateList });
   };
@@ -159,7 +178,8 @@ class Management extends React.Component {
   }
 
   render() {
-    const { onDuration, fetchAlubm, setMusicList } = this;
+    const { onDuration, fetchAlubm, fetchArtist, setMusicList } = this;
+    const { artistType, alubmType } = this.state;
     const alubmColor = this.state.alubmType ? "white" : "black";
     const artistColor = this.state.artistType ? "white" : "black";
     return (
@@ -179,13 +199,24 @@ class Management extends React.Component {
           </h2>
         </div>
         <div>
-          <h2 onClick={fetchAlubm}>既存のへ追加</h2>
+          {artistType ? (
+            <h2 onClick={fetchArtist}>既存のアーティストへ追加</h2>
+          ) : (
+            <div />
+          )}
+          {alubmType ? (
+            <h2 onClick={fetchAlubm}>既存のアルバムへ追加</h2>
+          ) : (
+            <div />
+          )}
           <input type="text" onChange={this.filterList} />
           <div>
             {this.state.musicLists.map((data, index) => {
+              const name =
+                data.playListName === undefined ? data.name : data.playListName;
               return (
                 <div key={index} onClick={() => setMusicList(data)}>
-                  {data.playListName}
+                  {name}
                 </div>
               );
             })}
@@ -249,9 +280,7 @@ class Management extends React.Component {
           );
         })}
         {update ? (
-          <button onClick={() => this.updateAlubm(this.state.alubm)}>
-            完了
-          </button>
+          <button onClick={() => this.update(this.state.alubm)}>完了</button>
         ) : (
           <button onClick={() => this.pushAlubm()}>完了</button>
         )}
