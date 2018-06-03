@@ -20,7 +20,14 @@ class ArtistMusicPlayer extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({ artist: this.props.artist });
+    if (!Object.keys(this.props.artist).length) {
+      const artist = $.parseJSON(sessionStorage.getItem("aritst"));
+      this.setState({ artist });
+    } else {
+      const artist = this.props.artist;
+      sessionStorage.setItem("aritst", JSON.stringify(artist));
+      this.setState({ artist });
+    }
   }
 
   onProgress = state => {

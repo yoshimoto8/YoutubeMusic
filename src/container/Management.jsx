@@ -124,7 +124,7 @@ class Management extends React.Component {
     }
   };
 
-  update = alubm => {
+  updateFunc = alubm => {
     const { key } = alubm;
     const db = firebase.firestore();
     db
@@ -133,7 +133,9 @@ class Management extends React.Component {
       .update({
         musicList: this.state.musicList
       })
-      .then(() => {});
+      .then(() => {
+        console.log("成功!!");
+      });
   };
 
   fetchAlubm = () => {
@@ -179,7 +181,7 @@ class Management extends React.Component {
 
   render() {
     const { onDuration, fetchAlubm, fetchArtist, setMusicList } = this;
-    const { artistType, alubmType } = this.state;
+    const { artistType, alubmType, update } = this.state;
     const alubmColor = this.state.alubmType ? "white" : "black";
     const artistColor = this.state.artistType ? "white" : "black";
     return (
@@ -224,13 +226,19 @@ class Management extends React.Component {
         </div>
         {this.state.playLists.map((data, index) => {
           return (
-            <ReactPlayer
-              key={index}
-              width="200px"
-              height="200px"
-              onDuration={onDuration}
-              url={data.src}
-            />
+            <div className="Management-verification">
+              <ReactPlayer
+                key={index}
+                width="200px"
+                height="200px"
+                onDuration={onDuration}
+                url={data.src}
+              />
+              <div>
+                <h2>{data.name}</h2>
+                <h2>{data.artists}</h2>
+              </div>
+            </div>
           );
         })}
         <form className="form" action="" onSubmit={e => this.onSubmit(e)}>
@@ -280,7 +288,9 @@ class Management extends React.Component {
           );
         })}
         {update ? (
-          <button onClick={() => this.update(this.state.alubm)}>完了</button>
+          <button onClick={() => this.updateFunc(this.state.alubm)}>
+            完了
+          </button>
         ) : (
           <button onClick={() => this.pushAlubm()}>完了</button>
         )}

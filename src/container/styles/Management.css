@@ -4,6 +4,7 @@
 
 .management-displayAddList div {
   color: white;
+  padding: 15px;
 }
 
 .form {
@@ -24,4 +25,8 @@
 
 .Management-black {
   color: black;
+}
+
+.Management-verification {
+  display: flex;
 }

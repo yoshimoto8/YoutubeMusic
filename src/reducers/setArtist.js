@@ -1,6 +1,6 @@
 import { SET_ARTIST } from "../actions";
 
-const initialState = { defaultMusic: [] };
+const initialState = {};
 export const setArtist = (state = initialState, action) => {
   switch (action.type) {
     case SET_ARTIST:
