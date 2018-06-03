@@ -12,6 +12,8 @@ class Management extends React.Component {
     this.state = {
       artistType: false,
       alubmType: false,
+      update: false,
+      alubm: {},
       file: "",
       url: "",
       musicName: "",
@@ -113,7 +115,19 @@ class Management extends React.Component {
     }
   };
 
-  fetchArtist = () => {
+  updateAlubm = alubm => {
+    const { key } = alubm;
+    const db = firebase.firestore();
+    db
+      .collection("publicAlbum")
+      .doc(key)
+      .update({
+        musicList: this.state.musicList
+      })
+      .then(() => {});
+  };
+
+  fetchAlubm = () => {
     const db = firebase.firestore();
     db.collection("publicAlbum").onSnapshot(Snapshot => {
       const musicLists = [];
@@ -134,8 +148,9 @@ class Management extends React.Component {
     this.setState({ musicLists: updateList });
   };
 
-  setMusicList = musicList => {
-    this.setState({ musicList });
+  setMusicList = data => {
+    const musicList = data.musicList;
+    this.setState({ musicList: musicList, update: true, alubm: data });
   };
 
   onDrop(files) {
@@ -144,7 +159,7 @@ class Management extends React.Component {
   }
 
   render() {
-    const { onDuration, fetchArtist, setMusicList } = this;
+    const { onDuration, fetchAlubm, setMusicList } = this;
     const alubmColor = this.state.alubmType ? "white" : "black";
     const artistColor = this.state.artistType ? "white" : "black";
     return (
@@ -164,14 +179,12 @@ class Management extends React.Component {
           </h2>
         </div>
         <div>
-          <h2 onClick={fetchArtist}>既存のへ追加</h2>
-          <form action="">
-            <input type="text" onChange={this.filterList} />
-          </form>
+          <h2 onClick={fetchAlubm}>既存のへ追加</h2>
+          <input type="text" onChange={this.filterList} />
           <div>
             {this.state.musicLists.map((data, index) => {
               return (
-                <div key={index} onClick={() => setMusicList(data.musicList)}>
+                <div key={index} onClick={() => setMusicList(data)}>
                   {data.playListName}
                 </div>
               );
@@ -225,7 +238,6 @@ class Management extends React.Component {
           />
         </form>
         {this.state.musicList.map((data, index) => {
-          console.log(data);
           return (
             <div key={index} className="management-displayAddList">
               <div>id: {data.id}</div>
@@ -236,7 +248,13 @@ class Management extends React.Component {
             </div>
           );
         })}
-        <button onClick={() => this.pushAlubm()}>完了</button>
+        {update ? (
+          <button onClick={() => this.updateAlubm(this.state.alubm)}>
+            完了
+          </button>
+        ) : (
+          <button onClick={() => this.pushAlubm()}>完了</button>
+        )}
       </div>
     );
   }
