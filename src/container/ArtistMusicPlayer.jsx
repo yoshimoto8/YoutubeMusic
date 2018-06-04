@@ -155,12 +155,21 @@ class ArtistMusicPlayer extends React.Component {
               />
               <h2>{`${artist.name}のミュージックリスト`}</h2>
               <div>{`${musicLength}曲`}</div>
-              <button
-                className="ArtistMusicPlayer-startBtn"
-                onClick={() => onPlay()}
-              >
-                {playing ? "曲を停止させる" : "曲を再生する"}
-              </button>
+              {playing ? (
+                <button
+                  className="ArtistMusicPlayer-startBtn"
+                  onClick={() => onStop()}
+                >
+                  曲を停止させる
+                </button>
+              ) : (
+                <button
+                  className="ArtistMusicPlayer-startBtn"
+                  onClick={() => onPlay()}
+                >
+                  曲を再生する
+                </button>
+              )}
             </div>
           )}
           <div className="ArtistMusicPlayer-MusicList">
