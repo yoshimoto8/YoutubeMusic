@@ -3,7 +3,7 @@ import ReactPlayer from "react-player";
 import FaHeartO from "react-icons/lib/fa/heart-o";
 import FaHeart from "react-icons/lib/fa/heart";
 
-const MyAlubmResult = props => {
+const SearchContentResult = props => {
   const {
     musicList,
     generateYoutubeUrl,
@@ -31,16 +31,16 @@ const MyAlubmResult = props => {
               onDuration={onDuration}
             />
             <div className="MyAlubmResult-wrraper">
-              <div
-                className="Search-favorite"
-                onClick={() =>
-                  addFavoriteMusic(snippet.title, url, duration[index])
-                }
-              >
+              <div className="Search-favorite">
                 {isFavorite ? (
                   <FaHeart color="#1db954" />
                 ) : (
-                  <FaHeartO color="hsla(0, 0%, 100%, 0.6)" />
+                  <FaHeartO
+                    color="hsla(0, 0%, 100%, 0.6)"
+                    onClick={() =>
+                      addFavoriteMusic(snippet.title, url, duration[index])
+                    }
+                  />
                 )}
               </div>
               <div className="MyAlubmResult-resultTitle">{snippet.title}</div>
@@ -52,4 +52,4 @@ const MyAlubmResult = props => {
   );
 };
 
-export default MyAlubmResult;
+export default SearchContentResult;

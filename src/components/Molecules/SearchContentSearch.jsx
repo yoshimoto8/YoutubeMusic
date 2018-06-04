@@ -1,6 +1,6 @@
 import React from "react";
 
-const MyAlubmSearch = props => {
+const SearchContentSearch = props => {
   const { handleFetchYoutube, searchKeyWord, changeSearchKeyWord } = props;
   return (
     <form className="myAlubm-searchForm" onSubmit={e => handleFetchYoutube(e)}>
@@ -14,4 +14,4 @@ const MyAlubmSearch = props => {
     </form>
   );
 };
-export default MyAlubmSearch;
+export default SearchContentSearch;

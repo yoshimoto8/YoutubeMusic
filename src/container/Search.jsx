@@ -3,7 +3,7 @@ import update from "immutability-helper";
 import firebase from "firebase";
 import { connect } from "react-redux";
 import { fetchYoutube } from "../actions";
-import MyAlubmSearchContent from "../components/Molecules/MyAlubmSearchContent";
+import SearchContent from "../components/Molecules/SearchContent";
 import "./styles/Search.css";
 
 class Search extends React.Component {
@@ -27,6 +27,7 @@ class Search extends React.Component {
   }
 
   addFavoriteMusic = (musicName, url, duration) => {
+    console.log(musicName, url, duration);
     const db = firebase.firestore();
     db
       .collection(`users/${sessionStorage.getItem("user")}/userFavoriteMusic`)
@@ -85,7 +86,7 @@ class Search extends React.Component {
     const { musicList } = this.props;
     return (
       <div className="main">
-        <MyAlubmSearchContent
+        <SearchContent
           handleFetchYoutube={e => handleFetchYoutube(e)}
           searchKeyWord={searchKeyWord}
           changeSearchKeyWord={e => changeSearchKeyWord(e)}

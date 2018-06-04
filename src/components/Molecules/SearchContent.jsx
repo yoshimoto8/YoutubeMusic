@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import MyAlubmSearch from "./MyAlubmSearch";
-import MyAlubmResult from "./MyAlubmResult";
+import SearchContentSearch from "./SearchContentSearch";
+import SearchContentResult from "./SearchContentResult";
 
-const MyAlubmSearchContent = props => {
+const SearchContent = props => {
   const {
     handleFetchYoutube,
     searchKeyWord,
@@ -18,12 +18,12 @@ const MyAlubmSearchContent = props => {
 
   return (
     <div>
-      <MyAlubmSearch
+      <SearchContentSearch
         handleFetchYoutube={handleFetchYoutube}
         searchKeyWord={searchKeyWord}
         changeSearchKeyWord={changeSearchKeyWord}
       />
-      <MyAlubmResult
+      <SearchContentResult
         musicList={musicList}
         generateYoutubeUrl={generateYoutubeUrl}
         onDuration={onDuration}
@@ -35,7 +35,7 @@ const MyAlubmSearchContent = props => {
   );
 };
 
-MyAlubmSearchContent.propTypes = {
+SearchContent.propTypes = {
   handleFetchYoutube: PropTypes.func,
   searchKeyWord: PropTypes.string,
   changeSearchKeyWord: PropTypes.func,
@@ -45,4 +45,4 @@ MyAlubmSearchContent.propTypes = {
   duration: PropTypes.any.isRequired
 };
 
-export default MyAlubmSearchContent;
+export default SearchContent;
