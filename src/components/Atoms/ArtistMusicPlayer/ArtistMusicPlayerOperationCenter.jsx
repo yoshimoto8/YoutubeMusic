@@ -1,4 +1,5 @@
 import React from "react";
+import TiArrowLoop from "react-icons/lib/ti/arrow-loop";
 import GoJumpRight from "react-icons/lib/go/jump-right";
 import GoJumpLeft from "react-icons/lib/go/jump-left";
 import Duration from "../MusicPlayer/Duration";
@@ -11,10 +12,13 @@ const ArtistMusicPlayerOperationCenter = props => {
     nextMusic,
     backMusic,
     duration,
-    played
+    played,
+    toggleLoop,
+    loop
   } = props;
   const buttonType = playing ? "stop" : "start";
   const play = playing ? onStop : onPlay;
+  const loopColor = loop ? "#1db954" : "hsla(0, 0%, 100%, 0.6)";
 
   return (
     <div className="ArtistMusicPlayerOperationCenter">
@@ -30,6 +34,11 @@ const ArtistMusicPlayerOperationCenter = props => {
         <GoJumpRight
           className="ArtistMusicPlayerOperationCenter-GoJumpRight"
           onClick={() => nextMusic()}
+        />
+        <TiArrowLoop
+          className="ArtistMusicPlayerOperationCenter-loop"
+          onClick={() => toggleLoop()}
+          color={loopColor}
         />
       </div>
       <div className="ArtistMusicPlayerOperationCenter-timePlayer">

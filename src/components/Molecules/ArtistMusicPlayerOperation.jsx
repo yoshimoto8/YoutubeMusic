@@ -14,7 +14,9 @@ const ArtistMusicPlayerOperation = props => {
     played,
     duration,
     setVolume,
-    volume
+    volume,
+    toggleLoop,
+    loop
   } = props;
   return (
     <footer className="footer">
@@ -27,6 +29,8 @@ const ArtistMusicPlayerOperation = props => {
         backMusic={backMusic}
         duration={duration}
         played={played}
+        toggleLoop={toggleLoop}
+        loop={loop}
       />
       <div className="rightPlayer">
         <span>

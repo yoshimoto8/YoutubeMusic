@@ -15,7 +15,8 @@ class ArtistMusicPlayer extends React.Component {
       playing: false,
       played: 0,
       duration: 0,
-      volume: 0.5
+      volume: 0.5,
+      loop: false
     };
   }
 
@@ -50,6 +51,10 @@ class ArtistMusicPlayer extends React.Component {
 
   onStop = () => {
     this.setState({ playing: false });
+  };
+
+  toggleLoop = () => {
+    this.setState({ loop: !this.state.loop });
   };
 
   nextMusic = () => {
@@ -105,9 +110,18 @@ class ArtistMusicPlayer extends React.Component {
       backMusic,
       onProgress,
       onDuration,
-      setVolume
+      setVolume,
+      toggleLoop
     } = this;
-    const { artist, setMusic, playing, played, duration, volume } = this.state;
+    const {
+      artist,
+      setMusic,
+      playing,
+      played,
+      duration,
+      volume,
+      loop
+    } = this.state;
     // ↓適当
     const musicLength =
       artist.musicList === undefined ? 1 : artist.musicList.length;
@@ -137,6 +151,7 @@ class ArtistMusicPlayer extends React.Component {
                 onProgress={onProgress}
                 onDuration={onDuration}
                 volume={volume}
+                loop={loop}
               />
               <h2>{`${artist.name}のミュージックリスト`}</h2>
               <div>{`${musicLength}曲`}</div>
@@ -180,6 +195,8 @@ class ArtistMusicPlayer extends React.Component {
             duration={duration}
             setVolume={e => setVolume(e)}
             volume={volume}
+            toggleLoop={toggleLoop}
+            loop={loop}
           />
         )}
       </div>
