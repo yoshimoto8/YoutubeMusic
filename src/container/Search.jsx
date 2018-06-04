@@ -27,7 +27,6 @@ class Search extends React.Component {
   }
 
   addFavoriteMusic = (musicName, url, duration) => {
-    console.log(musicName, url, duration);
     const db = firebase.firestore();
     db
       .collection(`users/${sessionStorage.getItem("user")}/userFavoriteMusic`)

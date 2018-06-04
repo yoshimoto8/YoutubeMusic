@@ -148,7 +148,7 @@ class ArtistMusicPlayer extends React.Component {
               </button>
             </div>
           )}
-          <div>
+          <div className="ArtistMusicPlayer-MusicList">
             {artist.musicList.map((data, index) => {
               const isSet = data.src === setMusic.src;
               return (

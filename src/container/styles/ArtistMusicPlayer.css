@@ -34,13 +34,13 @@
   color: hsla(0, 0%, 100%, 0.6);
 }
 
-.ArtistMusicPlayer-nameArtistBox {
-  width: 700px;
-  margin-left: 10px;
-}
-
 .ArtistMusicPlayer-time {
   color: hsla(0, 0%, 100%, 0.6);
+}
+
+.ArtistMusicPlayer-nameArtistBox {
+  width: 700px;
+  margin-left: 20px;
 }
 
 .ArtistMusicPlayer-musicDisplay {
@@ -107,11 +107,12 @@
 
 .musicBtnIcon {
   border: 0;
+  margin-top: 15px;
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
   background-size: 30px;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
@@ -137,17 +138,20 @@
 }
 
 .ArtistMusicPlayerOperationCenter-top {
+  height: 60px;
   text-align: center;
   margin: 0 auto;
 }
 
 .ArtistMusicPlayerOperationCenter-GoJumpLeft {
   margin-right: 20px;
+  padding-bottom: 15px;
   color: hsla(0, 0%, 100%, 0.6);
 }
 
 .ArtistMusicPlayerOperationCenter-GoJumpRight {
   margin-left: 20px;
+  padding-bottom: 15px;
   color: hsla(0, 0%, 100%, 0.6);
 }
 
@@ -166,4 +170,9 @@
   font-size: 12px;
   padding-left: 20px;
   color: hsla(0, 0%, 100%, 0.6);
+}
+
+.ArtistMusicPlayer-MusicList {
+  width: 80%;
+  margin-left: 50px;
 }
