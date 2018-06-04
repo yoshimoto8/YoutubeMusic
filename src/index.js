@@ -114,19 +114,19 @@ ReactDOM.render(
                 </Link>
               </li>
             ) : null}
+            {sessionStorage.getItem("user") ? (
+              <li>
+                <MdFilter className="sidebar-icon" />使い方(準備中)
+              </li>
+            ) : null}
             {sessionStorage.getItem("user") ===
-            "RweyHs81VFRqmmzRUmS2sfV3dLi2" ? (
+            "NA3Y0JNDT8T0Sr2iMDYVpvkSFD83" ? (
               <li>
                 <Link to="/Management">マネジメント</Link>
               </li>
             ) : (
               <div />
             )}
-            {sessionStorage.getItem("user") ? (
-              <li>
-                <MdFilter className="sidebar-icon" />使い方(準備中)
-              </li>
-            ) : null}
           </ul>
           {routes.map((route, index) => (
             <Route exact key={index} path={route.path} component={route.main} />

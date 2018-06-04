@@ -32,10 +32,25 @@ class MyAlbum extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount() {}
+
+  componentWillMount() {
     this.fetchMyMusicList();
     this.fetchMyFavoriteMusic();
   }
+
+  createDefaultMusic = () => {
+    const db = firebase.firestore();
+    db
+      .collection(`users/${sessionStorage.getItem("user")}/userFavoriteMusic`)
+      .add({
+        musicName: "default music",
+        url: "https://www.youtube.com/watch?v=fRNkQH4DVg8",
+        artist: "The Chainsmokers",
+        duration: 342
+      })
+      .then(console.log("成功"));
+  };
 
   setMusicFunc = (url, musicName, artist) => {
     this.setState({
@@ -99,6 +114,10 @@ class MyAlbum extends React.Component {
         Snapshot.forEach(doc => {
           myFavoriteMusic.push({ ...doc.data(), key: doc.id });
         });
+        if (myFavoriteMusic.length === 0) {
+          this.createDefaultMusic();
+          this.fetchMyFavoriteMusic();
+        }
         this.setState({
           myFavoriteMusic: myFavoriteMusic,
           setMusic: myFavoriteMusic[this.state.setIdMusic]

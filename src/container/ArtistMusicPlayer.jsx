@@ -115,6 +115,7 @@ class ArtistMusicPlayer extends React.Component {
     if (played === 1) {
       nextMusic();
     }
+
     return (
       <div className="main">
         <div className="ArtistMusicPlayer">
@@ -164,6 +165,7 @@ class ArtistMusicPlayer extends React.Component {
             })}
           </div>
         </div>
+
         {!Object.keys(setMusic).length ? (
           <div />
         ) : (
