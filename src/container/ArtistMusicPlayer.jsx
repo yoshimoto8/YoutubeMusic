@@ -130,6 +130,8 @@ class ArtistMusicPlayer extends React.Component {
       nextMusic();
     }
 
+    const musicList = artist.musicList;
+
     return (
       <div className="main">
         <div className="ArtistMusicPlayer">
@@ -173,7 +175,7 @@ class ArtistMusicPlayer extends React.Component {
             </div>
           )}
           <div className="ArtistMusicPlayer-MusicList">
-            {artist.musicList.map((data, index) => {
+            {musicList.map((data, index) => {
               const isSet = data.src === setMusic.src;
               return (
                 <ArtistMusicPlayerRow
