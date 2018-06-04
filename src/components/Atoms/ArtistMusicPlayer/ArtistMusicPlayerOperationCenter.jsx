@@ -28,7 +28,7 @@ const ArtistMusicPlayerOperationCenter = props => {
           onClick={() => backMusic()}
         />
         <button
-          className={`${buttonType} musicBtnIcon`}
+          className={`${buttonType} ArtistMusicPlayerOperationCenter-PlayBtn`}
           onClick={() => play()}
         />
         <GoJumpRight
