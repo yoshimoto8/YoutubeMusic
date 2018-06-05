@@ -4,6 +4,7 @@ import "./styles/Authentication.css";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { setPlayList } from "../actions";
+import TabHelmet from "../components/Atoms/TabHelmet";
 import AuthenticationTwitterButton from "../components/Atoms/Authentication/AuthenticationTwitterButton";
 import { auth, provider } from "../firebase/client";
 import AuthenticationDisplayMusic from "../components/Molecules/AuthenticationDisplayMusic";
@@ -65,11 +66,11 @@ class Authentication extends React.Component {
   };
 
   render() {
-    console.log("yobaretaty");
     const { publicMusicList } = this.state;
     const displayMusic = publicMusicList.slice(1, 7);
     return (
       <div className="main">
+        <TabHelmet title="ログイン画面" />
         <div className="authentication">
           <AuthenticationDisplayMusic displayMusic={displayMusic} />
           <h3 className="authentication-infoApp">

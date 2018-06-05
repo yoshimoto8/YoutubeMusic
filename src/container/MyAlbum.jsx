@@ -11,6 +11,7 @@ import MyAlbumFavorite from "../components/Molecules/MyAlbumFavorite";
 import MyAlbumFavoriteMusic from "../components/Molecules/MyAlbumFavoriteMusic";
 import FaAngleLeft from "react-icons/lib/fa/angle-left";
 import FaAngleRight from "react-icons/lib/fa/angle-right";
+import TabHelmet from "../components/Atoms/TabHelmet";
 import "react-tippy/dist/tippy.css";
 import "./styles/MyAlbum.css";
 class MyAlbum extends React.Component {
@@ -246,6 +247,7 @@ class MyAlbum extends React.Component {
 
     return (
       <div className="main">
+        <TabHelmet title="マイミュージック" />
         <MyAlubmList
           indexStart={indexStart}
           indexEnd={indexEnd}

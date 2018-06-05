@@ -2,6 +2,7 @@ import React from "react";
 import firebase from "firebase";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import TabHelmet from "../components/Atoms/TabHelmet";
 import { setArtist } from "../actions";
 import "./styles/Artist.css";
 
@@ -32,6 +33,7 @@ class Artist extends React.Component {
     const { artistLists } = this.state;
     return (
       <div className="main">
+        <TabHelmet title="アーティスト" />
         <h2 className="Artist-header">アーティスト</h2>
         <div className="Artist-display">
           {artistLists.map((data, index) => {

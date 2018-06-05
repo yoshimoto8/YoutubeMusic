@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import MusicPlayerLists from "../components/Molecules/MusicPlayerLists";
 import MusicPlayerDisplay from "../components/Molecules/MusicPlayerDisplay";
 import MusicPlayerOperation from "../components/Molecules/MusicPlayerOperation";
+import TabHelmet from "../components/Atoms/TabHelmet";
 import "./styles/MusicPlayer.css";
 
 class MusicPlayer extends React.Component {
@@ -252,9 +253,9 @@ class MusicPlayer extends React.Component {
       }
       const { src, artists, name, id } = musicList[0];
       !url ? setFirstMusic(src, name, artists, id) : null;
-
       return (
         <div className="main">
+          <TabHelmet title={`${name}プレイリスト`} />
           <div className="musicPlay">
             <MusicPlayerDisplay
               myMusicLists={myMusicLists}
@@ -287,7 +288,6 @@ class MusicPlayer extends React.Component {
               formatChange={seconds => this.format(seconds)}
             />
           </div>
-
           {url ? (
             <MusicPlayerOperation
               playingId={playingId}

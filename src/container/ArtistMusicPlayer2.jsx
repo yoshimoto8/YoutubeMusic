@@ -16,7 +16,6 @@ class ArtistMusicPlayer extends React.Component {
 
   render() {
     const { artist } = this.state;
-    console.log(artist);
     return (
       <div className="main">
         <div className="test">

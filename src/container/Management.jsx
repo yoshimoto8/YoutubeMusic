@@ -5,6 +5,7 @@ import ReactPlayer from "react-player";
 import { connect } from "react-redux";
 import update from "immutability-helper";
 import "./styles/Management.css";
+import TabHelmet from "../components/Atoms/TabHelmet";
 
 class Management extends React.Component {
   constructor() {
@@ -186,6 +187,7 @@ class Management extends React.Component {
     const artistColor = this.state.artistType ? "white" : "black";
     return (
       <div>
+        <TabHelmet title="マネジメント画面" />
         <div className="Management-type">
           <h2
             className={`Management-${artistColor}`}

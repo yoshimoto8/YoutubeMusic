@@ -4,6 +4,7 @@ import firebase from "firebase";
 import { connect } from "react-redux";
 import { fetchYoutube } from "../actions";
 import SearchContent from "../components/Molecules/SearchContent";
+import TabHelmet from "../components/Atoms/TabHelmet";
 import "./styles/Search.css";
 
 class Search extends React.Component {
@@ -85,6 +86,7 @@ class Search extends React.Component {
     const { musicList } = this.props;
     return (
       <div className="main">
+        <TabHelmet title="検索" />
         <SearchContent
           handleFetchYoutube={e => handleFetchYoutube(e)}
           searchKeyWord={searchKeyWord}

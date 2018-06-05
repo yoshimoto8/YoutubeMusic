@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import ReactPlayer from "react-player";
 import $ from "jquery";
 import "./styles/ArtistMusicPlayer.css";
+import TabHelmet from "../components/Atoms/TabHelmet";
 import ArtistMusicPlayerOperation from "../components/Molecules/ArtistMusicPlayerOperation";
 import ArtistMusicPlayerRow from "../components/Molecules/ArtistMusicPlayerRow";
 
@@ -130,10 +131,10 @@ class ArtistMusicPlayer extends React.Component {
       nextMusic();
     }
 
-    const musicList = artist.musicList;
-
+    const { musicList, name } = artist;
     return (
       <div className="main">
+        <TabHelmet title={`${name}のプレイリスト`} />
         <div className="ArtistMusicPlayer">
           {!Object.keys(setMusic).length ? (
             <div className="ArtistMusicPlayer-artistInfo">
