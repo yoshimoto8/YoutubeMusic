@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { setPlayList } from "../actions";
 import TabHelmet from "../components/Atoms/TabHelmet";
 import AuthenticationTwitterButton from "../components/Atoms/Authentication/AuthenticationTwitterButton";
+import AuthenticationTryAppButton from "../components/Atoms/Authentication/AuthenticationTryAppButton";
 import { auth, provider } from "../firebase/client";
 import AuthenticationDisplayMusic from "../components/Molecules/AuthenticationDisplayMusic";
 
@@ -76,7 +77,15 @@ class Authentication extends React.Component {
           <h3 className="authentication-infoApp">
             ３秒でログインしてお気に入りにMusciを聞こう!!
           </h3>
-          <AuthenticationTwitterButton login={() => this.login()} />
+          <div>
+            <AuthenticationTwitterButton login={() => this.login()} />
+          </div>
+          <div
+            className="Authentication-tryApp"
+            onClick={() => this.props.history.push("/Artist")}
+          >
+            <AuthenticationTryAppButton />
+          </div>
         </div>
       </div>
     );

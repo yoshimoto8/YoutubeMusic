@@ -19,6 +19,10 @@ h2 {
   margin: 30px auto 30px;
 }
 
+.Authentication-tryApp {
+  margin-top: 20px;
+}
+
 /* twitter button */
 
 .fl_tw2 {
@@ -47,6 +51,39 @@ h2 {
 }
 
 .fl_tw2:hover span {
+  -webkit-transform: rotateX(360deg);
+  -ms-transform: rotateX(360deg);
+  transform: rotateX(360deg);
+}
+
+/* trybutton */
+
+.fl_try {
+  color: #fff;
+  border-radius: 7px;
+  display: inline-block;
+  height: 50px;
+  width: 190px;
+  text-align: center;
+  font-size: 15x;
+  line-height: 50px;
+  vertical-align: middle;
+  background: #1db954;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.fl_try .fa-try {
+  text-shadow: 2px 2px 0px #1db954;
+  font-size: 30px;
+}
+
+.fl_try span {
+  display: inline-block;
+  transition: 0.5s;
+}
+
+.fl_try:hover span {
   -webkit-transform: rotateX(360deg);
   -ms-transform: rotateX(360deg);
   transform: rotateX(360deg);

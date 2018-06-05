@@ -22,6 +22,7 @@ import FaSearch from "react-icons/lib/fa/search";
 import MdFace from "react-icons/lib/md/face";
 import MdFilter from "react-icons/lib/md/filter";
 import MdFavorite from "react-icons/lib/md/favorite";
+import FaSignIn from "react-icons/lib/fa/sign-in";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -83,8 +84,13 @@ ReactDOM.render(
                   {sessionStorage.getItem("userName")}
                 </div>
               </div>
-            ) : (
-              <div />
+            ) : null}
+            {sessionStorage.getItem("user") ? null : (
+              <li>
+                <Link to="/">
+                  <FaSignIn className="sidebar-icon" />ログインする
+                </Link>
+              </li>
             )}
             {sessionStorage.getItem("user") ? (
               <li>
@@ -92,28 +98,48 @@ ReactDOM.render(
                   <MdFace className="sidebar-icon" />アーティスト(β)
                 </Link>
               </li>
-            ) : null}
+            ) : (
+              <li>
+                <Link to="/Artist">
+                  <MdFace className="sidebar-icon" />アーティスト(β)
+                </Link>
+              </li>
+            )}
             {sessionStorage.getItem("user") ? (
               <li>
                 <Link to="/Home">
                   <MdFilter className="sidebar-icon" />アルバム
                 </Link>
               </li>
-            ) : null}
+            ) : (
+              <li>
+                <Link to="/Home">
+                  <MdFilter className="sidebar-icon" />アルバム
+                </Link>
+              </li>
+            )}
             {sessionStorage.getItem("user") ? (
               <li>
                 <Link to="/Myalbum">
                   <MdFavorite className="sidebar-icon" />マイアルバム
                 </Link>
               </li>
-            ) : null}
+            ) : (
+              <li>
+                <MdFavorite className="sidebar-icon" />マイアルバム
+              </li>
+            )}
             {sessionStorage.getItem("user") ? (
               <li>
                 <Link to="/Search">
                   <FaSearch size="15px" className="sidebar-icon" />検索
                 </Link>
               </li>
-            ) : null}
+            ) : (
+              <li>
+                <FaSearch size="15px" className="sidebar-icon" />検索
+              </li>
+            )}
             {sessionStorage.getItem("user") ? (
               <li>
                 <MdFilter className="sidebar-icon" />使い方(準備中)
