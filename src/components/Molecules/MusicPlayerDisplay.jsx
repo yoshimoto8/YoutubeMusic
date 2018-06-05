@@ -46,14 +46,16 @@ const MusicPlayerDisplay = props => {
           <button className="startBtn" onClick={() => playPause()}>
             {playing ? "一時停止" : "曲の再生"}
           </button>
-          <MusicPlayerDisplayAddMylist
-            isAddMylist={isAddMylist}
-            sameName={sameName}
-            createAlubmFormat={createAlubmFormat}
-            musicList={musicList}
-            alubmImage={alubmImage}
-            playListName={playListName}
-          />
+          {sessionStorage.getItem("user") ? (
+            <MusicPlayerDisplayAddMylist
+              isAddMylist={isAddMylist}
+              sameName={sameName}
+              createAlubmFormat={createAlubmFormat}
+              musicList={musicList}
+              alubmImage={alubmImage}
+              playListName={playListName}
+            />
+          ) : null}
         </div>
       </div>
     </div>
