@@ -28,6 +28,7 @@ class Search extends React.Component {
   }
 
   addFavoriteMusic = (musicName, url, duration) => {
+    console.log(musicName, url, duration);
     const db = firebase.firestore();
     db
       .collection(`users/${sessionStorage.getItem("user")}/userFavoriteMusic`)
@@ -63,7 +64,6 @@ class Search extends React.Component {
     const { searchKeyWord } = this.state;
     localStorage.setItem("searchKeyWord", searchKeyWord);
     this.props.fetchYoutube(searchKeyWord);
-    this.setState({ duration: [] });
   };
 
   changeSearchKeyWord = e => {
