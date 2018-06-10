@@ -1,12 +1,20 @@
-import React from "react";
-import firebase from "firebase";
+/*@flow*/
+import * as React from "react";
+import { firebase } from "firebase";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import TabHelmet from "../components/Atoms/TabHelmet";
 import { setArtist } from "../actions";
 import "./styles/Artist.css";
 
-class Artist extends React.Component {
+type Props = {
+  setArtist: func
+};
+
+type State = {
+  artistLists: array
+};
+class Artist extends React.Component<Props, State> {
   constructor() {
     super();
     this.state = {
