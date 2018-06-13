@@ -1,7 +1,7 @@
 import { FETCH_ARTIST, SUCCEEDED_FETCH_ARTIST } from "../actions/artist";
 
 const initialState = {
-  fetching: true,
+  fetching: false,
   error: null,
   fetchArtist: []
 };
