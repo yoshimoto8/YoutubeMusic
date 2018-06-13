@@ -6,6 +6,7 @@ import fetchYoutubeAPI from "./youtubeAPI/fetchYoutubeAPI";
 export function* fetchYoutubeData(action) {
   const responseResult = yield call(fetchYoutubeAPI, action.searchKeyWord);
   if (responseResult) {
+    // 改善の余地あり
     yield call(setStorageSearch, action.searchKeyWord);
     yield put(succeededYoutubeFetch(responseResult.data.items));
   } else {

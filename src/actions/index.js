@@ -1,13 +1,13 @@
 export const SET_PLAYLIST = "SET_PLAYLIST";
 
 export const SET_ARTIST = "SET_ARTIST";
-
+//youtube検索
 export const FETCH_YOUTUBE = "FETCH_YOUTUBE";
 export const SUCCEEDED_FETCH_YOUTUBE = "SUCCEEDED_FETCH_YOUTUBE";
-
+// アルバムの作成
 export const CREATE_ALUBM = "CREATE_ALUBM";
 export const SUCCEEDED_CREATE_ALUBM = "SUCCEEDED_CREATE_ALUBM";
-
+// アルバムの消去
 export const DELETE_ALUBM = "DELETE_ALUBM";
 export const SUCCEEDED_DELETE_ALUBM = "DELETE_ALUBM";
 

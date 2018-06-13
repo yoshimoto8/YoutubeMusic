@@ -6,7 +6,6 @@ export default function createAlubmAPI(emptyAlbum) {
     .collection(`users/${sessionStorage.getItem("user")}/userMusicList`)
     .add(emptyAlbum)
     .then(() => {
-      console.log("成功");
       return true;
     })
     .catch(() => {
