@@ -5,7 +5,8 @@ import $ from "jquery";
 import "./styles/ArtistMusicPlayer.css";
 import TabHelmet from "../components/Atoms/TabHelmet";
 import ArtistMusicPlayerOperation from "../components/Molecules/ArtistMusicPlayerOperation";
-import ArtistMusicPlayerRow from "../components/Molecules/ArtistMusicPlayerRow";
+import ArtistMusicPlayerMusicList from "../components/Molecules/ArtistMusicPlayerMusicList";
+import ArtistMusicPlayerArtistInfo from "../components/Molecules/ArtistMusicPlayerArtistInfo";
 
 class ArtistMusicPlayer extends React.Component {
   constructor() {
@@ -135,13 +136,15 @@ class ArtistMusicPlayer extends React.Component {
     return (
       <div className="main">
         <TabHelmet title={`${name}のプレイリスト`} />
+
         <div className="ArtistMusicPlayer">
           {!Object.keys(setMusic).length ? (
-            <div className="ArtistMusicPlayer-artistInfo">
-              <img src={artist.src} alt="" />
-              <h2>{`${artist.name}のミュージックリスト`}</h2>
-              <div>{`${musicLength}曲`}</div>
-            </div>
+            <ArtistMusicPlayerArtistInfo
+              artist={artist}
+              musicLength={musicLength}
+              playing={playing}
+              setMusic={setMusic}
+            />
           ) : (
             <div className="ArtistMusicPlayer-musicDisplay">
               <ReactPlayer
@@ -156,41 +159,25 @@ class ArtistMusicPlayer extends React.Component {
                 volume={volume}
                 loop={loop}
               />
-              <h2>{`${artist.name}のミュージックリスト`}</h2>
-              <div>{`${musicLength}曲`}</div>
-              {playing ? (
-                <button
-                  className="ArtistMusicPlayer-startBtn"
-                  onClick={() => onStop()}
-                >
-                  曲を停止させる
-                </button>
-              ) : (
-                <button
-                  className="ArtistMusicPlayer-startBtn"
-                  onClick={() => onPlay()}
-                >
-                  曲を再生する
-                </button>
-              )}
+              <ArtistMusicPlayerArtistInfo
+                artist={artist}
+                musicLength={musicLength}
+                playing={playing}
+                onStop={() => onStop()}
+                onPlay={() => onPlay()}
+                setMusic={setMusic}
+              />
             </div>
           )}
-          <div className="ArtistMusicPlayer-MusicList">
-            {musicList.map((data, index) => {
-              const isSet = data.src === setMusic.src;
-              return (
-                <ArtistMusicPlayerRow
-                  key={index}
-                  data={data}
-                  setMusicFunc={(src, name, artist, id) =>
-                    setMusicFunc(src, name, artist, id)
-                  }
-                  format={secounds => format(secounds)}
-                  isSet={isSet}
-                />
-              );
-            })}
-          </div>
+
+          <ArtistMusicPlayerMusicList
+            musicList={musicList}
+            setMusic={setMusic}
+            format={secounds => format(secounds)}
+            setMusicFunc={(src, name, artist, id) =>
+              setMusicFunc(src, name, artist, id)
+            }
+          />
         </div>
 
         {!Object.keys(setMusic).length ? (
