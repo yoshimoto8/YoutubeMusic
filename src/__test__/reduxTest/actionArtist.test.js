@@ -12,6 +12,7 @@ describe("artist actions", () => {
     };
     expect(fetchArtist()).toEqual(expectedAction);
   });
+
   it("should create an action", () => {
     const result = [
       {
