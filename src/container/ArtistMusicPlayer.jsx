@@ -27,9 +27,8 @@ class ArtistMusicPlayer extends React.Component {
       const artist = $.parseJSON(sessionStorage.getItem("aritst"));
       this.setState({ artist });
     } else {
-      const artist = this.props.artist;
-      sessionStorage.setItem("aritst", JSON.stringify(artist));
-      this.setState({ artist });
+      sessionStorage.setItem("aritst", JSON.stringify(this.props.artist));
+      this.setState({ artist: this.props.artist });
     }
   }
 
@@ -127,11 +126,9 @@ class ArtistMusicPlayer extends React.Component {
     // ↓適当
     const musicLength =
       artist.musicList === undefined ? 1 : artist.musicList.length;
-
     if (played === 1) {
       nextMusic();
     }
-
     const { musicList, name } = artist;
     return (
       <div className="main">
