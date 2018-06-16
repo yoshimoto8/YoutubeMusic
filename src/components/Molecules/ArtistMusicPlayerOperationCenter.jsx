@@ -1,8 +1,8 @@
 import React from "react";
 import TiArrowLoop from "react-icons/lib/ti/arrow-loop";
 import GoJumpRight from "react-icons/lib/go/jump-right";
-import GoJumpLeft from "react-icons/lib/go/jump-left";
-import Duration from "../MusicPlayer/Duration";
+import Duration from "../Atoms/MusicPlayer/Duration";
+import LeftJumpBtn from "../Atoms/ArtistMusicPlayer/LeftJumpBtn";
 
 const ArtistMusicPlayerOperationCenter = props => {
   const {
@@ -23,10 +23,7 @@ const ArtistMusicPlayerOperationCenter = props => {
   return (
     <div className="ArtistMusicPlayerOperationCenter">
       <div className="ArtistMusicPlayerOperationCenter-top">
-        <GoJumpLeft
-          className="ArtistMusicPlayerOperationCenter-GoJumpLeft"
-          onClick={() => backMusic()}
-        />
+        <LeftJumpBtn backMusic={backMusic} />
         <button
           className={`${buttonType} ArtistMusicPlayerOperationCenter-PlayBtn`}
           onClick={() => play()}

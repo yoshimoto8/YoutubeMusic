@@ -1,6 +1,6 @@
 import React from "react";
 import ArtistMusicPlayerOperationLeft from "../Atoms/ArtistMusicPlayer/ArtistMusicPlayerOperationLeft";
-import ArtistMusicPlayerOperationCenter from "../Atoms/ArtistMusicPlayer/ArtistMusicPlayerOperationCenter";
+import ArtistMusicPlayerOperationCenter from "../Molecules/ArtistMusicPlayerOperationCenter";
 import IoIosVolumeHigh from "react-icons/lib/io/ios-volume-high";
 
 const ArtistMusicPlayerOperation = props => {

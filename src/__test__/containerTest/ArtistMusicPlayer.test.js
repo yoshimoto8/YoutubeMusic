@@ -8,11 +8,3 @@ import TabHelmet from "../../components/Atoms/TabHelmet";
 describe("<ArtistMusicPlayer /> test", () => {
   it("test", () => {});
 });
-
-// configure({ adapter: new Adapter() });
-// describe("<ArtistMusicPlayer /> test", () => {
-//   it("helmet test", () => {
-//     const wrapper = render(connect(<ArtistMusicPlayer />));
-//     expect(wrapper.find(<TabHelmet />)).toBe(1);
-//   });
-// });
