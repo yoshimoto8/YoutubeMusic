@@ -1,0 +1,36 @@
+{
+  "name": "music-web",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "yoshimoto8 <yoyoyo427435@gmail.com>",
+  "homepage": "https://github.com/yoshimoto8/YoutubeMusic#readme",
+  "license": "ISC",
+  "main": "lib/music-web.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": ["lib"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoshimoto8/YoutubeMusic.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/yoshimoto8/YoutubeMusic/issues"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
+    "@babel/polyfill": "^7.4.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "babel-loader": "^8.0.5",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.29.6",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
