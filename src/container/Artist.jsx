@@ -1,5 +1,4 @@
 import React from "react";
-// import firebase from "firebase";
 import { connect } from "react-redux";
 import TabHelmet from "../components/Atoms/TabHelmet";
 import { setArtist } from "../actions";

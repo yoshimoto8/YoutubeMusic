@@ -1,0 +1,191 @@
+version: 2.1
+executors:
+  node:
+    docker:
+      - image: circleci/node:8
+commands:
+  restore_built:
+    description: 'Restore the build result from cache'
+    steps:
+      - restore_cache:
+          key: built-api-schema-{{ .Revision }}
+      - restore_cache:
+          key: built-client-{{ .Revision }}
+      - restore_cache:
+          key: built-server-{{ .Revision }}
+  restore_dependency:
+    description: 'Restore the dependencies result from cache'
+    steps:
+      - restore_cache:
+          keys:
+            - dependencies-root-{{ checksum "package.json" }}
+            - dependencies-root-
+      - restore_cache:
+          keys:
+            - dependencies-api-schema-{{ checksum "packages/api-schema/package.json" }}
+            - dependencies-api-schema-
+      - restore_cache:
+          keys:
+            - dependencies-client-{{ checksum "packages/client/package.json" }}
+            - dependencies-client-
+      - restore_cache:
+          keys:
+            - dependencies-server-{{ checksum "packages/server/package.json" }}
+            - dependencies-server-
+jobs:
+  install_dependency:
+    executor: node
+    steps:
+      - checkout
+      - restore_dependency
+      - run:
+          name: ルートの依存関係のインストール
+          command: npm install
+      - run:
+          name: サブプロジェクトの依存関係のインストール
+          command: npx lerna bootstrap
+      - run:
+          name: package.jsonの避難
+          command: cp ./package.json ./package.copy.json
+      - run:
+          name: package.jsonの避難
+          command: cp ./packages/api-schema/package.json ./packages/api-schema/package.copy.json
+      - run:
+          name: package.jsonの避難
+          command: cp ./packages/client/package.json ./packages/client/package.copy.json
+      - run:
+          name: package.jsonの避難
+          command: cp ./packages/server/package.json ./packages/server/package.copy.json
+      - save_cache:
+          paths:
+            - ./node_modules/
+          key: dependencies-root-{{ checksum "package.copy.json" }}
+      - save_cache:
+          paths:
+            - ./packages/api-schema/node_modules/
+          key: dependencies-api-schema-{{ checksum "packages/api-schema/package.copy.json" }}
+      - save_cache:
+          paths:
+            - ./packages/client/node_modules/
+          key: dependencies-client-{{ checksum "packages/client/package.copy.json" }}
+      - save_cache:
+          paths:
+            - ./packages/server/node_modules/
+          key: dependencies-server-{{ checksum "packages/server/package.copy.json" }}
+  build:
+    executor: node
+    steps:
+      - checkout
+      - restore_dependency
+      - run:
+          name: ビルド
+          command: npx lerna run build
+      - save_cache:
+          paths:
+            - ./packages/api-schema/lib/
+          key: built-api-schema-{{ .Revision }}
+      - save_cache:
+          paths:
+            - ./packages/client/dist/
+          key: built-client-{{ .Revision }}
+      - save_cache:
+          paths:
+            - ./packages/server/dist/
+          key: built-server-{{ .Revision }}
+  test:
+    executor: node
+    steps:
+      - checkout
+      - restore_dependency
+      - restore_built
+      - run:
+          name: テスト
+          command: npx lerna run test:coverage
+      - run:
+          name: Codecovに送る
+          command: npx codecov
+
+  deploy_staging:
+    executor: node
+    steps:
+      - checkout
+      - restore_dependency
+      - restore_built
+      - run:
+          name: デプロイ先の切り替え(Staging)
+          command: npx firebase use staging
+      - run:
+          name: デプロイ
+          command: npx firebase deploy --token "$FIREBASE_TOKEN"
+      - run:
+          name: 'プロダクションリリースへのタグ付け'
+          command: 'git tag staging/rev-${CIRCLE_BUILD_NUM}'
+      - run:
+          name: 'タグのpush'
+          command: 'git push origin --tags'
+  pre_deploy_production:
+    executor: node
+    steps:
+      - run:
+          name: send notification to slack
+          command: >
+            curl -X POST -H 'Content-type: application/json'
+            --data "{\"text\": \"本番環境へのデプロイにはManual Approvalが必要です。http://XXXX を確認の上、本番環境へデプロイしていい場合は次のアドレスから承認してください。<https://circleci.com/workflow-run/${CIRCLE_WORKFLOW_ID}|here>.\"}"
+            $WEBHOOK_URL
+  deploy_production:
+    executor: node
+    steps:
+      - checkout
+      - restore_dependency
+      - restore_built
+      - run:
+          name: デプロイ先の切り替え(Production)
+          command: npx firebase use production
+      - run:
+          name: デプロイ
+          command: npx firebase deploy --token "$FIREBASE_TOKEN"
+      - run:
+          name: 'プロダクションリリースへのタグ付け'
+          command: 'git tag production/rev-${CIRCLE_BUILD_NUM}'
+      - run:
+          name: 'タグのpush'
+          command: 'git push origin --tags'
+workflows:
+  main:
+    jobs:
+      - install_dependency
+      - build:
+          requires:
+            - install_dependency
+      - test:
+          requires:
+            - build
+      - deploy_staging:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - staging
+                - master
+      - pre_deploy_production:
+          requires:
+            - deploy_staging
+          filters:
+            branches:
+              only:
+                - master
+      - approve_deploy_production:
+          type: approval
+          requires:
+            - pre_deploy_production
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_production:
+          requires:
+            - approve_deploy_production
+          filters:
+            branches:
+              only: master
