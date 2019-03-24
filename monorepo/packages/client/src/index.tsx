@@ -1,2 +1,6 @@
-import { CounterResult } from 'music-api-schema'
-console.log(CounterResult)
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+const App = () => <div />
+
+ReactDOM.render(<App />, document.getElementById('app'))
