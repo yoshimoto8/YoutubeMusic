@@ -1,5 +1,5 @@
 {
-  "name": "music-web",
+  "name": "@music/web",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "",
@@ -10,9 +10,7 @@
     "lib": "lib",
     "test": "__tests__"
   },
-  "files": [
-    "lib"
-  ],
+  "files": ["lib"],
   "publishConfig": {
     "access": "public"
   },
@@ -20,11 +18,16 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint-staged": "lint-staged",
-    "build": "webpack --config ./webpack.prod.config.js && cpx 'static/**/*' dist --verbose",
-    "build:dev": "webpack --config ./webpack.dev.config.js && cpx 'static/**/*' dist --verbose",
-    "start": "webpack-dev-server --watch --config ./webpack.dev.config.js --content-base static/",
-    "lint:format": "prettier --write --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'",
-    "lint": "prettier --list-different --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'"
+    "build":
+      "webpack --config ./webpack.prod.config.js && cpx 'static/**/*' dist --verbose",
+    "build:dev":
+      "webpack --config ./webpack.dev.config.js && cpx 'static/**/*' dist --verbose",
+    "start":
+      "webpack-dev-server --watch --config ./webpack.dev.config.js --content-base static/",
+    "lint:format":
+      "prettier --write --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'",
+    "lint":
+      "prettier --list-different --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'"
   },
   "dependencies": {
     "@emotion/core": "^10.0.9",
@@ -35,7 +38,8 @@
     "emotion": "^10.0.9",
     "husky": "^1.2.0",
     "lint-staged": "^8.1.0",
-    "music-api-schema": "^0.0.0",
+    "@music/api-schema": "^0.0.0",
+    "@music/assets": "^0.0.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "typescript": "^3.1.6"
@@ -69,23 +73,13 @@
     "webpack-merge": "^4.1.4"
   },
   "lint-staged": {
-    "./src/**/*.{js,ts,tsx,scss,json}": [
-      "npm run lint:format",
-      "git add"
-    ]
+    "./src/**/*.{js,ts,tsx,scss,json}": ["npm run lint:format", "git add"]
   },
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest-babel-7"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
   }
 }
