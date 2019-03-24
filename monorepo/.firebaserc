@@ -1,6 +1,5 @@
 {
   "projects": {
-    "production": "qiita-firebase-monorepo",
-    "staging": "qiita-firebase-monorepo-stg"
+    "default": "music-8deaf"
   }
 }
