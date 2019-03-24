@@ -1,1 +1,2 @@
-import { CounterResult } from '@firebase-monorepo/api-schema'
+import { CounterResult } from 'music-api-schema'
+console.log(CounterResult)
