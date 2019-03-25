@@ -10,7 +10,9 @@
     "lib": "lib",
     "test": "__tests__"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -19,13 +21,11 @@
     "test:coverage": "jest --coverage",
     "build": "webpack && npm run build:copy_entry",
     "build:copy_entry": "cp ./src/*.* ./dist",
-    "lint:format":
-      "prettier --write --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'",
-    "lint":
-      "prettier --list-different --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'"
+    "lint:format": "prettier --write --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'",
+    "lint": "prettier --list-different --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'"
   },
   "dependencies": {
-    "@music/api-schema": "^0.0.0",
+    "@music/model": "^0.0.0",
     "@types/express": "^4.16.0",
     "@types/jest": "^23.3.9",
     "codecov": "^3.1.0",
@@ -54,13 +54,23 @@
     "webpack-cli": "^3.1.2"
   },
   "lint-staged": {
-    "./src/**/*.{js,ts,tsx,scss,json}": ["npm run lint:format", "git add"]
+    "./src/**/*.{js,ts,tsx,scss,json}": [
+      "npm run lint:format",
+      "git add"
+    ]
   },
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest-babel-7"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }

@@ -29,7 +29,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.9",
     "@emotion/styled": "^10.0.9",
-    "@music/api-schema": "^0.0.0",
+    "@music/model": "^0.0.0",
     "@music/assets": "^0.0.0",
     "@types/jest": "^23.3.9",
     "@types/redux-saga": "^0.10.5",

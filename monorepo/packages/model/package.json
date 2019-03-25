@@ -1,5 +1,5 @@
 {
-  "name": "@music/api-schema",
+  "name": "@music/model",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "",
@@ -11,20 +11,19 @@
     "lib": "lib",
     "test": "__tests__"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "build":
-      "babel src --out-dir lib --extensions \".ts\" --source-maps && npm run build:types",
+    "build": "babel src --out-dir lib --extensions \".ts\" --source-maps && npm run build:types",
     "build:types": "tsc --emitDeclarationOnly",
-    "lint:format":
-      "prettier --write --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'",
-    "lint":
-      "prettier --list-different --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'"
+    "lint:format": "prettier --write --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'",
+    "lint": "prettier --list-different --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'"
   },
   "dependencies": {
     "@babel/cli": "^7.1.5",
@@ -49,13 +48,23 @@
     "ts-jest-babel-7": "^22.0.7"
   },
   "lint-staged": {
-    "./src/**/*.{js,ts,tsx,scss,json}": ["npm run lint:format", "git add"]
+    "./src/**/*.{js,ts,tsx,scss,json}": [
+      "npm run lint:format",
+      "git add"
+    ]
   },
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest-babel-7"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }
