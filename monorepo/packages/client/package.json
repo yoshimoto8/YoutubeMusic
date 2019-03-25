@@ -29,14 +29,16 @@
   "dependencies": {
     "@emotion/core": "^10.0.9",
     "@emotion/styled": "^10.0.9",
+    "@music/api-schema": "^0.0.0",
+    "@music/assets": "^0.0.0",
     "@types/jest": "^23.3.9",
+    "@types/redux-saga": "^0.10.5",
+    "antd": "^3.15.2",
     "codecov": "^3.1.0",
     "cpx": "^1.5.0",
     "emotion": "^10.0.9",
     "husky": "^1.2.0",
     "lint-staged": "^8.1.0",
-    "@music/api-schema": "^0.0.0",
-    "@music/assets": "^0.0.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "typescript": "^3.1.6"
