@@ -10,7 +10,9 @@
     "lib": "lib",
     "test": "__tests__"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -18,28 +20,25 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint-staged": "lint-staged",
-    "build":
-      "webpack --config ./webpack.prod.config.js && cpx 'static/**/*' dist --verbose",
-    "build:dev":
-      "webpack --config ./webpack.dev.config.js && cpx 'static/**/*' dist --verbose",
-    "start":
-      "webpack-dev-server --watch --config ./webpack.dev.config.js --content-base static/",
-    "lint:format":
-      "prettier --write --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'",
-    "lint":
-      "prettier --list-different --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'"
+    "build": "webpack --config ./webpack.prod.config.js && cpx 'static/**/*' dist --verbose",
+    "build:dev": "webpack --config ./webpack.dev.config.js && cpx 'static/**/*' dist --verbose",
+    "start": "webpack-dev-server --watch --config ./webpack.dev.config.js --content-base static/",
+    "lint:format": "prettier --write --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'",
+    "lint": "prettier --list-different --config ../../.prettierrc.json './src/**/*.{js,ts,tsx,scss,json}'"
   },
   "dependencies": {
     "@emotion/core": "^10.0.9",
     "@emotion/styled": "^10.0.9",
+    "@music/api-schema": "^0.0.0",
+    "@music/assets": "^0.0.0",
     "@types/jest": "^23.3.9",
+    "@types/redux-saga": "^0.10.5",
+    "antd": "^3.15.2",
     "codecov": "^3.1.0",
     "cpx": "^1.5.0",
     "emotion": "^10.0.9",
     "husky": "^1.2.0",
     "lint-staged": "^8.1.0",
-    "@music/api-schema": "^0.0.0",
-    "@music/assets": "^0.0.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "typescript": "^3.1.6"
@@ -61,6 +60,9 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.15.2",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-saga": "^1.0.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "ts-jest": "^23.10.5",
@@ -73,13 +75,23 @@
     "webpack-merge": "^4.1.4"
   },
   "lint-staged": {
-    "./src/**/*.{js,ts,tsx,scss,json}": ["npm run lint:format", "git add"]
+    "./src/**/*.{js,ts,tsx,scss,json}": [
+      "npm run lint:format",
+      "git add"
+    ]
   },
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest-babel-7"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }
