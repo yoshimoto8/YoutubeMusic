@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Button } from 'antd'
 import { Provider } from 'react-redux'
 import { configureStore } from './stores/configureStore'
+import { Home } from './containers'
 
-const App = () => <Button type="primary">Button</Button>
+const App = () => <Home />
 //@ts-ignore
 const store = configureStore()
 
