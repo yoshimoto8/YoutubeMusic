@@ -29,8 +29,8 @@
   "dependencies": {
     "@emotion/core": "^10.0.9",
     "@emotion/styled": "^10.0.9",
-    "@music/model": "^0.0.0",
     "@music/assets": "^0.0.0",
+    "@music/model": "^0.0.0",
     "@types/jest": "^23.3.9",
     "@types/redux-saga": "^0.10.5",
     "codecov": "^3.1.0",
@@ -40,6 +40,7 @@
     "lint-staged": "^8.1.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "styled-system": "^4.0.8",
     "typescript": "^3.1.6"
   },
   "devDependencies": {
