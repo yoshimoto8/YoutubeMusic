@@ -1,6 +1,24 @@
-import * as React from 'react'
-import { Page } from '../templates/Page'
-console.log(Page)
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
+import { Header } from '../organisms/Header'
+import { SideBar } from '../organisms/SideBar'
+
 export const Home = () => {
-  return <div />
+  return (
+    <div>
+      <Header />
+      <div css={styles.contents}>
+        <SideBar />
+        <main>a</main>
+      </div>
+    </div>
+  )
+}
+
+const styles = {
+  container: css``,
+  contents: css`
+    display: flex;
+  `,
+  main: css``
 }
